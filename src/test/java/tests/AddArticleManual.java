@@ -32,7 +32,6 @@ public class AddArticleManual extends BaseTest {
         addarticlemanualpage.DoAddArticle(journalacro,articleid,articlename,doinum,workflow);
 
     }
-    //add
 
 
 
