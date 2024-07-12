@@ -1266,6 +1266,7 @@ public class AddPublisherPage {
         page.locator(updatebutton).click();
         // page.locator(updatealert).click();
         page.locator(updatealertclose).click();
+        //page.locatorvvmmvkv
     }
 }
 
