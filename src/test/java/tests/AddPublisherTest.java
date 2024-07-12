@@ -605,6 +605,28 @@ public Object[][] getdecdata() throws IOException {
       ExtentReportListener.getTest().log(Status.INFO,"All the Values are  updated");
 
   }
+    @DataProvider(name = "adddiffpub")
+    public  Object[][] adddiffpub() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",10);
+    }
+
+
+  public  String EditPubANotPubBStyfile(String a,String b)
+  {
+      String acro=addpublisherpage.EditStyContInPubANotPubB(a,b);
+      return acro;
+  }
+
+  @Test
+  public void VerfiyisupdateINANotInB() throws InterruptedException {
+      String a=EditPubANotPubBStyfile("ab","ba");
+      String b= EditPubANotPubBStyfile("bb","cc");
+      addpublisherpage.EditAStyContent(a);
+      addpublisherpage.EditBStyContent(b);
+
+
+  }
+
 
 
 
