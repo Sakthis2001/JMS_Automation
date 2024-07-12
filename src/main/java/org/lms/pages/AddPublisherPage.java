@@ -116,6 +116,7 @@ public class AddPublisherPage {
     private String removefileclose = "//p[text()='styledoc.sty']//following::img[@title='Remove']";
     private String reovefileyes = "//*[text()='Remove File']//following::newbutton[text()='Yes']";
     private String ftphost = "//input[@data-testid='ftp-host']";
+    private String StyShow="(//*[text()='Latest Files']//following::img[@title='Show'])[1]";
 
 
     public AddPublisherPage(Page page) {
@@ -1189,13 +1190,83 @@ public class AddPublisherPage {
         ftpupdated.add(page.locator(ftpusername).inputValue());
         return ftpupdated;
 
+    }
+
+    public void uploadfiles()
+    {
+        fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
+        fileChooser.setFiles(Paths.get("Automation.jpg"));
+        fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
+        fileChooser.setFiles(Paths.get("ABC.sty"));
+        fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
+        fileChooser.setFiles(Paths.get("guidelines.docx"));
+    }
 
 
+    public String EditStyContInPubANotPubB(String a, String b)
+    {
+        pubAdd(a, b);
+        uploadfiles();
 
+        page.locator(addbutton).click();
+        page.locator(addalertclose).click();
+        page.locator(managemenu).click();
+        return a;
+
+    }
+
+    public void EditAStyContent(String a) throws InterruptedException {
+       // EditStyContInPubANotPubB( a,b);
+        page.locator("//th[text()='"+a+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+a+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        page.locator(StyShow).click();
+        page.locator("//p[text()='ABC.sty']//following::img[@title='Edit']").click();
+        assertThat(page.locator("(//button//preceding::span)[6]")).isVisible();
+        page.locator("(//button//preceding::span)[6]").click();
+        page.keyboard().press("Control+A");
+        page.keyboard().press("Delete");
+
+        // Optionally, fill the element with new text
+      //  page.locator("(//button//preceding::span)[6]").fill("New text to be pasted");
+
+
+        // page.wait(10000);
+
+        page.locator("(//*[text()='ABC.sty'])[2]//following::button[text()='Save']").click();
+
+        assertThat(page.locator("(//*[text()='ABC.sty'])[2]//following::button[text()='Saved']")).isAttached();
+        page.locator("(//*[text()='ABC.sty'])[2]//following::img[@title='Close']").click();
+        page.locator(updatebutton).click();
+       // page.locator(updatealert).click();
+        page.locator(updatealertclose).click();
 
 
     }
 
+    public void EditBStyContent(String b) {
+        page.locator("//th[text()='"+b+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+b+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        page.locator(StyShow).click();
+        page.locator("//p[text()='ABC.sty']//following::img[@title='Edit']").click();
+        assertThat(page.locator("(//button//preceding::span)[6]")).isVisible();
+        page.locator("(//button//preceding::span)[6]").click();
+        page.keyboard().press("Control+A");
+        page.keyboard().press("Delete");
+
+        // Optionally, fill the element with new text
+        //  page.locator("(//button//preceding::span)[6]").fill("New text to be pasted");
+
+
+        // page.wait(10000);
+
+        page.locator("(//*[text()='ABC.sty'])[2]//following::button[text()='Save']").click();
+
+        assertThat(page.locator("(//*[text()='ABC.sty'])[2]//following::button[text()='Saved']")).isAttached();
+        page.locator("(//*[text()='ABC.sty'])[2]//following::img[@title='Close']").click();
+        page.locator(updatebutton).click();
+        // page.locator(updatealert).click();
+        page.locator(updatealertclose).click();
+    }
 }
 
 
