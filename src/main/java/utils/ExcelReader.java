@@ -22,7 +22,7 @@ public class ExcelReader {
         Sheet sheet = workbook.getSheetAt(sheetNumber);
 
         int rowCount = sheet.getLastRowNum();
-        int columnCount = sheet.getRow(0).getLastCellNum();
+        int columnCount =sheet.getRow(0).getLastCellNum();
 
         Object[][] data = new Object[rowCount][columnCount];
 

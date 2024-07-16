@@ -68,4 +68,19 @@ public class HomePage {
         return new AddArticlePage(page);
     }
 
+    public PreRequestPage navigatetocommonpage() {
+
+        page.url();
+
+        return new PreRequestPage(page);
+
+
+    }
+
+    public QuickLinksPage navigatetoquickPage()
+    {
+        page.url();
+        return new QuickLinksPage(page);
+    }
+
 }

@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" thread-count="2" parallel="tests">
-   <test name="HomePageTest" >
+   <test name="HomePageTest">
         <classes>
             <class name="tests.HomePageTest"></class>
         </classes>
+   </test>
+
+    <test name="PreRequestTest">
+
+        <classes>
+            <class name="tests.PreRequestTest"></class>
+
+        </classes>
 
     </test>
+
+   <test name="QuickLinksTest" >
+        <classes>
+            <class name="tests.QuickLinksTest"></class>
+        </classes>
+    </test>
+
+
+
+
     <test name="AddPublisherTest">
 
         <classes>
             <class name="tests.AddPublisherTest">
-                <methods>
-                    <include name="VerfiyisupdateINANotInB"></include>
-                </methods>
-
 
             </class>
 
@@ -22,14 +36,17 @@
 
     </test>
 
-    <!--<test name="AddArticleTest">
+
+
+    <test name="AddArticleTest">
 
         <classes>
             <class name="tests.AddArticleTest">
+
             </class>
 
         </classes>
 
     </test>
--->
-   </suite>
+</suite>
+

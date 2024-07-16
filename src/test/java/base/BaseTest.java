@@ -12,7 +12,7 @@ import java.util.Properties;
 public class BaseTest {
     Page page;
     PageFactory pf;
-    protected  Properties prop;
+     protected Properties prop;
 
    protected HomePage homepage;
 
@@ -24,15 +24,18 @@ public class BaseTest {
 
    protected AddArticleManualPage addarticlemanualpage;
 
+   protected PreRequestPage prerequestpage;
+   protected QuickLinksPage quickLinksPage;
 
-   @BeforeClass
+
+    @BeforeClass
    public void startbrwoser() throws IOException {
        pf=new PageFactory();
        prop=pf.initprop();
        page=pf.initbrowser(prop);
        homepage=new HomePage(page);
        ExtentReportListener.setPage(page);
-      // page.context().tracing().start(new Tracing.StartOptions().setScreenshots(true).setSnapshots(true));
+             // page.context().tracing().start(new Tracing.StartOptions().setScreenshots(true).setSnapshots(true));
 
    }
 

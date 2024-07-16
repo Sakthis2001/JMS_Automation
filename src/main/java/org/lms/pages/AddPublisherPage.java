@@ -1203,27 +1203,95 @@ public class AddPublisherPage {
     }
 
 
-    public String EditStyContInPubANotPubB(String a, String b)
-    {
+    public Boolean AddTwoDiffPub(String a, String b) throws InterruptedException {
         pubAdd(a, b);
         uploadfiles();
 
         page.locator(addbutton).click();
         page.locator(addalertclose).click();
         page.locator(managemenu).click();
-        return a;
-
-    }
-
-    public void EditAStyContent(String a) throws InterruptedException {
-       // EditStyContInPubANotPubB( a,b);
+        page.locator(managemenu).click();
         page.locator("//th[text()='"+a+"']//following::span[@data-target='#dropright'][1]").click();
         page.locator("//th[text()='"+a+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
         page.locator(StyShow).click();
         page.locator("//p[text()='ABC.sty']//following::img[@title='Edit']").click();
         assertThat(page.locator("(//button//preceding::span)[6]")).isVisible();
-        page.locator("(//button//preceding::span)[6]").click();
-        page.keyboard().press("Control+A");
+        page.locator("(//button//preceding::span)[6]").dblclick();
+        String deldata=page.locator("(//button//preceding::span)[6]").textContent();
+
+        page.keyboard().press("Delete");
+
+        // Optionally, fill the element with new text
+        //  page.locator("(//button//preceding::span)[6]").fill("New text to be pasted");
+
+
+        // page.wait(10000);
+
+        page.locator("(//*[text()='ABC.sty'])[2]//following::button[text()='Save']").click();
+
+        assertThat(page.locator("(//*[text()='ABC.sty'])[2]//following::button[text()='Saved']")).isAttached();
+        page.locator("(//*[text()='ABC.sty'])[2]//following::img[@title='Close']").click();
+        page.locator(updatebutton).click();
+        // page.locator(updatealert).click();
+        page.locator(updatealertclose).click();
+        System.out.println(deldata);
+        String a1=a;
+        String b1=b;
+        String nextacro=a1+"other";
+        String nextpubname=b1+"other";
+
+        pubAdd(nextacro, nextpubname);
+        uploadfiles();
+
+        page.locator(addbutton).click();
+        page.locator(addalertclose).click();
+        page.locator(managemenu).click();
+        page.locator("//th[text()='"+nextacro+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+nextpubname+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        page.locator(StyShow).click();
+        page.locator("//p[text()='ABC.sty']//following::img[@title='Edit']").click();
+
+         Boolean TextPresent= page.locator("(//button//preceding::span)[6]").isVisible();
+
+
+
+        // Optionally, fill the element with new text
+        //  page.locator("(//button//preceding::span)[6]").fill("New text to be pasted");
+
+
+        // page.wait(10000);
+
+        page.locator("(//*[text()='ABC.sty'])[2]//following::button[text()='Save']").click();
+
+        assertThat(page.locator("(//*[text()='ABC.sty'])[2]//following::button[text()='Saved']")).isAttached();
+        page.locator("(//*[text()='ABC.sty'])[2]//following::img[@title='Close']").click();
+        page.locator(updatebutton).click();
+        page.locator(updatealertclose).click();
+
+
+
+        /*List<String>acros=new ArrayList<>();
+        acros.add(a);*/
+
+
+
+return TextPresent;
+
+
+
+    }
+
+    public String EditAStyContent(String a) throws InterruptedException {
+       // EditStyContInPubANotPubB( a,b);
+        page.locator(managemenu).click();
+        page.locator("//th[text()='"+a+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+a+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        page.locator(StyShow).click();
+        page.locator("//p[text()='ABC.sty']//following::img[@title='Edit']").click();
+        assertThat(page.locator("(//button//preceding::span)[6]")).isVisible();
+        page.locator("(//button//preceding::span)[6]").dblclick();
+        String deldata=page.locator("(//button//preceding::span)[6]").textContent();
+
         page.keyboard().press("Delete");
 
         // Optionally, fill the element with new text
@@ -1239,19 +1307,19 @@ public class AddPublisherPage {
         page.locator(updatebutton).click();
        // page.locator(updatealert).click();
         page.locator(updatealertclose).click();
+        return deldata;
 
 
     }
 
     public void EditBStyContent(String b) {
+        page.locator(managemenu).click();
         page.locator("//th[text()='"+b+"']//following::span[@data-target='#dropright'][1]").click();
         page.locator("//th[text()='"+b+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
         page.locator(StyShow).click();
         page.locator("//p[text()='ABC.sty']//following::img[@title='Edit']").click();
         assertThat(page.locator("(//button//preceding::span)[6]")).isVisible();
-        page.locator("(//button//preceding::span)[6]").click();
-        page.keyboard().press("Control+A");
-        page.keyboard().press("Delete");
+
 
         // Optionally, fill the element with new text
         //  page.locator("(//button//preceding::span)[6]").fill("New text to be pasted");

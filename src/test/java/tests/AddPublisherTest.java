@@ -584,7 +584,7 @@ public Object[][] getdecdata() throws IOException {
 
   }
 
-  @Test(priority =21,description = "Editing on SFTP should be possible. Needs to edit the parameters and verify the updated parameters again in edit-publisher and from SFTP page")
+  @Test( priority =21,description = "Editing on SFTP should be possible. Needs to edit the parameters and verify the updated parameters again in edit-publisher and from SFTP page")
   public  void VerifyFtpUpdatedValue()
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -605,27 +605,37 @@ public Object[][] getdecdata() throws IOException {
       ExtentReportListener.getTest().log(Status.INFO,"All the Values are  updated");
 
   }
-    @DataProvider(name = "adddiffpub")
+
+   /* @DataProvider(name = "adddiffpub")
     public  Object[][] adddiffpub() throws IOException {
-        return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",10);
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",11);
     }
+    @Test(dataProvider ="adddiffpub" )
+    public void EditAContent(String a,String b) throws InterruptedException {
+        System.out.println(a);
+        System.out.println(b);
+        ExtentReportListener.getTest().assignCategory("Add Publisher");
+        addpublisherpage.AddTwoDiffPub(a,b);
 
 
-  public  String EditPubANotPubBStyfile(String a,String b)
-  {
-      String acro=addpublisherpage.EditStyContInPubANotPubB(a,b);
-      return acro;
-  }
-
-  @Test
-  public void VerfiyisupdateINANotInB() throws InterruptedException {
-      String a=EditPubANotPubBStyfile("ab","ba");
-      String b= EditPubANotPubBStyfile("bb","cc");
-      addpublisherpage.EditAStyContent(a);
-      addpublisherpage.EditBStyContent(b);
+    }*/
 
 
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

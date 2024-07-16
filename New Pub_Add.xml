@@ -11,17 +11,17 @@
                 <class name="tests.AddPublisherTest"></class>
             </classes>
         </test>-->
-    <test name="AddPublisherManual">
+  <!--  <test name="AddPublisherManual">
         <parameter name="acro" value="o"></parameter>
         <parameter name="pub" value="One"></parameter>
         <classes>
             <class name="tests.AddPublisherManual"></class>
         </classes>
-    </test>
+    </test>-->
 
     <test name="AddArticleManual">
         <parameter name="journalacro" value="s1(sarath)"></parameter>
-        <parameter name="articleid" value="0601"></parameter>
+        <parameter name="articleid" value="0602"></parameter>
         <parameter name="articlename" value="fun"></parameter>
 
         <parameter name="doi" value="025555"></parameter>
