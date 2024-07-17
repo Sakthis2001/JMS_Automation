@@ -21,7 +21,7 @@
 
     <test name="AddArticleManual">
         <parameter name="journalacro" value="s1(sarath)"></parameter>
-        <parameter name="articleid" value="0602"></parameter>
+        <parameter name="articleid" value="0603"></parameter>
         <parameter name="articlename" value="fun"></parameter>
 
         <parameter name="doi" value="025555"></parameter>

@@ -87,6 +87,28 @@ public class AddArticleTest extends BaseTest {
 
    }
 
+    @DataProvider(name = "articleaddacess")
+    public Object[][] adddArticledataFromAllUser() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx",3);
+    }
+
+    @Test(priority =3,dataProvider = "articleaddacess")
+    public void VerifyAddArticleAcess(String journalacro,String articleid,String artname,String doinum,String workflow,String username,String password,String jacrm,String pubname)
+   {
+       Boolean addarticleSuccess=addarticlepage.addarticleacess(journalacro,articleid,artname,doinum,workflow,username,password,jacrm,pubname);
+       Assert.assertTrue(addarticleSuccess,"Article add functionality failed");
+   }
+
+    @DataProvider(name = "addarticleUnauthorizedacess")
+    public Object[][] adddArticledataFromotherThanPMUser() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx",3);
+    }
+    @Test(priority =4,dataProvider = "addarticleUnauthorizedacess",description = "")
+   public void verifyOtherUserShoulNotCreateArticle()
+   {
+
+   }
+
 
 
 

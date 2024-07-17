@@ -13,6 +13,11 @@ public class AddArticlePage {
     private Page page;
     FileChooser fileChooser;
 
+    String username="//*[@type='text']";
+    String password="//*[@type='password']";
+    String logout="//p[text()='Logout']";
+
+
     private String baseicon = "//img[@src='/jms/src/assets/GeneralIcons/shortcuts.svg']";
     private String addpubicon = "id=add_publisher";
 
@@ -188,6 +193,8 @@ public class AddArticlePage {
     private  String checkall="//div[text()='Check All']";
     private String Checklistsubmitbutton="//button[text()='Submit CheckList']";
   private String addarticlealert= "//*[text()='JMS - Add Article']//following::span[1]";
+  private String selectview="id=select_view";
+  private String journalsview="//*[@id='select_view']//following::li//following::p[text()='Articles View']";
 
 
 
@@ -346,6 +353,8 @@ public class AddArticlePage {
 
     public void DoAddArticle(String journalacro,String articleid,String artname,String doinum,String workflow) {
         page.locator(baseicon).click();
+
+        assertThat(page.locator(addarticleicon)).isVisible();
         page.locator(addarticleicon).click();
         page.locator(form).click();
 
@@ -421,13 +430,31 @@ public class AddArticlePage {
 
     }
 
+    public Boolean addarticleacess(String journalacro,String articleid,String artname,String doinum,String workflow,String uname,String upass,String jacrm,String pubname)
+    {
+        page.locator(logout).click();
+        page.locator(username).fill(uname);
+        page.locator(password).fill(upass);
+        page.keyboard().press("Enter");
+
+        DoAddArticle(journalacro,articleid,artname,doinum,workflow);
+        page.locator(addarticlebutton).click();
+        page.locator(addarticlealert).click();
+        page.locator(managemenu).click();
+        page.locator(selectview).click();
+        page.locator(journalsview).click();
+   return page.locator("//*[text()='"+pubname+"']//following::th[text()='The Tenat']").isVisible();
+        //page.locator()
+
+    }
+
     public void AddArticleByMandatoryFields(String journalacro,String articleid,String artname,String doinum,String workflow)
     {
         DoAddArticle(journalacro,articleid,artname,doinum,workflow) ;
         page.locator(addarticlebutton).click();
         page.locator(addarticlealert).click();
         page.locator(managemenu).click();
-        //page.locator()
+
     }
 
     public String ensureduplicationarticle(String journalacro,String articleid,String artname,String doinum,String workflow)
@@ -461,8 +488,18 @@ public class AddArticlePage {
 
     }
 
+
+    public void verifyUnauthorizedUserAddArticle(String uname,String upass)
+    {
+        page.locator(logout).click();
+        page.locator(username).fill(uname);
+        page.locator(password).fill(upass);
+        page.locator(baseicon).click();
+        assertThat(page.locator(addarticleicon)).isVisible();
+    }
     public void doaddpub(String acro, String pub, String c, String d, String e, String f, String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r, String s, String t, String u, String v, String w, String x, String y, String z, String aa)
     {
+
         page.locator(baseicon).click();
         page.locator(addpubicon).click();
         page.locator(pub_acronym).fill(acro);
