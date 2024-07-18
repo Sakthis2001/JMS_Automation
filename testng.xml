@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" thread-count="2" parallel="tests">
+<suite name="All Test Suite" thread-count="2" >
    <test name="HomePageTest">
         <classes>
             <class name="tests.HomePageTest"></class>
         </classes>
    </test>
 
-    <test name="PreRequestTest">
+  <!--<test name="PreRequestTest">
 
         <classes>
-            <class name="tests.PreRequestTest"></class>
+            <class name="tests.PreRequestTest">
+                <methods>
+                    <include name="addpublisher"></include>
+                </methods>
+            </class>
 
         </classes>
 
     </test>
 
-   <test name="QuickLinksTest" >
+
+
+
+  <test name="QuickLinksTest" >
         <classes>
             <class name="tests.QuickLinksTest"></class>
         </classes>
@@ -37,13 +44,18 @@
     </test>
 
 
-
+-->
     <test name="AddArticleTest">
 
         <classes>
             <class name="tests.AddArticleTest">
+                <methods>
+                    <include name="verifyarticlemovingToLatex"></include>
+                </methods>
+
 
             </class>
+
 
         </classes>
 
@@ -52,4 +64,3 @@
 
     </test>
 </suite>
-

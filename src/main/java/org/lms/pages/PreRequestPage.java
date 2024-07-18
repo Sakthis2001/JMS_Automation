@@ -1,7 +1,9 @@
 package org.lms.pages;
 
 import com.microsoft.playwright.FileChooser;
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.SelectOption;
 
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -150,6 +152,26 @@ public class PreRequestPage {
     private String acknowledgement = "//div[contains(text(),'Journal Added Successfully')]";
 
     private String alertCloseButton = "//h2[text()='JMS - Add Journal']//following::span[1]";
+
+    //createUser
+    private String users="//p[text()='Users']";
+    private String AccessUserdropdown="//label[text()='Access']//following::div[1]";
+
+    private String adduserbutton="//button[text()='Add User']";
+    private String empname="id=user-name";
+    private String employee_id="id=employee-id";
+
+    private String designationdropdown="//*[@data-testid='add-user-select-designation']";
+    private String graphicsdesignaation="//*[@data-testid='add-user-select-designation']//following::option[text()='Senior Graphics Designer']";
+    private String acessdropdown="id=react-select-9-input";
+    private String graphicsdeptaccess="//div[text()='Graphics']";
+    private String user_mail="//*[@for='user-mail']";
+    private String slectgender="id=user-gender";
+    private String selectdepartment="id=user-department";
+    private String pubdropdown="//*[text()='Publisher']//following::input[1]";
+    private String publisherselect="//*[text()='Publisher']//following::input[1]//following::div[text()='AT']";
+    private String userrole="id=user-role";
+    private String useraddbutton="//button[@type='submit']";
 
     public PreRequestPage(Page page) {
         this.page = page;
@@ -310,6 +332,42 @@ public class PreRequestPage {
             page.locator(alertCloseButton).click();
 
         }
+
+    public void adduser(String name,String employeeid,String designation,String email,String gender,String departmentname,String role)
+    {
+        page.locator(users).click();
+        page.locator(adduserbutton).click();
+       /*
+        page.locator(sakthiuser).hover();
+        page.locator(EditUser).click();*/
+        page.locator(empname).fill(name);
+        page.locator(employee_id).fill(employeeid);
+        Locator desigdropdown= page.locator(designationdropdown);
+        desigdropdown.selectOption(new SelectOption().setLabel(designation));
+
+
+
+        page.locator(AccessUserdropdown).click();
+        page.locator(graphicsdeptaccess).click();
+        page.locator(user_mail).fill(email);
+
+        Locator genderdropdown = page.locator(slectgender);
+        genderdropdown.selectOption(new SelectOption().setLabel(gender));
+        Locator deptdropdown=page.locator(selectdepartment);
+        deptdropdown.selectOption(new SelectOption().setLabel(departmentname));
+        page.locator(pubdropdown).click();
+        page.locator(publisherselect).click();
+        Locator rolename= page.locator(userrole);
+        rolename.selectOption(new SelectOption().setLabel(role));
+        page.locator(useraddbutton).click();
+
+
+
+
+        // Select by value
+
+    }
+
 
 
     public void ReloadDashBoard() {

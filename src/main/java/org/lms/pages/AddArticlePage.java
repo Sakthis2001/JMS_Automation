@@ -1,11 +1,16 @@
 package org.lms.pages;
 
-import com.microsoft.playwright.FileChooser;
-import com.microsoft.playwright.Page;
+import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.SelectOption;
+import com.microsoft.playwright.options.WaitForSelectorState;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class AddArticlePage {
@@ -13,9 +18,9 @@ public class AddArticlePage {
     private Page page;
     FileChooser fileChooser;
 
-    String username="//*[@type='text']";
-    String password="//*[@type='password']";
-    String logout="//p[text()='Logout']";
+    String username = "//*[@type='text']";
+    String password = "//*[@type='password']";
+    String logout = "//p[text()='Logout']";
 
 
     private String baseicon = "//img[@src='/jms/src/assets/GeneralIcons/shortcuts.svg']";
@@ -112,110 +117,152 @@ public class AddArticlePage {
     private String removefileclose = "//p[text()='styledoc.sty']//following::img[@title='Remove']";
     private String reovefileyes = "//*[text()='Remove File']//following::newbutton[text()='Yes']";
     private String ftphost = "//input[@data-testid='ftp-host']";
-    private String StyShow="(//*[text()='Latest Files']//following::img[@title='Show'])[1]";
+    private String StyShow = "(//*[text()='Latest Files']//following::img[@title='Show'])[1]";
 
 
     //private  String baseicon="//img[@src='/jms/src/assets/GeneralIcons/shortcuts.svg']";
-    private String addarticleicon="id=add_article";
-    private String UploadLabel="//label[text()='Upload']";
-    private String formLabel="//label[text()='Form']";
-    private String clientftplabel="//label[text()='Client FTP']";
-   /* private String uploadform="//*[@alt='Option 1 (Upload)']";
+    private String addarticleicon = "id=add_article";
+    private String UploadLabel = "//label[text()='Upload']";
+    private String formLabel = "//label[text()='Form']";
+    private String clientftplabel = "//label[text()='Client FTP']";
+    /* private String uploadform="//*[@alt='Option 1 (Upload)']";
 
-    private String selectprioritydropdown="id=priority";
-    private String selectpriority="//*[@id='priority']//following::p[text()='High']";
-    private String selecttat="//label[text()='TAT']//following::div[1]";
-    private String selecttatinput="//label[text()='TAT']//following::li[1]//following::p[1]";
-    private String Doino="id=doi";
-    private String  selectworkflowdropdown="id=workFlow";
-    private String selectworkflow="//*[@id='workFlow']//following::p[text()='Fresh']";
-    private String noofpages="//input[@id='numberOfPages']";
-    private String cebypass="id=CE by-pass";*/
-    private String form="//img[@alt='Option 2 (Form)']";
-    private String Selectpubdropdown="id=publisher";
-    private  String selectpublisher="//p[normalize-space(text())='GGD(EMS Press)']\n";
-    private String articleidinput="id=articleID";
-    private String authormail="id=authorMail";
-    private String authorname="id=authorName";
-    private String articlename="id=articleName";
-    private String selectpriority="id=priority";
-    private String selectpriorityopt="//*[@id='priority']//following::p[text()='High']";
-    private String receivedate="id=receivedDate";
-    private String reviseddate="id=revisedDate";
-    private String Accepteddate="id=historyAccDate";
-    private String selecttat="//label[text()='TAT']//following::div[1]";
-    private String selecttatinput="//label[text()='TAT']//following::li[1]//following::p[1]";
-    private String Doino="id=doi";
-    private String workflowselection="//*[text()='Assign Workflow']";
-    private String  selectgeneralworkflow="//*[@alt='General']";
-    private String assignbutton="//*[text()='Assign']";
-
-
-   // private String selectworkflowopt="//*[@id='workFlow']//following::p[text()='Fresh']";
-    private String noofpages="//input[@id='numberOfPages']";
-    private String cebypass="id=CE by-pass";
-    private String articletype="//*[@placeholder='Enter Article Type...']";
-    private String TATShow="//*[text()='Turn Around Time']//preceding-sibling::img";
-    private String importtatfromjournal="//*[@title='Import TATs from Journal']";
-    private String confirmimportfromjour="//*[contains(text(),'Import TAT')]//following::div//following::newbutton[contains(text(),'Yes')]";
-    private String startdate="id=startDate";
-    private String ChecklistSelectionShow="//*[text()='Checklist Selections']//preceding-sibling::img";
-
-    private String OnOpenAccess="id=acpOpenAccess";
+     private String selectprioritydropdown="id=priority";
+     private String selectpriority="//*[@id='priority']//following::p[text()='High']";
+     private String selecttat="//label[text()='TAT']//following::div[1]";
+     private String selecttatinput="//label[text()='TAT']//following::li[1]//following::p[1]";
+     private String Doino="id=doi";
+     private String  selectworkflowdropdown="id=workFlow";
+     private String selectworkflow="//*[@id='workFlow']//following::p[text()='Fresh']";
+     private String noofpages="//input[@id='numberOfPages']";
+     private String cebypass="id=CE by-pass";*/
+    private String form = "//img[@alt='Option 2 (Form)']";
+    private String Selectpubdropdown = "id=publisher";
+    private String selectpublisher = "//p[normalize-space(text())='GGD(EMS Press)']\n";
+    private String articleidinput = "id=articleID";
+    private String authormail = "id=authorMail";
+    private String authorname = "id=authorName";
+    private String articlename = "id=articleName";
+    private String selectpriority = "id=priority";
+    private String selectpriorityopt = "//*[@id='priority']//following::p[text()='High']";
+    private String receivedate = "id=receivedDate";
+    private String reviseddate = "id=revisedDate";
+    private String Accepteddate = "id=historyAccDate";
+    private String selecttat = "//label[text()='TAT']//following::div[1]";
+    private String selecttatinput = "//label[text()='TAT']//following::li[1]//following::p[1]";
+    private String Doino = "id=doi";
+    private String workflowselection = "//*[text()='Assign Workflow']";
+    private String selectgeneralworkflow = "//*[@alt='General']";
+    private String assignbutton = "//*[text()='Assign']";
 
 
+    // private String selectworkflowopt="//*[@id='workFlow']//following::p[text()='Fresh']";
+    private String noofpages = "//input[@id='numberOfPages']";
+    private String cebypass = "id=CE by-pass";
+    private String articletype = "//*[@placeholder='Enter Article Type...']";
+    private String TATShow = "//*[text()='Turn Around Time']//preceding-sibling::img";
+    private String importtatfromjournal = "//*[@title='Import TATs from Journal']";
+    private String confirmimportfromjour = "//*[contains(text(),'Import TAT')]//following::div//following::newbutton[contains(text(),'Yes')]";
+    private String startdate = "id=startDate";
+    private String ChecklistSelectionShow = "//*[text()='Checklist Selections']//preceding-sibling::img";
 
-    private String fileupload="//*[@alt='Upload']";
-    private String addnotes="//*[@alt='Add Notes']";
-    private String Plzwwritehere="//*[@data-placeholder='Type here...']";
-    private String AddNoteutton="//*[text()='Add Note']";
-    private String addnotetoastclose="//*[text()='JMS - Add Notes']//following::span[1]";
-    private String checklist="//*[text()='Check Lists']";
-    private String figurechecklist="id=figures";
-    private String checlistalert="//*[text()='Alert']//following::newbutton[text()='Yes']";
-    private String checklisttoast="//*[text()='JMS - Check Lists']//following::span[1]";
-    private String mailpreview="//*[text()='Preview']";
-    private String tomail="//label[text()='To']//following::input[@id='category'][1]";
-    private String  tomailluser="//p[normalize-space(text())='compuscriptrep@gmail.com']//preceding-sibling::input";
-    private String  Acknowledgementtomailluser="//p[normalize-space(text())='latexam@gmail.com']//preceding-sibling::input";
+    private String OnOpenAccess = "id=acpOpenAccess";
 
 
-    private String ccmail="//label[text()='Cc']//following::input[@id='category'][1]";
-    private String ccmailuser="//p[normalize-space(text())='nirmala@pdmrindia.com']//preceding-sibling::input";
-    private String Acknowlegeemtnsavemailbutton="//button[text()='Save Mail']";
-    private String Acknowledgementyesalert="//*[text()='Are you sure to Save the mail on acknowledgement?']//following::newbutton[text()='Yes']";
-    private String Acknowlegementtoastclose="//*[text()='JMS - Mail']//following::span[1]";
-    private String notificationmail="//*[text()='Notification']";
-    private String savenotificationmail="//*[text()='Save Mail']";
-    private String notificationalert="//*[text()='Are you sure to Save the mail on notification?']//following::newbutton[text()='Yes']";
-    private String notificationsuccesstoastmail="//*[text()='A mail will be triggered once the article is added successfully']//preceding::span[text()='×']";
-    private String addarticlebutton="(//*[text()='Add Article'])[2]";
-    private  String checkall="//div[text()='Check All']";
-    private String Checklistsubmitbutton="//button[text()='Submit CheckList']";
-  private String addarticlealert= "//*[text()='JMS - Add Article']//following::span[1]";
-  private String selectview="id=select_view";
-  private String journalsview="//*[@id='select_view']//following::li//following::p[text()='Articles View']";
+    private String fileupload = "//*[@alt='Upload']";
+    private String addnotes = "//*[@alt='Add Notes']";
+    private String Plzwwritehere = "//*[@data-placeholder='Type here...']";
+    private String AddNoteutton = "//*[text()='Add Note']";
+    private String addnotetoastclose = "//*[text()='JMS - Add Notes']//following::span[1]";
+    private String checklist = "//*[text()='Check Lists']";
+    private String figurechecklist = "id=figures";
+    private String checlistalert = "//*[text()='Alert']//following::newbutton[text()='Yes']";
+    private String checklisttoast = "//*[text()='JMS - Check Lists']//following::span[1]";
+    private String mailpreview = "//*[text()='Preview']";
+    private String tomail = "//label[text()='To']//following::input[@id='category'][1]";
+    private String tomailluser = "//p[normalize-space(text())='compuscriptrep@gmail.com']//preceding-sibling::input";
+    private String Acknowledgementtomailluser = "//p[normalize-space(text())='latexam@gmail.com']//preceding-sibling::input";
+
+
+    private String ccmail = "//label[text()='Cc']//following::input[@id='category'][1]";
+    private String ccmailuser = "//p[normalize-space(text())='nirmala@pdmrindia.com']//preceding-sibling::input";
+    private String Acknowlegeemtnsavemailbutton = "//button[text()='Save Mail']";
+    private String Acknowledgementyesalert = "//*[text()='Are you sure to Save the mail on acknowledgement?']//following::newbutton[text()='Yes']";
+    private String Acknowlegementtoastclose = "//*[text()='JMS - Mail']//following::span[1]";
+    private String notificationmail = "//*[text()='Notification']";
+    private String savenotificationmail = "//*[text()='Save Mail']";
+    private String notificationalert = "//*[text()='Are you sure to Save the mail on notification?']//following::newbutton[text()='Yes']";
+    private String notificationsuccesstoastmail = "//*[text()='A mail will be triggered once the article is added successfully']//preceding::span[text()='×']";
+    private String addarticlebutton = "(//*[text()='Add Article'])[2]";
+    private String checkall = "//div[text()='Check All']";
+    private String Checklistsubmitbutton = "//button[text()='Submit CheckList']";
+    private String addarticlealert = "//*[text()='JMS - Add Article']//following::span[1]";
+    private String selectview = "id=select_view";
+    private String journalsview = "//*[@id='select_view']//following::li//following::p[text()='Articles View']";
+
+    private String supplement = "id=supplement";
+    private String aopFree = "id=acpFree";
+    private String aopopenacess = "id=acpOpenAccess";
+    private String tables = "id=tables";
+    private String displayfigures = "id=displayFigures";
+    private String InlineFigures = "id=inlineFigures";
+    private String stockmenu = "//p[text()='Stock']";
+    private String users="//p[text()='Users']";
+    private String sakthiuser="(//p[text()='Sakthi'])[2]";
+    private String EditUser="//p[text()='1948']//following::img[@alt='edit']";
+    private String AccessUserdropdown="//label[text()='Access']//following::div[1]";
+    private String User_Latexacess="//label[text()='Access']//following::div[1]//following::div[text()='LaTeX Executive']";
+    private String User_publisherdropdown="//*[@for='user-publisher']//following::div[1]";
+    private String User_publisher="//*[@for='user-publisher']//following::div[1]//following::div[text()='AT']";
+    private String User_Update="//*[@type='submit']";
+    private String updateuseralertclose="//h2[text()='JMS - Update User']//following::span[text()='×'][1]";
+    private String Checklist_display_fig="id=displayFigures";
+    private String displayfigures_count="//*[@id='displayFigures']//following::input[@type='number']";
+    private String Inlinefig_count="//*[@id='inlineFigures']//following::input[@type='number']";
+    private String addarticlefilealertclose="//*[text()='JMS - Add Article']//following::span[text()='×']";
+    //createUser
+
+    private String adduserbutton="//button[text()='Add User']";
+    private String empname="id=user-name";
+    private String employee_id="id=employee-id";
+
+    private String designationdropdown="//*[@data-testid='add-user-select-designation']";
+    private String graphicsdesignaation="//*[@data-testid='add-user-select-designation']//following::option[text()='Senior Graphics Designer']";
+    private String acessdropdown="id=react-select-9-input";
+    private String graphicsdeptaccess="//div[text()='Graphics']";
+    private String user_mail="//*[@for='user-mail']";
+    private String slectgender="id=user-gender";
+    private String selectdepartment="id=user-department";
+    private String pubdropdown="//*[text()='Publisher']//following::input[1]";
+    private String publisherselect="//*[text()='Publisher']//following::input[1]//following::div[text()='AT']";
+    private String userrole="id=user-role";
+    private String useraddbutton="//button[@type='submit']";
+
+    private String fileuploadalerttext="//*[text()='JMS - Add Article']//following::div[text()='Kindly upload a .zip file']";
+    private String Filerestrictionalert="//*[text()='JMS - File Upload Restriction']//following::div[2]";
+    private String Filerestrictionalertclose="//*[text()='JMS - File Upload Restriction']//following::span[text()='×']";
 
 
 
 
 
 
-    public AddArticlePage(Page page)
-    {
-        this.page=page;
+    public AddArticlePage(Page page) {
+        this.page = page;
     }
 
-    public void addarticlepage()
-    {
+
+
+
+
+    public void addarticlepage() {
         page.locator(baseicon).click();
         page.locator(addarticleicon).click();
         //page.locator(form).click();
 
     }
 
-    public void reloadpage()
-    {
+    public void reloadpage() {
         page.reload();
     }
 
@@ -326,13 +373,12 @@ public class AddArticlePage {
 
 
     public Boolean ensureThreeOption() throws InterruptedException {
-       Boolean uploadvisible=page.locator(UploadLabel).isVisible();
+        Boolean uploadvisible = page.locator(UploadLabel).isVisible();
         System.out.println(uploadvisible);
-        Boolean formvisible=page.locator(formLabel).isVisible();
+        Boolean formvisible = page.locator(formLabel).isVisible();
         System.out.println(formvisible);
-        Boolean clientftpvisible=page.locator(clientftplabel).isVisible();
+        Boolean clientftpvisible = page.locator(clientftplabel).isVisible();
         System.out.println(clientftpvisible);
-
 
 
         return uploadvisible && formvisible && clientftpvisible;
@@ -340,18 +386,25 @@ public class AddArticlePage {
 
     }
 
-    public void uploadfiles()
-    {
+    public void uploadfiles() {
         fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
         fileChooser.setFiles(Paths.get("GGD-805.zip"));
 
+
+
+    }
+
+    public void uploadmultiplefiles()
+    {
+        fileChooser.setFiles(new Path[]{
+                Paths.get("GGD-805.zip"),
+                Paths.get("GGD-806.zip"),
+
+        });
     }
 
 
-
-
-
-    public void DoAddArticle(String journalacro,String articleid,String artname,String doinum,String workflow) {
+    public void DoAddArticle(String journalacro, String articleid, String artname, String doinum, String workflow) {
         page.locator(baseicon).click();
 
         assertThat(page.locator(addarticleicon)).isVisible();
@@ -369,7 +422,7 @@ public class AddArticlePage {
 
 
         page.locator(Selectpubdropdown).click();
-        page.locator("//p[normalize-space(text())='"+journalacro+"']").click();
+        page.locator("//p[normalize-space(text())='" + journalacro + "']").click();
         page.locator(articleidinput).fill(articleid);
         page.locator(authormail).fill("abc@gmail.com");
         page.locator(authorname).fill("Mahindra");
@@ -383,7 +436,7 @@ public class AddArticlePage {
         page.locator(selecttatinput).click();
         page.locator(Doino).fill(doinum);
         page.locator(workflowselection).click();
-        page.locator("//*[@alt='"+workflow+"']").click();
+        page.locator("//*[@alt='" + workflow + "']").click();
         page.locator(assignbutton).click();
         page.locator(noofpages).fill("200");
         page.locator(articletype).fill("Research");
@@ -426,39 +479,115 @@ public class AddArticlePage {
         page.locator(checklisttoast).click();
 
 
+    }
+
+    public void AddArticle(String journalacro, String articleid, String artname, String doinum, String workflow) {
+        page.locator(baseicon).click();
+
+        assertThat(page.locator(addarticleicon)).isVisible();
+        page.locator(addarticleicon).click();
+        page.locator(form).click();
+
+        LocalDate today = LocalDate.now();
+        LocalDate tomarrow = today.plusDays(1);
+        LocalDate DayOftomarrow = today.plusDays(2);
+
+
+        String formattedDate = today.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        String tomorrow = (today.plusDays(1)).format(DateTimeFormatter.ISO_DATE);
+        String dayoftomorrow = (today.plusDays(2)).format(DateTimeFormatter.ISO_DATE);
+
+
+        page.locator(Selectpubdropdown).click();
+        page.locator("//p[normalize-space(text())='"+ journalacro + "']").click();
+        page.locator(articleidinput).fill(articleid);
+        page.locator(authormail).fill("abc@gmail.com");
+        page.locator(authorname).fill("Mahindra");
+        page.locator(articlename).fill(artname);
+        page.locator(selectpriority).click();
+        page.locator(selectpriorityopt).click();
+        page.locator(receivedate).fill(formattedDate);
+        page.locator(reviseddate).fill(tomorrow);
+        page.locator(Accepteddate).fill(dayoftomorrow);
+        page.locator(selecttat).click();
+        page.locator(selecttatinput).click();
+        page.locator(Doino).fill(doinum);
+        page.locator(workflowselection).click();
+        page.locator("//*[@alt='" + workflow + "']").click();
+        page.locator(assignbutton).click();
+        page.locator(noofpages).fill("200");
+        page.locator(articletype).fill("Research");
+        page.locator(cebypass).click();
+        page.locator(TATShow).click();
+        page.locator(importtatfromjournal).click();
+        page.locator(confirmimportfromjour).click();
+        page.locator(ChecklistSelectionShow).click();
+        page.locator(startdate).fill(formattedDate);
+        page.locator(OnOpenAccess).click();
+
+
+        page.locator(addnotes).click();
+
+        page.locator(Plzwwritehere).fill("this particular article is from general workflow");
+        page.locator(AddNoteutton).click();
+        page.locator(addnotetoastclose).click();
+
+        page.locator(mailpreview).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(Acknowlegeemtnsavemailbutton).click();
+        page.locator(Acknowledgementyesalert).click();
+        page.locator(Acknowlegementtoastclose).click();
+        page.locator(notificationmail).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(savenotificationmail).click();
+        page.locator(notificationalert).click();
+        page.locator(notificationsuccesstoastmail).click();
+//page.locator(checkall).click();
+        page.locator(checklist).click();
+        page.locator(figurechecklist).click();
+        page.locator(Checklistsubmitbutton).click();
+        page.locator(checlistalert).click();
+        page.locator(checklisttoast).click();
 
 
     }
 
-    public Boolean addarticleacess(String journalacro,String articleid,String artname,String doinum,String workflow,String uname,String upass,String jacrm,String pubname)
-    {
+
+    public Boolean addarticleacess(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String jacrm, String pubname) {
+
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
         page.locator(logout).click();
         page.locator(username).fill(uname);
         page.locator(password).fill(upass);
         page.keyboard().press("Enter");
 
-        DoAddArticle(journalacro,articleid,artname,doinum,workflow);
+        DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
         page.locator(addarticlebutton).click();
         page.locator(addarticlealert).click();
         page.locator(managemenu).click();
         page.locator(selectview).click();
         page.locator(journalsview).click();
-   return page.locator("//*[text()='"+pubname+"']//following::th[text()='The Tenat']").isVisible();
+        return page.locator("//*[text()='" + pubname + "']//following::th[text()='The Tenat']").isVisible();
         //page.locator()
 
     }
 
-    public void AddArticleByMandatoryFields(String journalacro,String articleid,String artname,String doinum,String workflow)
-    {
-        DoAddArticle(journalacro,articleid,artname,doinum,workflow) ;
+    public void AddArticleByMandatoryFields(String journalacro, String articleid, String artname, String doinum, String workflow) {
+        DoAddArticle(journalacro, articleid, artname, doinum, workflow);
         page.locator(addarticlebutton).click();
         page.locator(addarticlealert).click();
         page.locator(managemenu).click();
 
     }
 
-    public String ensureduplicationarticle(String journalacro,String articleid,String artname,String doinum,String workflow)
-    {
+    public String ensureduplicationarticle(String journalacro, String articleid, String artname, String doinum, String workflow) {
         page.locator(baseicon).click();
         page.locator(addarticleicon).click();
         page.locator(form).click();
@@ -474,31 +603,37 @@ public class AddArticlePage {
 
 
         page.locator(Selectpubdropdown).click();
-        page.locator("//p[normalize-space(text())='"+journalacro+"']").click();
+        page.locator("//p[normalize-space(text())='" + journalacro + "']").click();
         page.locator(articleidinput).fill(articleid);
         page.locator(authormail).fill("abc@gmail.com");
         page.locator(authorname).fill("Mahindra");
         page.locator(articlename).fill(artname);
-        assertThat(page.locator("//*[text()='JMS - Add Article']//following::div[text()='Article ID("+articleid+") already exists!']")).isVisible();
-        String erromsg=page.locator("//*[text()='JMS - Add Article']//following::div[text()='Article ID("+articleid+") already exists!']").textContent();
+        assertThat(page.locator("//*[text()='JMS - Add Article']//following::div[text()='Article ID(" + articleid + ") already exists!']")).isVisible();
+        String erromsg = page.locator("//*[text()='JMS - Add Article']//following::div[text()='Article ID(" + articleid + ") already exists!']").textContent();
         page.locator(addarticlealert).click();
         return erromsg;
 
 
-
     }
 
 
-    public void verifyUnauthorizedUserAddArticle(String uname,String upass)
-    {
+    public Boolean verifyUnauthorizedUserAddArticle(String uname, String upass) {
         page.locator(logout).click();
         page.locator(username).fill(uname);
         page.locator(password).fill(upass);
-        page.locator(baseicon).click();
-        assertThat(page.locator(addarticleicon)).isVisible();
+        page.keyboard().press("Enter");
+        try {
+            page.locator("xpath=//img[@src='/jms/src/assets/GeneralIcons/shortcuts.svg']")
+                    .waitFor(new Locator.WaitForOptions().setTimeout(2000).setState(WaitForSelectorState.VISIBLE));
+            return true;
+        } catch (PlaywrightException e) {
+            return false;
+        }
+
+
     }
-    public void doaddpub(String acro, String pub, String c, String d, String e, String f, String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r, String s, String t, String u, String v, String w, String x, String y, String z, String aa)
-    {
+
+    public void doaddpub(String acro, String pub, String c, String d, String e, String f, String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r, String s, String t, String u, String v, String w, String x, String y, String z, String aa) {
 
         page.locator(baseicon).click();
         page.locator(addpubicon).click();
@@ -560,6 +695,197 @@ public class AddArticlePage {
 
 
     }
+
+
+    public List<String> Verifychecklistfunctionality(String uname, String upass, String cssProperty) {
+        page.locator(logout).click();
+        page.locator(username).fill(uname);
+        page.locator(password).fill(upass);
+        page.keyboard().press("Enter");
+        addarticlepage();
+        page.locator(form).click();
+        page.locator(checklist).click();
+
+        page.locator(supplement).click();
+        page.locator(aopFree).click();
+        page.locator(aopopenacess).click();
+        page.locator(tables).click();
+        page.locator(displayfigures).click();
+        page.locator(InlineFigures).click();
+
+        List<String> allradio = new ArrayList<>();
+
+        String supplementradio = page.locator(supplement).evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", cssProperty).toString();
+        String aopFreeradio = page.locator(aopFree).evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", cssProperty).toString();
+        String aopopenacessradio = page.locator(aopopenacess).evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", cssProperty).toString();
+        String tablesradio = page.locator(tables).evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", cssProperty).toString();
+        String displayfiguresradio = page.locator(displayfigures).evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", cssProperty).toString();
+        String InlineFiguresradio = page.locator(InlineFigures).evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", cssProperty).toString();
+
+
+        allradio.add(supplementradio);
+        allradio.add(aopFreeradio);
+        allradio.add(aopopenacessradio);
+        allradio.add(tablesradio);
+        allradio.add(displayfiguresradio);
+        allradio.add(aopFreeradio);
+        allradio.add(InlineFiguresradio);
+        return allradio;
+
+
+    }
+
+    public Boolean verifyArticleMovedToLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass,String displayfigcount,String inlinefigcount) {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+
+        page.locator(logout).click();
+        page.locator(username).fill("7000");
+        page.locator(password).fill("7000");
+        page.keyboard().press("Enter");
+        addarticlepage();
+        page.locator(form).click();
+        DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+
+        page.locator(addarticlebutton).click();
+        page.locator(logout).click();
+        page.locator(username).fill(uname);
+        page.locator(password).fill(upass);
+        page.keyboard().press("Enter");
+       // page.locator(stockmenu).click();
+        assertThat(page.locator("//td[text()='"+arttimeid+"']")).isAttached();
+        boolean val = page.locator("//td[text()='"+arttimeid+"']").isVisible();
+        return val;
+
+    }
+
+
+    public Boolean verifyArticleShouldMoveToGraphics(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass,String displayfigcount,String inlinefigcount) {
+       String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+
+        page.locator(logout).click();
+        page.locator(username).fill("7000");
+        page.locator(password).fill("7000");
+        page.keyboard().press("Enter");
+        addarticlepage();
+        page.locator(form).click();
+        DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        page.locator(ChecklistSelectionShow).click();
+        page.locator(displayfigures).click();
+        page.locator(displayfigures_count).fill(displayfigcount);
+
+        page.locator(InlineFigures).click();
+        page.locator(Inlinefig_count).fill(inlinefigcount);
+
+
+        page.locator(addarticlebutton).click();
+        page.locator(logout).click();
+        page.locator(username).fill(uname);
+        page.locator(password).fill(upass);
+        page.keyboard().press("Enter");
+        assertThat(page.locator("(//*[text()='"+arttimeid+"'])[1]")).isAttached();
+
+        return true;
+
+    }
+
+    public List<Boolean> verifyArticleShouldMoveToGraphicsAndLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass,String displayfigcount,String inlinefigcount,String luname,String lupass) {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+
+        page.locator(logout).click();
+        page.locator(username).fill("7000");
+        page.locator(password).fill("7000");
+        page.keyboard().press("Enter");
+        addarticlepage();
+        page.locator(form).click();
+        DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        page.locator(ChecklistSelectionShow).click();
+        page.locator(displayfigures).click();
+        page.locator(displayfigures_count).fill(displayfigcount);
+
+        page.locator(InlineFigures).click();
+        page.locator(Inlinefig_count).fill(inlinefigcount);
+
+
+        page.locator(addarticlebutton).click();
+        page.locator(logout).click();
+        page.locator(username).fill(uname);
+        page.locator(password).fill(upass);
+        page.keyboard().press("Enter");
+        assertThat(page.locator("(//*[text()='"+arttimeid+"'])[1]")).isAttached();
+        Boolean articleingraphics=page.locator("(//*[text()='"+arttimeid+"'])[1]").isVisible();
+        page.locator(logout).click();
+        page.locator(username).fill(luname);
+        page.locator(password).fill(lupass);
+        page.keyboard().press("Enter");
+        assertThat(page.locator("(//*[text()='"+arttimeid+"'])[1]")).isAttached();
+        boolean articleinlatex=page.locator("(//*[text()='"+arttimeid+"'])[1]").isVisible();
+        List<Boolean> articlevisiblile=new ArrayList<>();
+        articlevisiblile.add(articleingraphics);
+        articlevisiblile.add(articleinlatex);
+        return articlevisiblile;
+
+
+    }
+
+    public String  addarticlewithoutZipFile(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+
+        page.locator(logout).click();
+        page.locator(username).fill("7000");
+        page.locator(password).fill("7000");
+        page.keyboard().press("Enter");
+        addarticlepage();
+        page.locator(form).click();
+        AddArticle(journalacro, arttimeid, artname, doinum, workflow);
+       //
+
+        page.locator(addarticlebutton).click();
+
+        String text=page.locator(fileuploadalerttext).textContent();
+
+        page.locator(addarticlefilealertclose).click();
+        return text;
+
+
+    }
+
+    public String  addarticlewithMultipleZipFile(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+
+        page.locator(logout).click();
+        page.locator(username).fill("7000");
+        page.locator(password).fill("7000");
+        page.keyboard().press("Enter");
+        addarticlepage();
+        page.locator(form).click();
+        AddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        //uploadfiles();
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("GGD-806.zip"));
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("GGD-806.zip"));
+
+        //page.locator(addarticlebutton).click();
+
+        String text=page.locator(Filerestrictionalert).textContent();
+
+        page.locator(Filerestrictionalertclose).click();
+        return text;
+
+
+    }
+
+
+
 
 
 }
