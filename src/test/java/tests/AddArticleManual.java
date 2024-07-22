@@ -31,6 +31,7 @@ public class AddArticleManual extends BaseTest {
     public void AddArticleByManual(String journalacro,String articleid,String articlename,String doinum,String workflow) throws InterruptedException {
         addarticlemanualpage.DoAddArticle(journalacro,articleid,articlename,doinum,workflow);
 
+
     }
 
 

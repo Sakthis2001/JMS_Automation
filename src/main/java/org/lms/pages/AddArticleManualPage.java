@@ -102,6 +102,14 @@ public class AddArticleManualPage {
 
     }
 
+    public void uploadfiles() {
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("GGD-805.zip"));
+
+
+
+    }
+
     public void reloadpage()
     {
         page.reload();
@@ -117,10 +125,18 @@ public class AddArticleManualPage {
         String tomorrow = (today.plusDays(1)).format(DateTimeFormatter.ISO_DATE);
         String dayoftomorrow = (today.plusDays(2)).format(DateTimeFormatter.ISO_DATE);
 
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+
+
         page.locator(form).click();
         page.locator(Selectpubdropdown).click();
         page.locator("//p[normalize-space(text())='"+journalacro+"']").click();
-        page.locator(articleidinput).fill(articleid);
+        page.locator(articleidinput).fill(arttimeid);
         page.locator(authormail).fill("abc@gmail.com");
         page.locator(authorname).fill("Mahindra");
         page.locator(articlename).fill(name);
@@ -131,7 +147,7 @@ public class AddArticleManualPage {
         page.locator(Accepteddate).fill(dayoftomorrow);
         page.locator(selecttat).click();
         page.locator(selecttatinput).click();
-        page.locator(Doino).fill(doinum);
+        page.locator(Doino).fill(doivalue);
         page.locator(workflowselection).click();
         page.locator("//*[@alt='"+workflow+"']").click();
         page.locator(assignbutton).click();
@@ -144,8 +160,8 @@ public class AddArticleManualPage {
         page.locator(ChecklistSelectionShow).click();
         page.locator(startdate).fill(formattedDate);
         page.locator(OnOpenAccess).click();
-        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
-        fileChooser.setFiles(Paths.get("GGD-805.zip"));
+        uploadfiles();
+
         page.locator(addnotes).click();
 
         page.locator(Plzwwritehere).fill("this particular article is from general workflow");

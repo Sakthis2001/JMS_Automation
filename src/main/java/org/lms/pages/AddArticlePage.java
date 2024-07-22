@@ -1,7 +1,6 @@
 package org.lms.pages;
 
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.SelectOption;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
 import java.nio.file.Path;
@@ -25,6 +24,8 @@ public class AddArticlePage {
 
     private String baseicon = "//img[@src='/jms/src/assets/GeneralIcons/shortcuts.svg']";
     private String addpubicon = "id=add_publisher";
+    private String viewtype="id=select_view";
+    private String articleview="//*[text()='Articles View']";
 
 
     private String pub_acronym = "//input[@data-testid='publisher-acronym']";
@@ -94,8 +95,7 @@ public class AddArticlePage {
     private String uploadupdatealert = "//*[text()='JMS - Upload']//following::span[text()='×']";
 
     private String verifypubforlog = "//th[text()='k']";
-    private String viewtype = "";
-    private String pubviewtype = "";
+
     private String updatebutton = "//button[text()='Update Publisher']";
     private String updatealert = "//h2[text()='JMS - Update Publisher']//following::span[1]";
     private String reuploadbutton = "//*[text()='Reupload']";
@@ -107,6 +107,7 @@ public class AddArticlePage {
     public String f_copy_edit_val;
     public String f_ts_val;
     public String f_qc_val;
+    private String noteeditor="//div[@data-placeholder='Type here...']";
     public String style_error_text = "//h2[text()='JMS - File Upload Restriction']//following::div[2]";
     public String getStyle_error_alert = "//h2[text()='JMS - File Upload Restriction']//following::span[1]";
     public String CountofGuideLinesFile = "//h2[text()='Latest Files']//following::li//following::p";
@@ -167,7 +168,7 @@ public class AddArticlePage {
     private String ChecklistSelectionShow = "//*[text()='Checklist Selections']//preceding-sibling::img";
 
     private String OnOpenAccess = "id=acpOpenAccess";
-
+     private String filefieldexpand="//*[text()='File Upload']";
 
     private String fileupload = "//*[@alt='Upload']";
     private String addnotes = "//*[@alt='Add Notes']";
@@ -241,8 +242,7 @@ public class AddArticlePage {
     private String fileuploadalerttext="//*[text()='JMS - Add Article']//following::div[text()='Kindly upload a .zip file']";
     private String Filerestrictionalert="//*[text()='JMS - File Upload Restriction']//following::div[2]";
     private String Filerestrictionalertclose="//*[text()='JMS - File Upload Restriction']//following::span[text()='×']";
-
-
+    private String closenote="//*[text()='Article']//preceding::img[1]";
 
 
 
@@ -403,10 +403,133 @@ public class AddArticlePage {
         });
     }
 
+        public void uploadadditionalfiles() {
+            fileChooser.setFiles(new Path[]{
+                    Paths.get("Resume.pdf"),
+                    Paths.get("EMS_Press.pdf"),
+                    Paths.get("Ai.jpg"),
+                    Paths.get("Automation.jpg"),
+                    Paths.get("ems_journal.jpg")
+
+
+            });
+
+
+    }
+
+    public String DoAddArticlereturndoi(String journalacro, String articleid, String artname, String doinum, String workflow) {
+        //int doi=1;
+        page.locator(baseicon).click();
+       /* String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+
+        long doinumber = Long.parseLong(arttimeid);
+        Class<?> type = ((Object)doinumber).getClass();
+        System.out.println("Data type of doinumber: " + type.getSimpleName());
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);*/
+
+
+        assertThat(page.locator(addarticleicon)).isVisible();
+        page.locator(addarticleicon).click();
+        page.locator(form).click();
+
+        LocalDate today = LocalDate.now();
+        LocalDate tomarrow = today.plusDays(1);
+        LocalDate DayOftomarrow = today.plusDays(2);
+
+
+        String formattedDate = today.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        String tomorrow = (today.plusDays(1)).format(DateTimeFormatter.ISO_DATE);
+        String dayoftomorrow = (today.plusDays(2)).format(DateTimeFormatter.ISO_DATE);
+
+
+        page.locator(Selectpubdropdown).click();
+        page.locator("//p[normalize-space(text())='" + journalacro +"']").click();
+        page.locator(articleidinput).fill(articleid);
+        page.locator(authormail).fill("abc@gmail.com");
+        page.locator(authorname).fill("Mahindra");
+        page.locator(articlename).fill(artname);
+        page.locator(selectpriority).click();
+        page.locator(selectpriorityopt).click();
+        page.locator(receivedate).fill(formattedDate);
+        page.locator(reviseddate).fill(tomorrow);
+        page.locator(Accepteddate).fill(dayoftomorrow);
+        page.locator(selecttat).click();
+        page.locator(selecttatinput).click();
+        page.locator(Doino).fill(doinum);
+        page.locator(workflowselection).click();
+        page.locator("//*[@alt='" + workflow + "']").click();
+        page.locator(assignbutton).click();
+        page.locator(noofpages).fill("200");
+        page.locator(articletype).fill("Research");
+        page.locator(cebypass).click();
+        page.locator(TATShow).click();
+        page.locator(importtatfromjournal).click();
+        page.locator(confirmimportfromjour).click();
+        page.locator(ChecklistSelectionShow).click();
+        page.locator(startdate).fill(formattedDate);
+        page.locator(OnOpenAccess).click();
+
+
+        page.locator(addnotes).click();
+
+        page.locator(Plzwwritehere).fill("this particular article is from general workflow");
+        page.locator(AddNoteutton).click();
+        page.locator(addnotetoastclose).click();
+
+        page.locator(mailpreview).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(Acknowlegeemtnsavemailbutton).click();
+        page.locator(Acknowledgementyesalert).click();
+        page.locator(Acknowlegementtoastclose).click();
+        page.locator(notificationmail).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(savenotificationmail).click();
+        page.locator(notificationalert).click();
+        page.locator(notificationsuccesstoastmail).click();
+//page.locator(checkall).click();
+        page.locator(checklist).click();
+        page.locator(figurechecklist).click();
+        page.locator(Checklistsubmitbutton).click();
+        page.locator(checlistalert).click();
+        page.locator(checklisttoast).click();
+        return doinum;
+
+
+    }
+    public void AddNotes()
+    {
+        page.locator(addnotes).click();
+
+        page.locator(Plzwwritehere).fill("this particular article is from general workflow");
+        page.locator(AddNoteutton).click();
+        page.locator(addnotetoastclose).click();
+    }
+
+
 
     public void DoAddArticle(String journalacro, String articleid, String artname, String doinum, String workflow) {
-        page.locator(baseicon).click();
 
+        System.out.println(articleid);
+        System.out.println(doinum);
+       /* String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(articleid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);*/
+
+        /*String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(arttimeid);*/
+        page.locator(baseicon).click();
         assertThat(page.locator(addarticleicon)).isVisible();
         page.locator(addarticleicon).click();
         page.locator(form).click();
@@ -447,13 +570,13 @@ public class AddArticlePage {
         page.locator(ChecklistSelectionShow).click();
         page.locator(startdate).fill(formattedDate);
         page.locator(OnOpenAccess).click();
-        uploadfiles();
+       // uploadfiles();
 
-        page.locator(addnotes).click();
+      /*  page.locator(addnotes).click();
 
         page.locator(Plzwwritehere).fill("this particular article is from general workflow");
         page.locator(AddNoteutton).click();
-        page.locator(addnotetoastclose).click();
+        page.locator(addnotetoastclose).click();*/
 
         page.locator(mailpreview).click();
         page.locator(ccmail).click();
@@ -472,17 +595,26 @@ public class AddArticlePage {
         page.locator(notificationalert).click();
         page.locator(notificationsuccesstoastmail).click();
 //page.locator(checkall).click();
+
+
+
+    }
+
+    public void checklist()
+    {
         page.locator(checklist).click();
         page.locator(figurechecklist).click();
         page.locator(Checklistsubmitbutton).click();
         page.locator(checlistalert).click();
         page.locator(checklisttoast).click();
-
-
     }
 
     public void AddArticle(String journalacro, String articleid, String artname, String doinum, String workflow) {
         page.locator(baseicon).click();
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+
+
 
         assertThat(page.locator(addarticleicon)).isVisible();
         page.locator(addarticleicon).click();
@@ -503,7 +635,7 @@ public class AddArticlePage {
         page.locator(articleidinput).fill(articleid);
         page.locator(authormail).fill("abc@gmail.com");
         page.locator(authorname).fill("Mahindra");
-        page.locator(articlename).fill(artname);
+        page.locator(articlename).fill(articleid);
         page.locator(selectpriority).click();
         page.locator(selectpriorityopt).click();
         page.locator(receivedate).fill(formattedDate);
@@ -549,11 +681,6 @@ public class AddArticlePage {
         page.locator(notificationalert).click();
         page.locator(notificationsuccesstoastmail).click();
 //page.locator(checkall).click();
-        page.locator(checklist).click();
-        page.locator(figurechecklist).click();
-        page.locator(Checklistsubmitbutton).click();
-        page.locator(checlistalert).click();
-        page.locator(checklisttoast).click();
 
 
     }
@@ -563,12 +690,19 @@ public class AddArticlePage {
 
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
         page.locator(logout).click();
         page.locator(username).fill(uname);
         page.locator(password).fill(upass);
         page.keyboard().press("Enter");
 
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        checklist();
+        AddNotes();
         page.locator(addarticlebutton).click();
         page.locator(addarticlealert).click();
         page.locator(managemenu).click();
@@ -581,6 +715,8 @@ public class AddArticlePage {
 
     public void AddArticleByMandatoryFields(String journalacro, String articleid, String artname, String doinum, String workflow) {
         DoAddArticle(journalacro, articleid, artname, doinum, workflow);
+        checklist();
+        AddNotes();
         page.locator(addarticlebutton).click();
         page.locator(addarticlealert).click();
         page.locator(managemenu).click();
@@ -704,6 +840,7 @@ public class AddArticlePage {
         page.keyboard().press("Enter");
         addarticlepage();
         page.locator(form).click();
+
         page.locator(checklist).click();
 
         page.locator(supplement).click();
@@ -738,6 +875,11 @@ public class AddArticlePage {
     public Boolean verifyArticleMovedToLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass,String displayfigcount,String inlinefigcount) {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
 
         page.locator(logout).click();
         page.locator(username).fill("7000");
@@ -746,6 +888,8 @@ public class AddArticlePage {
         addarticlepage();
         page.locator(form).click();
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        checklist();
+        AddNotes();
 
         page.locator(addarticlebutton).click();
         page.locator(logout).click();
@@ -761,10 +905,13 @@ public class AddArticlePage {
 
 
     public Boolean verifyArticleShouldMoveToGraphics(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass,String displayfigcount,String inlinefigcount) {
-       String arttimeid = String.valueOf(System.currentTimeMillis());
+        String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
-
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
         page.locator(logout).click();
         page.locator(username).fill("7000");
         page.locator(password).fill("7000");
@@ -772,6 +919,8 @@ public class AddArticlePage {
         addarticlepage();
         page.locator(form).click();
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        checklist();
+        AddNotes();
         page.locator(ChecklistSelectionShow).click();
         page.locator(displayfigures).click();
         page.locator(displayfigures_count).fill(displayfigcount);
@@ -795,6 +944,10 @@ public class AddArticlePage {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
 
         page.locator(logout).click();
         page.locator(username).fill("7000");
@@ -803,6 +956,7 @@ public class AddArticlePage {
         addarticlepage();
         page.locator(form).click();
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        checklist();
         page.locator(ChecklistSelectionShow).click();
         page.locator(displayfigures).click();
         page.locator(displayfigures_count).fill(displayfigcount);
@@ -836,6 +990,10 @@ public class AddArticlePage {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
 
         page.locator(logout).click();
         page.locator(username).fill("7000");
@@ -843,7 +1001,8 @@ public class AddArticlePage {
         page.keyboard().press("Enter");
         addarticlepage();
         page.locator(form).click();
-        AddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        AddArticle(journalacro, arttimeid, artname, doivalue, workflow);
+        //checklist();
        //
 
         page.locator(addarticlebutton).click();
@@ -856,18 +1015,25 @@ public class AddArticlePage {
 
     }
 
+
+
     public String  addarticlewithMultipleZipFile(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
-
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
         page.locator(logout).click();
         page.locator(username).fill("7000");
         page.locator(password).fill("7000");
         page.keyboard().press("Enter");
+
         addarticlepage();
         page.locator(form).click();
-        AddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        AddArticle(journalacro, arttimeid, artname, doivalue, workflow);
+        checklist();
         //uploadfiles();
         fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
         fileChooser.setFiles(Paths.get("GGD-806.zip"));
@@ -883,6 +1049,362 @@ public class AddArticlePage {
 
 
     }
+
+    public Boolean  addarticlewithMultipleAdditionalFile(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+
+        page.locator(logout).click();
+        page.locator(username).fill("7000");
+        page.locator(password).fill("7000");
+        page.keyboard().press("Enter");
+
+        addarticlepage();
+        page.locator(form).click();
+        String doin=DoAddArticlereturndoi(journalacro, arttimeid, artname, doivalue, workflow);
+        //uploadfiles();
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("GGD-806.zip"));
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("Resume.pdf"));
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("EMS_Press.pdf"));
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("Ai.jpg"));
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("Automation.jpg"));
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("ems_journal.jpg"));
+
+
+        page.locator(addarticlebutton).click();
+        page.locator(managemenu).click();
+        page.locator(viewtype).click();
+        page.locator(articleview).click();
+        assertThat(page.locator("//em[text()='"+doin+"']")).isAttached();
+        page.locator("(//em[text()='"+doin+"'])[1]//preceding::td[2]").click();
+        page.locator(filefieldexpand).click();
+        List<Boolean> files=new ArrayList<>();
+       // assertThat(page.locator("//p[text()='Resume.pdf']")).isAttached();
+        //files.add(page.locator("//p[text()='Resume.pdf']").isVisible());
+
+
+        assertThat(page.locator("//p[text()='EMS_Press.pdf']")).isVisible();
+       // files.add( page.locator("//p[text()='EMS_Press.pdf']").isVisible());
+
+        assertThat(page.locator("//p[text()='Ai.jpg']")).isVisible();
+       // files.add( page.locator("//p[text()='Ai.jpg']").isVisible());
+
+        assertThat(page.locator("//p[text()='Automation.jpg']")).isVisible();
+        //files.add(page.locator("//p[text()='Automation.jpg']").isVisible());
+
+        assertThat(page.locator("//p[text()='ems_journal.jpg']")).isVisible();
+        //files.add( page.locator("//p[text()='ems_journal.jpg']").isVisible());
+           return true;
+
+    }
+
+    public List<Boolean> ensuredownloadandRemoveoption(String journalacro, String articleid, String artname, String doinum, String workflow)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(articleid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+
+        addarticlepage();
+        page.locator(form).click();
+        DoAddArticle(journalacro,arttimeid,artname,doivalue,workflow);
+
+        //uploadfiles();
+        /*fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(Paths.get("Ai.jpg"));*/
+        page.locator(filefieldexpand).click();
+
+        assertThat(page.locator("//p[@title='GGD-805.zip']//following::img[1]")).isAttached();
+        assertThat(page.locator("//p[@title='GGD-805.zip']//following::img[2]")).isAttached();
+       /* assertThat(page.locator("//p[@title='Ai.jpg']//following::img[1]")).isAttached();
+        assertThat(page.locator("//p[@title='Ai.jpg']//following::img[2]")).isAttached();
+*/
+
+        List<Boolean> downloadremove=new ArrayList<>();
+
+        downloadremove.add(page.locator("//p[@title='GGD-805.zip']//following::img[1]").isVisible());
+        downloadremove.add(page.locator("//p[@title='GGD-805.zip']//following::img[2]").isVisible());
+
+      /*  downloadremove.add(page.locator("//p[@title='Ai.jpg']//following::img[1]").isVisible());
+        downloadremove.add(page.locator("//p[@title='Ai.jpg']//following::img[2]").isVisible());*/
+
+        return downloadremove;
+
+
+
+    }
+
+    public String EnsureDownloadFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+
+        addarticlepage();
+        page.locator(form).click();
+        DoAddArticle(journalacro,arttimeid,artname,doivalue,workflow);
+        uploadfiles();
+        //page.locator(filefieldexpand).click();
+        Download download = page.waitForDownload(() -> {
+            // Perform the action that initiates download
+            page.locator("//p[@title='GGD-805.zip']//following::img[2]").click();
+        });
+
+
+        String path="D:\\uploadtest\\";
+        System.out.println(download.path());
+        System.out.println(download.url());
+        System.out.println(download.failure());
+        System.out.println(download.suggestedFilename());
+
+
+
+        download.saveAs(Paths.get(path,download.suggestedFilename()));
+        return path;
+
+
+    }
+
+    public boolean EnsureRemovalFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+        addarticlepage();
+        page.locator(form).click();
+        DoAddArticlereturndoi(journalacro,arttimeid,artname,doivalue,workflow);
+        uploadfiles();
+        page.locator(filefieldexpand).click();
+        page.locator("//p[@title='GGD-805.zip']//following::img[1]").click();
+        return page.locator("//p[@title='GGD-805.zip']").isVisible();
+
+
+
+
+
+
+    }
+
+    public List<String> VerifyPubJournalArticleInNotes(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        AddNotes();
+       // uploadfiles();
+        page.locator(addnotes).click();
+
+
+        List<String> pubjorart=new ArrayList<>();
+
+       // assertThat(page.locator("//*[text()='"+pub+"']//following::p[text()='"+pub+"']")).isAttached();
+        pubjorart.add(page.locator("//*[text()='Publisher']//following::p[text()='"+pub+"']").textContent());
+
+       // assertThat(page.locator("//*[text()='"+jour+"']//following::p[text()='"+jour+"']")).isAttached();
+        pubjorart.add(page.locator("//*[text()='Journal']//following::p[text()='"+jour+"']").textContent());
+        pubjorart.add(arttimeid);
+
+       // assertThat(page.locator("//*[text()='"+arttimeid+"']//following::p[text()='"+arttimeid+"']")).isAttached();
+        pubjorart.add(page.locator("//*[text()='Article']//following::p[text()='"+arttimeid+"']").textContent());
+
+        return pubjorart;
+
+
+
+
+
+
+
+    }
+
+    public String VerifyNotesContent(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour, String cont) throws InterruptedException {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        checklist();
+        AddNotes();
+        page.locator(addnotes).click();
+       // page.locator(Plzwwritehere).fill(cont);
+        //page.locator(AddNoteutton).click();
+       // page.locator(addnotetoastclose).click();
+        //page.locator(addnotes).click();
+        return page.locator(Plzwwritehere).textContent();
+
+
+
+
+    }
+
+    public List<String> VerifyNotesContentAfterChangeJournal(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour, String cont) throws InterruptedException
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        checklist();
+
+        page.locator(addnotes).click();
+
+      /*  page.locator(Plzwwritehere).fill("this particular article is from general workflow");
+        page.locator(AddNoteutton).click();
+        page.locator(addnotetoastclose).click();*/
+        String before = page.locator(Plzwwritehere).textContent();
+        page.locator(closenote).click();
+
+        page.locator(Selectpubdropdown).click();
+        page.locator("//p[normalize-space(text())='MT(M)']").click();
+
+        page.locator(addnotes).click();
+        String After=page.locator(Plzwwritehere).textContent();
+        List<String> Notecontent=new ArrayList<>();
+        Notecontent.add(before);
+        Notecontent.add(After);
+        return Notecontent;
+
+
+    }
+
+
+    public String NoteCloseButton(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour, String cont) throws InterruptedException
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        checklist();
+
+        page.locator(addnotes).click();
+        page.locator(Plzwwritehere).fill("Here you go");
+        page.locator(closenote).click();
+
+        page.locator(addnotes).click();
+        String notecontent=page.locator(Plzwwritehere).textContent();
+        return notecontent;
+    }
+
+    public List<String> VerifyPubJournalArticleInChecklist(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) throws InterruptedException {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        AddNotes();
+        checklist();
+        // uploadfiles();
+
+        page.locator(checklist).click();
+
+        List<String> pubjorart=new ArrayList<>();
+
+
+        // assertThat(page.locator("//*[text()='"+pub+"']//following::p[text()='"+pub+"']")).isAttached();
+      pubjorart.add(page.locator("//*[text()='Publisher']//following::p[text()='"+pub+"']").textContent());
+
+        // assertThat(page.locator("//*[text()='"+jour+"']//following::p[text()='"+jour+"']")).isAttached();
+        pubjorart.add(page.locator("//*[text()='Journal']//following::p[text()='"+jour+"']").textContent());
+        pubjorart.add(arttimeid);
+
+        // assertThat(page.locator("//*[text()='"+arttimeid+"']//following::p[text()='"+arttimeid+"']")).isAttached();
+        pubjorart.add(page.locator("//*[text()='Article']//following::p[text()='"+arttimeid+"']").textContent());
+
+        return pubjorart;
+
+    }
+
+    public Boolean IsCheckboxIsChecked(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(articleid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        checklist();
+        AddNotes();
+        page.locator(checklist).click();
+        return page.locator(figurechecklist).isChecked();
+
+    }
+
+    public Boolean IsCheckboxIsCheckedInEditArticle(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi=1;
+        long doinumber=Long.parseLong(arttimeid);
+        long doival=doi+doinumber;
+        String doivalue=String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticle(journalacro,arttimeid,artname,doivalue,workflow);
+        checklist();
+        AddNotes();
+        page.locator(addarticlebutton).click();
+        page.locator(addarticlealert).click();
+        assertThat(page.locator("//em[text()='"+doivalue+"']")).isAttached();
+        page.locator("(//em[text()='"+doivalue+"'])[1]//preceding::td[2]").click();
+        page.locator(checklist).click();
+
+        page.locator(tables).click();
+        return  page.locator(tables).isChecked();
+
+
+
+    }
+
+
+
+
 
 
 

@@ -228,12 +228,15 @@ public class PreRequestPage {
         page.locator(printxml).fill("1");
 
 
-       uploadfiles();
+
         page.locator(CopyTat).click();
         page.locator(CopyTatConfirm).click();
+        uploadfiles();
+
 
         page.locator(addbutton).click();
         page.locator(addalertclose).click();
+        page.locator(managemenu).click();
 
 
     }
@@ -327,9 +330,8 @@ public class PreRequestPage {
             fileChooser.setFiles(Paths.get("EMS_Press.pdf"));
 
             page.locator(addButton).click();
-            Thread.sleep(5000);
-
             page.locator(alertCloseButton).click();
+            page.locator(managemenu).click();
 
         }
 

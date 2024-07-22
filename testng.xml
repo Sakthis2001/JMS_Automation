@@ -50,9 +50,8 @@
         <classes>
             <class name="tests.AddArticleTest">
                 <methods>
-                    <include name="verifyarticlemovingToLatex"></include>
+                    <include name="verifyDownloadFunctionality"></include>
                 </methods>
-
 
             </class>
 
