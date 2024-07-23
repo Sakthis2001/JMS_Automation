@@ -115,6 +115,15 @@ public class AddArticleManualPage {
         page.reload();
     }
 
+    public void checklist()
+    {
+        page.locator(checklist).click();
+        page.locator(figurechecklist).click();
+       page.locator(Checklistsubmitbutton).click();
+        page.locator(checlistalert).click();
+        page.locator(checklisttoast).click();
+    }
+
     public void DoAddArticle(String journalacro,String articleid,String name,String doinum,String workflow) throws InterruptedException {
         LocalDate today = LocalDate.now();
         LocalDate tomarrow = today.plusDays(1);
@@ -185,11 +194,7 @@ public class AddArticleManualPage {
         page.locator(notificationalert).click();
         page.locator(notificationsuccesstoastmail).click();
 //page.locator(checkall).click();
-        page.locator(checklist).click();
-        page.locator(figurechecklist).click();
-        page.locator(Checklistsubmitbutton).click();
-        page.locator(checlistalert).click();
-        page.locator(checklisttoast).click();
+      checklist();
         // page.locator(addarticlebutton).click();
         Thread.sleep(10000000);
 

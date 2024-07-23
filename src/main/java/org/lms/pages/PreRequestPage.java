@@ -206,26 +206,26 @@ public class PreRequestPage {
 
 
         page.locator(ftp_initial_directory).fill("1");
-        page.locator(daysforlatexnormalization).fill("1");
-        page.locator(daysforgraphics).fill("1");
-        page.locator(daysforPreediting).fill("1");
-        page.locator(daysforcopyediting).fill("1");
-        page.locator(daysforlatexnormalization).fill("1");
-        page.locator(daysfortypesettings).fill("1");
-        page.locator(daysforqc).fill("1");
-        page.locator(daysforaupag).fill("1");
-        page.locator(daysforauqc).fill("1");
-        page.locator(daysforpepag).fill("1");
-        page.locator(daysforpeqc).fill("1");
-        page.locator(daysforonlinepag).fill("1");
-        page.locator(daysforonlineqc).fill("1");
-        page.locator(daysforonlinexml).fill("1");
-        page.locator(IssuePag).fill("1");
-        page.locator(IssueQC).fill("1");
-        page.locator(printpag).fill("1");
-        page.locator(printQC).fill("1");
+        page.locator(daysforlatexnormalization).fill("2");
+        page.locator(daysforgraphics).fill("2");
+        page.locator(daysforPreediting).fill("2");
+        page.locator(daysforcopyediting).fill("2");
+        page.locator(daysforlatexnormalization).fill("2");
+        page.locator(daysfortypesettings).fill("2");
+        page.locator(daysforqc).fill("2");
+        page.locator(daysforaupag).fill("2");
+        page.locator(daysforauqc).fill("2");
+        page.locator(daysforpepag).fill("2");
+        page.locator(daysforpeqc).fill("2");
+        page.locator(daysforonlinepag).fill("2");
+        page.locator(daysforonlineqc).fill("2");
+        page.locator(daysforonlinexml).fill("2");
+        page.locator(IssuePag).fill("2");
+        page.locator(IssueQC).fill("2");
+        page.locator(printpag).fill("2");
+        page.locator(printQC).fill("2");
         //assertThat(page.locator(printxml)).isAttached();
-        page.locator(printxml).fill("1");
+        page.locator(printxml).fill("2");
 
 
 
@@ -314,16 +314,16 @@ public class PreRequestPage {
             page.locator(FS_ONFdaysOfQC).fill("1");
             page.locator(FS_ONFdaysOfXML).fill("1");
 
-            page.locator(G_ISSdaysOfPage).fill("2");
-            page.locator(G_ISSdaysOfQC).fill("2");
-            page.locator(FS_ISSdaysOfPage).fill("2");
-            page.locator(FS_ISSdaysOfQC).fill("2");
-            page.locator(G_PrintdaysOfPage).fill("2");
-            page.locator(G_PrintdaysOfQC).fill("2");
-            page.locator(G_PrintdaysOfXML).fill("2");
-            page.locator(FS_PrintdaysOfPage).fill("2");
-            page.locator(FS_PrintdaysOfQC).fill("2");
-            page.locator(FS_PrintdaysOfXML).fill("2");
+            page.locator(G_ISSdaysOfPage).fill("1");
+            page.locator(G_ISSdaysOfQC).fill("1");
+            page.locator(FS_ISSdaysOfPage).fill("1");
+            page.locator(FS_ISSdaysOfQC).fill("1");
+            page.locator(G_PrintdaysOfPage).fill("1");
+            page.locator(G_PrintdaysOfQC).fill("1");
+            page.locator(G_PrintdaysOfXML).fill("1");
+            page.locator(FS_PrintdaysOfPage).fill("1");
+            page.locator(FS_PrintdaysOfQC).fill("1");
+            page.locator(FS_PrintdaysOfXML).fill("1");
             fileChooser = page.waitForFileChooser(() -> page.locator(styleTemplateUploadButton).click());
             fileChooser.setFiles(Paths.get("ems_journal.sty"));
             fileChooser = page.waitForFileChooser(() -> page.locator(guideLineUploadButton).click());

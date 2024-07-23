@@ -13,6 +13,9 @@ import utils.ExcelUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static utils.ExcelReader.ReadExcelData;
@@ -312,13 +315,199 @@ public class AddArticleTest extends BaseTest {
            Assert.assertTrue(ischecked,"On open access is not checked");
     }
 
-    @Test(priority =22,dataProvider = "addarticledata",description =" Toggle any checkboxes above for Tables,Figures" )
+    @Test(priority =22,dataProvider = "addarticledata",description ="JMS-197 : Save the checklist and reopen and verify it can be edited further and saved" )
     public void verifyIsCheckedInEditArticle(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
        Boolean IsChecked=addarticlepage.IsCheckboxIsCheckedInEditArticle(journalacro, articleid, artname, doinum, workflow,pub,jour);
        Assert.assertTrue(IsChecked,"Can able to click  the checkbox in EditArticle");
         //Assert.assertTrue(ischecked,"On open access is not checked");
     }
+
+    @Test(priority =23,dataProvider = "addarticledata",description =" JMS-199 : Change the higher level information like Journal title or Article title, verify the checklist reset" )
+    public void verifyChecklistAfterChangeHighLvlInfo(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+       Boolean ischecked=addarticlepage.VerifyChecklistAfterChangeHigherLevelInfo(journalacro, articleid, artname, doinum, workflow,pub,jour);
+       Assert.assertFalse(ischecked,"Checklist is not resetted");
+    }
+
+
+    @Test(priority =24,dataProvider = "addarticledata",description ="JMS-201 : Clicking on ‘X’ - doesn’t saves the content and returns to Add article page -\n" )
+    public void verifyChecklistclosefunctionality(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+        Boolean ischecked=addarticlepage.ChecklistCloseButton(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertFalse(ischecked,"Checklist is not resetted");
+    }
+
+
+
+    @Test(priority =26,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents " )
+    public void verifyQueryIsAdded(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+        Boolean isadded=addarticlepage.IsQueryShowing(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(isadded,"Query is showing");
+    }
+
+    //TAt
+
+    @DataProvider(name = "Tatdata")
+    public Object[][] VerifyTat() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx",12);
+    }
+
+    @Test(priority =27,dataProvider ="Tatdata",description ="JMS-32 : Verify the TATs imported here is imported from Journal not from Publisher")
+    public void verifyTatImportFromJournal(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour,String f_latex,String f_gra,String f_pre,String f_copy,String f_pag,String f_qc,String au_pag,String au_qc,String pe_pag,String pe_qc,String onlinepag,String onlineqc,String onlinexml,String issuepag,String issueqc,String printpag,String printqc,String print_xml ) throws InterruptedException {
+       List<String> journaltatimport= addarticlepage.verifyTatFromJournal(journalacro, articleid, artname, doinum, workflow,pub,jour,f_latex,f_gra,f_pre,f_copy,au_pag,au_qc,pe_pag,pe_qc,onlinepag,onlineqc,onlinexml,issuepag,issueqc,printpag,printqc,print_xml);
+        System.out.println(journaltatimport);
+        SoftAssert softAssert=new SoftAssert();
+
+        softAssert.assertEquals(journaltatimport.get(0),f_latex,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(1),f_gra,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(2),f_pre,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(3),f_copy,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(4),f_pag,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(5),f_qc,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(6),au_pag,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(7),au_qc,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(8),pe_pag,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(9),pe_qc,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(10),onlinepag,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(11),onlineqc,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(12),onlinexml,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(13),issuepag,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(14),issueqc,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(15),printpag,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(16),printqc,"Imported days are wrong");
+        softAssert.assertEquals(journaltatimport.get(17),print_xml,"Imported days are wrong");
+
+        softAssert.assertNotEquals(journaltatimport.get(0),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(1),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(2),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(3),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(4),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(5),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(6),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(7),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(8),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(9),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(10),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(11),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(12),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(13),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(14),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(15),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(16),"2","Imported days are wrong");
+        softAssert.assertNotEquals(journaltatimport.get(17),"2","Imported days are wrong");
+
+        softAssert.assertAll();
+
+
+    }
+
+    @DataProvider(name = "ModifiedTatdata")
+    public Object[][] VerifymodifiedTat() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx",13);
+    }
+
+    @Test(priority =28,dataProvider ="ModifiedTatdata",description ="JMS-36 : Modification of TAT after imported")
+    public void verifyModifiedTat(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour,String f_latex,String f_gra,String f_pre,String f_copy,String f_pag,String f_qc,String au_pag,String au_qc,String pe_pag,String pe_qc,String onlinepag,String onlineqc,String onlinexml,String issuepag,String issueqc,String printpag,String printqc,String print_xml ) throws InterruptedException {
+        List<String> articletatimport= addarticlepage.ModifyTatAfterImport(journalacro, articleid, artname, doinum, workflow,pub,jour,f_latex,f_gra,f_pre,f_copy,au_pag,au_qc,pe_pag,pe_qc,onlinepag,onlineqc,onlinexml,issuepag,issueqc,printpag,printqc,print_xml);
+        System.out.println(articletatimport);
+        SoftAssert softAssert=new SoftAssert();
+
+        softAssert.assertEquals(articletatimport.get(0),f_latex,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(1),f_gra,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(2),f_pre,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(3),f_copy,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(4),f_pag,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(5),f_qc,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(6),au_pag,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(7),au_qc,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(8),pe_pag,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(9),pe_qc,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(10),onlinepag,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(11),onlineqc,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(12),onlinexml,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(13),issuepag,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(14),issueqc,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(15),printpag,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(16),printqc,"Tat are not modified");
+        softAssert.assertEquals(articletatimport.get(17),print_xml,"Tat are not modified");
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority =29,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents " )
+    public void verifyDueDateCalculations(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+        int totaldays=6;
+
+        LocalDate resultDate =LocalDate.now();
+        System.out.println(resultDate);
+        int addedDays = 1;
+
+        while (addedDays < totaldays)
+        {
+            resultDate = resultDate.plusDays(1);
+
+            // Skip weekends
+            if (!(resultDate.getDayOfWeek() == DayOfWeek.SATURDAY || resultDate.getDayOfWeek() == DayOfWeek.SUNDAY))
+            {
+                addedDays++;
+            }
+        }
+       String firstproofduedate=addarticlepage.VerifyDueDateAutoCalculate(journalacro, articleid, artname, doinum, workflow,pub,jour);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Adjust the pattern according to your date format
+        LocalDate actualDate = LocalDate.parse(firstproofduedate, formatter);
+        System.out.println(firstproofduedate);
+        System.out.println(resultDate);
+        Assert.assertEquals(actualDate,resultDate,"Saturday and sunday calculatiion is not getting skipped");
+    }
+
+    @Test(priority =29,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents " )
+    public void VerifyStartDate(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+        int totaldays=30;
+        LocalDate resultDate =LocalDate.now();
+        System.out.println(resultDate);
+        int addedDays = 1;
+
+        while (addedDays < totaldays) {
+            resultDate = resultDate.plusDays(1);
+
+            if (resultDate.getDayOfWeek() == DayOfWeek.SATURDAY || resultDate.getDayOfWeek() == DayOfWeek.SUNDAY) {
+                System.out.println("saturday date"+resultDate);
+                break;
+            }
+            else
+            {
+                addedDays++;
+
+            }
+        }
+
+
+        System.out.println(resultDate);
+
+        Boolean startdate=addarticlepage.VerifyStartWorkingDAte(journalacro, articleid, artname, doinum, workflow,pub,jour,resultDate);
+        Assert.assertFalse(startdate,"Saturday and sunday date is accepting in start date");
+
+    }
+
+
+
+    @Test(priority =29,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents " )
+    public void VerifyToogleBetweenAcknowandKnowledge(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+        Boolean istoogled=addarticlepage.ToggleBetweenNotificationAndAcknowledgementMail(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(istoogled,"Toogle between ackno and knowledge is not toggled");
+
+    }
+
+
+
 
 
 
