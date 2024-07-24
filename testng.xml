@@ -50,7 +50,8 @@
         <classes>
             <class name="tests.AddArticleTest">
                 <methods>
-                    <include name="verifyMultipleAdditionalFileUpload"></include>
+                    <include name="VerifyHighLevelDataChangeUpdate"></include>
+
                 </methods>
             </class>
 

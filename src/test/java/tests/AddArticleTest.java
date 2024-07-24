@@ -464,7 +464,7 @@ public class AddArticleTest extends BaseTest {
         Assert.assertEquals(actualDate,resultDate,"Saturday and sunday calculatiion is not getting skipped");
     }
 
-    @Test(priority =29,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents " )
+    @Test(priority =30,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents " )
     public void VerifyStartDate(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
 
@@ -497,7 +497,7 @@ public class AddArticleTest extends BaseTest {
 
 
 
-    @Test(priority =29,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents " )
+    @Test(priority =31,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents " )
     public void VerifyToogleBetweenAcknowandKnowledge(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
 
@@ -505,6 +505,158 @@ public class AddArticleTest extends BaseTest {
         Assert.assertTrue(istoogled,"Toogle between ackno and knowledge is not toggled");
 
     }
+
+
+    @Test(priority =32,dataProvider = "addarticledata",description ="JMS-99 : Ensure we can’t save the mail without selecting ‘To’ addresses - check on both " )
+    public void VerifyToMailMandatoryy(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+        String cssvalue="cursor";
+
+        String savemailcursor=addarticlepage.ToMailMandatoryAlert(journalacro, articleid, artname, doinum, workflow,pub,jour,cssvalue);
+      Assert.assertEquals(savemailcursor,"not-allowed","Can able to click the savemail without selecting the to mail");
+
+    }
+
+    @Test(priority =32,dataProvider = "addarticledata",description ="JMS-100 : Ensure the selection of ‘Cc’ is optional - not mandatory - check on both " )
+    public void VerifyCcMailNotMandatory(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+
+       Boolean MailsentWithoutCcMail= addarticlepage.CcMailNotMandatory(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(MailsentWithoutCcMail,"Without  Cc mail is not allowing to add article");
+
+    }
+
+    @Test(priority =33,dataProvider = "addarticledata",description ="JMS-101 : Save any one mail, don’t save another - user can still navigate back to Article page" )
+    public void AddAcknowledgementMailandNavigateBack(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+
+        Boolean saveonemail= addarticlepage.SaveAcknoMailAndNavigateBack(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(saveonemail,"After save only Acknowmail cant able to navigate to Add article tab");
+    }
+
+    @Test(priority =34,dataProvider = "addarticledata",description =" JMS-102 : Save any one mail, don’t save another - mail checkbox still not selected" )
+    public void AddOnlyNotificationtMailandNavigateBack(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+
+        Boolean saveonemail= addarticlepage.SaveAcknoMailAndNavigateBack(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(saveonemail,"After save only Acknowmail cant able to navigate to Add article tab");
+    }
+
+    @Test(priority =34,dataProvider = "addarticledata",description =" JMS-102 : Save any one mail, don’t save another - mail checkbox still not selected" )
+    public void SaveOneMailAndVerifyPreviewCheckbox(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+
+        Boolean previewcheckbox= addarticlepage.SaveAcknoMailAndVerifyPreview(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(previewcheckbox,"After save only Acknowmail cant able to navigate to Add article tab");
+    }
+
+    @Test(priority =34,dataProvider = "addarticledata",description =" JMS-103 : Verify, on successful saving both mail, mail checkbox is selected in Article page - verify by reopen" )
+    public void SaveBothMailAndVerifyPreviewCheckbox(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+
+        Boolean previewcheckbox= addarticlepage.SaveBothMailAndVerifyPreview(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(previewcheckbox,"After save Both mail ,Mail preview checkbox is not checked");
+    }
+
+
+    @Test(priority =35,dataProvider = "addarticledata",description ="  JMS-105 : Save the mail and reopen and verify it can be edited further and saved" )
+    public void SaveBothMailAndVerifyMailUpdate(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+
+        Boolean subjectmail= addarticlepage.VerifyUpdationOnMailAfterSave(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(subjectmail,"After save Both mail ,Cant able to update Subject of the mail");
+    }
+
+    @Test(priority =36,dataProvider = "addarticledata",description ="JMS-107 : Change the higher level information like Journal title or Article title" )
+    public void verifyMailAfterChangeHighLevel(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+
+        Boolean subjectmail= addarticlepage.VerifyMailAfterChangeHighLevels(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(subjectmail,"After save Both mail ,Cant able to update Subject of the mail");
+    }
+
+
+    @Test(priority =37,dataProvider = "addarticledata",description ="JMS-109 : Verify Acknowledgement mail is triggered and mail received after article added(check To and Cc both)" )
+    public void VerifyAcknowledgementToast(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+
+        Boolean acknowledgementtoast= addarticlepage.VerifyAcknowledgementAddedMailToast(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(acknowledgementtoast,"Acknowledgement mail successfull Toast  is not showing ");
+    }
+
+    @Test(priority =38,dataProvider = "addarticledata",description ="JMS-110 : Verify Notification mail is triggered and mail received after article added(check To" )
+    public void VerifyNotificationToast(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+
+        Boolean Notificationmailtoast= addarticlepage.VerifyNotificationAddedMailToast(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(Notificationmailtoast,"Notification Mail  successfull Toast  is not showing ");
+    }
+
+
+    @Test(priority =39,dataProvider = "addarticledata",description ="JMS-111 : Clicking on ‘X’ - doesn’t saves the content and returns to Add article page" )
+    public void MailCloseFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+         Boolean isarticlepageshowing=addarticlepage.VerifyCloseMail(journalacro, articleid, artname, doinum, workflow,pub,jour);
+         Assert.assertTrue(isarticlepageshowing,"Article Contet is resett");
+
+    }
+
+
+    @Test(priority =40,dataProvider = "addarticledata",description ="JMS-203 : Editing article - Major corrections like below should not be allowed" )
+    public void VerifyHighLevelDataChangeUpdate(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+     List<Boolean> iseditable=addarticlepage.MajorEditShouldnottAllowed(journalacro, articleid, artname, doinum, workflow,pub,jour);
+     SoftAssert softAssert=new SoftAssert();
+        softAssert.assertFalse(iseditable.get(0),"ArticleId data is edited");
+        softAssert.assertFalse(iseditable.get(1),"ArticleName data is edited");
+        softAssert.assertFalse(iseditable.get(2),"CeByPass data is edited");
+        softAssert.assertFalse(iseditable.get(3),"workflow data is edited");
+        softAssert.assertFalse(iseditable.get(4),"journalacro data is edited");
+        softAssert.assertAll();
+
+
+
+    }
+
+
+
+
+
+
+    @Test(priority =41,dataProvider = "addarticledata",description ="JMS-203 : Editing article - Minor corrections like below should  be allowed" )
+    public void VerifyMinorLevelUpdate(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
+    {
+
+        Boolean isenable=addarticlepage.MinorEditShouldnottAllowed(journalacro, articleid, artname, doinum, workflow,pub,jour);
+        Assert.assertTrue(isenable,"High level data is edited");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

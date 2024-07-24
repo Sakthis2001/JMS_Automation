@@ -2,7 +2,6 @@ package org.lms.pages;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.WaitForSelectorState;
-import java.time.DayOfWeek;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -99,6 +98,7 @@ public class AddArticlePage {
     private String verifypubforlog = "//th[text()='k']";
 
     private String updatebutton = "//button[text()='Update Publisher']";
+    private String updatearticlebutton = "//*[text()='Update Article']";
     private String updatealert = "//h2[text()='JMS - Update Publisher']//following::span[1]";
     private String reuploadbutton = "//*[text()='Reupload']";
     private String journal_pub_drop = "id=publisher";
@@ -191,10 +191,12 @@ public class AddArticlePage {
     private String ccmailuser = "//p[normalize-space(text())='nirmala@pdmrindia.com']//preceding-sibling::input";
     private String Acknowlegeemtnsavemailbutton = "//button[text()='Save Mail']";
     private String Acknowledgementyesalert = "//*[text()='Are you sure to Save the mail on acknowledgement?']//following::newbutton[text()='Yes']";
+    private String Notificationtyesalert = "//*[text()='Are you sure to Save the mail on Notification?']//following::newbutton[text()='Yes']";
     private String Acknowlegementtoastclose = "//*[text()='JMS - Mail']//following::span[1]";
     private String notificationmail = "//*[text()='Notification']";
     private String Acknomail = "//*[text()='Acknowledgement']";
 
+    private String savemail="//button[text()='Save Mail']";
     private String savenotificationmail = "//*[text()='Save Mail']";
     private String notificationalert = "//*[text()='Are you sure to Save the mail on notification?']//following::newbutton[text()='Yes']";
     private String notificationsuccesstoastmail = "//*[text()='A mail will be triggered once the article is added successfully']//preceding::span[text()='×']";
@@ -204,6 +206,8 @@ public class AddArticlePage {
     private String addarticlealert = "//*[text()='JMS - Add Article']//following::span[1]";
     private String selectview = "id=select_view";
     private String journalsview = "//*[@id='select_view']//following::li//following::p[text()='Articles View']";
+    private String mailclosebar="//*[text()='Mail Preview']//following::img[1]";
+    private String notificationmailalert="//*[text()='Notification Mail not yet triggered']//preceding::span[text()='×']";
 
     private String supplement = "id=supplement";
     private String aopFree = "id=acpFree";
@@ -268,6 +272,11 @@ public class AddArticlePage {
     private String printqcdays = "id=daysForQCWeb";
     private String print_xmldays = "id=daysForXMLWeb";
     private String  firstproofdueDate="id=dueOn";
+    private String Addarticletab="//p[text()='Add Article']";
+    private String Mailpreviewtab="//p[text()='Mail Preview']";
+    private String Mailpreviewcheckbox="id=preview";
+    private String subjectmail="//label[text()='Subject']//following::input[1]";
+    private String updatearticletoast="//*[text()='JMS - Article Update']//following::div[2]";
 
 
     public AddArticlePage(Page page) {
@@ -731,8 +740,6 @@ public class AddArticlePage {
         checklist();
         AddNotes();
 
-
-//page.locator(checkall).click();
 
 
     }
@@ -1785,10 +1792,425 @@ public class AddArticlePage {
         return true;
 
 
+    }
+
+    public String ToMailMandatoryAlert(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour,String cssProperty)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+
+        List<Boolean> isclickable=new ArrayList<>();
+
+        page.locator(mailpreview).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(ccmail).click();
+
+        Boolean Acknomail=page.locator(savemail).isEnabled();
+
+
+
+        page.locator(notificationmail).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(ccmail).click();
+        Boolean notimail=page.locator(savemail).isEnabled();
+        isclickable.add(Acknomail);
+        isclickable.add(notimail);
+
+        String savemailcursor = page.locator(savemail).evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", cssProperty).toString();
+        System.out.println(savemailcursor);
+
+        return savemailcursor;
+
+
+    }
+
+    public Boolean CcMailNotMandatory(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+
+        page.locator(mailpreview).click();
+
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(Acknowlegeemtnsavemailbutton).click();
+        assertThat(page.locator(Acknowledgementyesalert)).isVisible();
+        page.locator(Acknowledgementyesalert).click();
+        page.locator(Acknowlegementtoastclose).click();
+        page.locator(notificationmail).click();
+
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(savenotificationmail).click();
+        page.locator(notificationalert).click();
+        page.locator(notificationsuccesstoastmail).click();
+
+        return true;
+    }
+
+    public Boolean SaveAcknoMailAndNavigateBack(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+
+        page.locator(mailpreview).click();
+
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(Acknowlegeemtnsavemailbutton).click();
+        assertThat(page.locator(Acknowledgementyesalert)).isVisible();
+        page.locator(Acknowledgementyesalert).click();
+        page.locator(Acknowlegementtoastclose).click();
+        page.locator(mailclosebar).click();
+        page.locator(notificationmailalert).click();
+
+       // assertThat(page.locator(Addarticletab)).isVisible();
+        return page.locator(Addarticletab).isVisible();
+       // return page.locator(Mailpreviewtab).isVisible();
+
+
+
 
 
 
     }
+
+    public Boolean SaveAcknoMailAndVerifyPreview(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+
+        page.locator(mailpreview).click();
+
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(Acknowlegeemtnsavemailbutton).click();
+        assertThat(page.locator(Acknowledgementyesalert)).isVisible();
+        page.locator(Acknowledgementyesalert).click();
+        page.locator(Acknowlegementtoastclose).click();
+        page.locator(mailclosebar).click();
+        page.locator(notificationmailalert).click();
+        assertThat(page.locator(Mailpreviewcheckbox)).isVisible();
+        return page.locator(Mailpreviewcheckbox).isChecked();
+
+
+
+
+
+
+
+
+    }
+
+    public Boolean SaveBothMailAndVerifyPreview(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        ArticleMail();
+        assertThat(page.locator(Mailpreviewcheckbox)).isVisible();
+        return page.locator(Mailpreviewcheckbox).isChecked();
+
+
+
+
+
+
+
+
+    }
+
+    public Boolean VerifyUpdationOnMailAfterSave(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        ArticleMail();
+        page.locator(mailpreview).click();
+
+        return page.locator(subjectmail).isEditable();
+
+    }
+
+    public Boolean VerifyMailAfterChangeHighLevels(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        ArticleMail();
+        page.locator(Selectpubdropdown).click();
+        page.locator("//p[normalize-space(text())='MT(M)']").click();
+        page.locator(mailpreview).click();
+
+        return page.locator(subjectmail).isEditable();
+
+    }
+
+    public Boolean VerifyAcknowledgementAddedMailToast(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        page.locator(mailpreview).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(Acknowlegeemtnsavemailbutton).click();
+        page.locator(Acknowledgementyesalert).click();
+        return  page.locator(Acknowlegementtoastclose).isVisible();
+
+
+
+
+
+    }
+
+    public Boolean VerifyNotificationAddedMailToast(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        page.locator(mailpreview).click();
+        page.locator(notificationmail).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(savenotificationmail).click();
+        page.locator(notificationalert).click();
+
+        return  page.locator(notificationsuccesstoastmail).isVisible();
+
+
+
+
+    }
+
+    public Boolean VerifyCloseMail(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) throws InterruptedException {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        page.locator(mailpreview).click();
+        page.locator(mailclosebar).click();
+         return page.locator(Addarticletab).isVisible();
+
+
+    }
+
+    public boolean MajorEditShouldnottAllowedJournalacro(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        ArticleMail();
+        page.locator(addarticlebutton).click();
+        page.locator(addarticlealert).click();
+        page.locator("(//em[text()='" +doivalue+ "'])[1]//preceding::td[2]").click();
+        return  page.locator(Selectpubdropdown).isEditable();
+
+
+    }
+
+    public boolean MajorEditShouldnottAllowedArticleid(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        ArticleMail();
+        page.locator(addarticlebutton).click();
+        page.locator(addarticlealert).click();
+        page.locator("(//em[text()='" +doivalue+ "'])[1]//preceding::td[2]").click();
+        return page.locator(articleidinput).isEditable();
+
+
+
+
+    }
+
+    public boolean MajorEditShouldnottAllowedArticleName(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        ArticleMail();
+        page.locator(addarticlebutton).click();
+        page.locator(addarticlealert).click();
+        page.locator("(//em[text()='" +doivalue+ "'])[1]//preceding::td[2]").click();
+        return page.locator(articlename).isEditable();
+
+
+    }
+
+    public List<Boolean> MajorEditShouldnottAllowed(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        ArticleMail();
+        page.locator(addarticlebutton).click();
+        page.locator(addarticlealert).click();
+        page.locator("(//em[text()='" +doivalue+ "'])[1]//preceding::td[2]").click();
+        List<Boolean> editArticle=new ArrayList<>();
+        editArticle.add(page.locator(articleidinput).isEditable());
+        editArticle.add(page.locator(articlename).isEditable());
+        editArticle.add(page.locator(cebypass).isEditable());
+        editArticle.add(page.locator(workflowselection).isEditable());
+        editArticle.add(page.locator(Selectpubdropdown).isEditable());
+        return editArticle;
+
+
+
+    }
+
+
+
+    public boolean MinorEditShouldnottAllowed(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
+        ArticleMail();
+
+        page.locator(addarticlebutton).click();
+        page.locator(addarticlealert).click();
+        page.locator("(//em[text()='" +doivalue+ "'])[1]//preceding::td[2]").click();
+        page.locator(authormail).fill("abcd@gmail.com");
+
+        page.locator(updatearticlebutton).click();
+       assertThat(page.locator(updatearticletoast)).isVisible();
+       Boolean val=page.locator(updatearticletoast).isVisible();
+        page.locator(managemenu).click();
+        return val;
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 }

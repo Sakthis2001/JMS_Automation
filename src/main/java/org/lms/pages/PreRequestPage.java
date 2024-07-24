@@ -344,6 +344,7 @@ public class PreRequestPage {
         page.locator(EditUser).click();*/
         page.locator(empname).fill(name);
         page.locator(employee_id).fill(employeeid);
+
         Locator desigdropdown= page.locator(designationdropdown);
         desigdropdown.selectOption(new SelectOption().setLabel(designation));
 

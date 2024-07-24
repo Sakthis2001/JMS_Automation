@@ -123,7 +123,34 @@ public class AddArticleManualPage {
         page.locator(checlistalert).click();
         page.locator(checklisttoast).click();
     }
+    public void AddNotes()
+    {
+        page.locator(addnotes).click();
 
+        page.locator(Plzwwritehere).fill("this particular article is from general workflow");
+        page.locator(AddNoteutton).click();
+        page.locator(addnotetoastclose).click();
+    }
+
+    public void ArticleMail()
+    {
+        page.locator(mailpreview).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(Acknowlegeemtnsavemailbutton).click();
+        page.locator(Acknowledgementyesalert).click();
+        page.locator(Acknowlegementtoastclose).click();
+        page.locator(notificationmail).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(savenotificationmail).click();
+        page.locator(notificationalert).click();
+        page.locator(notificationsuccesstoastmail).click();
+    }
     public void DoAddArticle(String journalacro,String articleid,String name,String doinum,String workflow) throws InterruptedException {
         LocalDate today = LocalDate.now();
         LocalDate tomarrow = today.plusDays(1);
@@ -170,31 +197,9 @@ public class AddArticleManualPage {
         page.locator(startdate).fill(formattedDate);
         page.locator(OnOpenAccess).click();
         uploadfiles();
-
-        page.locator(addnotes).click();
-
-        page.locator(Plzwwritehere).fill("this particular article is from general workflow");
-        page.locator(AddNoteutton).click();
-        page.locator(addnotetoastclose).click();
-
-        page.locator(mailpreview).click();
-        page.locator(ccmail).click();
-        page.locator(checkall).click();
-        page.locator(tomail).click();
-        page.locator(checkall).click();
-        page.locator(Acknowlegeemtnsavemailbutton).click();
-        page.locator(Acknowledgementyesalert).click();
-        page.locator(Acknowlegementtoastclose).click();
-        page.locator(notificationmail).click();
-        page.locator(ccmail).click();
-        page.locator(checkall).click();
-        page.locator(tomail).click();
-        page.locator(checkall).click();
-        page.locator(savenotificationmail).click();
-        page.locator(notificationalert).click();
-        page.locator(notificationsuccesstoastmail).click();
-//page.locator(checkall).click();
-      checklist();
+        AddNotes();
+        checklist();
+        //ArticleMail();
         // page.locator(addarticlebutton).click();
         Thread.sleep(10000000);
 
