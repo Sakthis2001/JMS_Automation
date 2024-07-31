@@ -83,4 +83,11 @@ public class HomePage {
         return new QuickLinksPage(page);
     }
 
+    public LatexNormalizationPage navigatetoLatex()
+    {
+        page.url();
+        return new LatexNormalizationPage(page);
+    }
+
+
 }

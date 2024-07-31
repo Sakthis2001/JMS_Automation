@@ -335,13 +335,12 @@ public class PreRequestPage {
 
         }
 
-    public void adduser(String name,String employeeid,String designation,String email,String gender,String departmentname,String role)
+    public void adduser(String name,String employeeid,String designation,String email,String access,String gender,String departmentname,String role)
     {
         page.locator(users).click();
         page.locator(adduserbutton).click();
-       /*
-        page.locator(sakthiuser).hover();
-        page.locator(EditUser).click();*/
+
+
         page.locator(empname).fill(name);
         page.locator(employee_id).fill(employeeid);
 
@@ -351,7 +350,7 @@ public class PreRequestPage {
 
 
         page.locator(AccessUserdropdown).click();
-        page.locator(graphicsdeptaccess).click();
+        page.locator("//div[text()='"+access+"']").click();
         page.locator(user_mail).fill(email);
 
         Locator genderdropdown = page.locator(slectgender);
@@ -363,6 +362,8 @@ public class PreRequestPage {
         Locator rolename= page.locator(userrole);
         rolename.selectOption(new SelectOption().setLabel(role));
         page.locator(useraddbutton).click();
+
+
 
 
 

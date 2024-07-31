@@ -69,12 +69,15 @@ public class PreRequestTest extends BaseTest {
     }
 
     @Test(priority = 1,dataProvider ="getgraphicsuserdata")
-    public void addpublisher(String name,String employeeid,String designation,String email,String gender,String departmentname,String role)
+    public void addUserFunctionality(String name,String employeeid,String designation,String email,String access,String gender,String departmentname,String role)
     {
 
         prerequestpage= homepage.navigatetocommonpage();
-        prerequestpage.adduser(name,employeeid,designation,email,gender,departmentname,role);
+        prerequestpage.adduser(name,employeeid,designation,email,access,gender,departmentname,role);
     }
+
+
+
 
 
             @AfterMethod

@@ -7,12 +7,27 @@
         </classes>
    </test>
 
-  <!--<test name="PreRequestTest">
+   <!-- <test name="AddArticleTest">
 
         <classes>
-            <class name="tests.PreRequestTest">
+            <class name="tests.LatexNormalizationTest">
                 <methods>
-                    <include name="addpublisher"></include>
+                    <include name="AddJournal"></include>
+                </methods>
+
+            </class>
+
+
+        </classes>-->
+
+
+
+ <test name="PreRequestTest">
+
+        <classes>
+            <class name="tests.LatexNormalizationTest">
+                <methods>
+                    <include name="SearchFunctionality"></include>
                 </methods>
             </class>
 
@@ -20,19 +35,19 @@
 
     </test>
 
+        </suite>
 
 
-
-  <test name="QuickLinksTest" >
+  <!--<test name="QuickLinksTest" >
         <classes>
             <class name="tests.QuickLinksTest"></class>
         </classes>
     </test>
 
 
+-->
 
-
-    <test name="AddPublisherTest">
+  <!--  <test name="AddPublisherTest">
 
         <classes>
             <class name="tests.AddPublisherTest">
@@ -41,18 +56,19 @@
 
         </classes>
 
-    </test>
+    </test>-->
 
 
--->
+
+<!--
     <test name="AddArticleTest">
 
         <classes>
             <class name="tests.AddArticleTest">
                 <methods>
-                    <include name="VerifyHighLevelDataChangeUpdate"></include>
-
+                    <include name="AddJournal"></include>
                 </methods>
+
             </class>
 
 
@@ -61,5 +77,5 @@
 
 
 
-    </test>
-</suite>
+    </test>-->
+

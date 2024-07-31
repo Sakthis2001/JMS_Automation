@@ -27,6 +27,8 @@ public class BaseTest {
    protected PreRequestPage prerequestpage;
    protected QuickLinksPage quickLinksPage;
 
+    protected LatexNormalizationPage latexNormalizationPage;
+
 
     @BeforeClass
    public void startbrwoser() throws IOException {

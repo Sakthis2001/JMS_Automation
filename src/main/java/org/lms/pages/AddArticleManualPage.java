@@ -199,7 +199,7 @@ public class AddArticleManualPage {
         uploadfiles();
         AddNotes();
         checklist();
-        //ArticleMail();
+        ArticleMail();
         // page.locator(addarticlebutton).click();
         Thread.sleep(10000000);
 
