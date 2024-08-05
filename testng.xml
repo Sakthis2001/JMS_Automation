@@ -27,7 +27,7 @@
         <classes>
             <class name="tests.LatexNormalizationTest">
                 <methods>
-                    <include name="SearchFunctionality"></include>
+                    <include name="verifyplay"></include>
                 </methods>
             </class>
 
