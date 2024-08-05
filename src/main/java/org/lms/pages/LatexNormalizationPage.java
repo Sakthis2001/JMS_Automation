@@ -754,6 +754,7 @@ public class LatexNormalizationPage {
         logoutlogin(luname,lupass);
         assertThat(page.locator("//*[text()='90259495']//following::img[@title='assign'][1]")).isVisible();
         return page.locator("//*[text()='90259495']//following::img[@title='assign'][1]").isVisible();
+        //latex normalization
 
 
 
