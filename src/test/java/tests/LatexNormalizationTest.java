@@ -110,8 +110,75 @@ public class LatexNormalizationTest extends BaseTest {
         SoftAssert softAssert=new SoftAssert();
         softAssert.assertTrue(article.get(0),"Other articles are enable When one article in WIP");
         softAssert.assertTrue(article.get(1),"Cant able to start other article one after complete the other article");
+    }
+
+
+    @DataProvider(name = "assignicon")
+    public Object[][] verifyAssignFunctionality() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",4);
+    }
+    @Test(priority = 8,description = " JMS-235 : ASSIGN option for TL and user - Version 1",dataProvider = "assignicon")
+    public void ISAssignIConDisplayed(String tluname,String tlupass,String luname,String lupass,String journalacro, String articleid, String artname, String doinum, String workflow)
+    {
+        Boolean AssignIsVisible=latexNormalizationPage.VerifyTlAssignFunctionality(tluname,tlupass,luname,lupass,journalacro,articleid,doinum,artname,workflow);
+        Assert.assertTrue(AssignIsVisible,"Assing icon is not visible for the TL login");
 
     }
+
+    @DataProvider(name = "otheruser")
+    public Object[][] verifyotherdeptuser() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",5);
+    }
+
+    @Test(priority = 9,description = "JMS-236 : Other DEPT Users availability - Version 1",dataProvider = "otheruser")
+    public void IsOtherUserAvailable(String latextluname,String latextlpass)
+    {
+        Boolean isotheruseravailable=latexNormalizationPage.otherDeptUserAvailablity(latextluname,latextlpass);
+        Assert.assertTrue(isotheruseravailable,"Other department users are available ");
+    }
+
+    @DataProvider(name = "existstart")
+    public Object[][] alreadystart() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",6);
+    }
+
+
+    @Test(priority = 10,dataProvider = "existstart",description = "JMS-237 : Already started Task - Version 1")
+    public void VerifyTlLoginAlreadyStart(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass) throws InterruptedException
+    {
+
+        Boolean isAssignshown=latexNormalizationPage.verifyAlreadyStarted(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass);
+        Assert.assertFalse(isAssignshown,"can abl to assign even in WIP article");
+
+    }
+
+    @DataProvider(name = "ytshold")
+    public Object[][] availableytshold() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",7);
+    }
+
+    @Test(priority = 11,description = "JMS-238 : availability of HOLD/YTS tasks - Version 1",dataProvider = "ytshold")
+    public void VerifyYtsHoldReassignarticle(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2) throws InterruptedException
+    {
+       Boolean isarticlevisibletonewuser= latexNormalizationPage.verifyAvailableOfYtsHold(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,luname2);
+       Assert.assertTrue(isarticlevisibletonewuser,"Article not failed");
+
+
+    }
+
+    @Test(priority = 12,description = "JMS-284 : Verify Some other User takes assigned Task - Version 1",dataProvider = "ytshold")
+    public void  VerifyISArticleAvailableForUnassign(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2)
+    {
+        String css="cursor";
+        Boolean notvisible=latexNormalizationPage.VerifyUnAssignedUserCanStart(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,luname2,css);
+        Assert.assertTrue(notvisible,"Can able to start the article by unassigned user");
+
+    }
+
+
+
+
+
 
 
 

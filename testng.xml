@@ -22,12 +22,12 @@
 
 
 
- <test name="PreRequestTest">
+ <test name="LatexNormalizationTest">
 
         <classes>
             <class name="tests.LatexNormalizationTest">
                 <methods>
-                    <include name="verifyplay"></include>
+                    <include name="VerifyISArticleAvailableForUnassign"></include>
                 </methods>
             </class>
 

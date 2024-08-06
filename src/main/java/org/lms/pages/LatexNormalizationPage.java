@@ -742,32 +742,295 @@ public class LatexNormalizationPage {
 
     }
 
-    public Boolean VerifyTlAssignFunctionality(String tluname,String tlupass,String luname,String lupass,String journalacro, String articleid, String artname, String doinum, String workflow)
+    public Boolean VerifyTlAssignFunctionality(String pmuname,String pmupass,String luname,String lupass,String journalacro, String articleid, String artname, String doinum, String workflow)
     {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         int doi = 1;
         long doinumber = Long.parseLong(arttimeid);
         long doival = doi + doinumber;
         String doivalue = String.valueOf(doival);
-        logoutlogin(tluname,tlupass);
+        logoutlogin(pmuname,pmupass);
         DoAddArticle( journalacro, arttimeid,  artname,  doivalue,  workflow);
         logoutlogin(luname,lupass);
-        assertThat(page.locator("//*[text()='90259495']//following::img[@title='assign'][1]")).isVisible();
-        return page.locator("//*[text()='90259495']//following::img[@title='assign'][1]").isVisible();
+        assertThat(page.locator("//*[text()='"+arttimeid+"']//following::img[@title='assign'][1]")).isVisible();
+        return page.locator("//*[text()='"+arttimeid+"']//following::img[@title='assign'][1]").isVisible();
         //latex normalization
 
 
 
     }
 
+    public Boolean otherDeptUserAvailablity(String latextluname,String latextlupass)
+    {
+
+        logoutlogin(latextluname,latextlupass);
+        assertThat(page.locator("(//img[@title='assign'])[1]")).isVisible();
+         page.locator("(//img[@title='assign'])[1]").isVisible();
+         page.locator("(//img[@title='assign'])[1]").click();
+         page.locator(AssignArticleDropdown).click();
+         List<String> listofuser=page.locator("//*[@id='Process']//following::div[1]//following::ul//following::li").allInnerTexts();
+        System.out.println("list of latexuser"+listofuser);
+         Boolean val=false;
+         for (String user:listofuser)
+         {
+             if(user.contains("1947")||user.contains("1997"))
+             {
+                 System.out.println("if condition executed");
+                 System.out.println(user);
+                 val= false;
+                 break;
+             }
+             else
+             {
+                 System.out.println("else condition executed");
+                 System.out.println(user);
+                 val= true;
+             }
+         }
+         return val;
+    }
+
+    public Boolean verifyAlreadyStarted(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass) throws InterruptedException {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        logoutlogin(pmunmae,pmupass);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        logoutlogin(luname,lupass);
+        /////////////////////////////
+
+        page.locator(searchbar).fill(luname);
+        Thread.sleep(4000);
+        Boolean articleeditable = page.locator("//*[@title='pause']").isVisible();
+        System.out.println("articleeditable"+articleeditable);
+        Boolean articlepause=page.locator("//*[@title='hold']").isVisible();
+        Boolean articleenable = true;
+
+        if (articleeditable.equals(true))
+        {
+            page.locator(pausearticle).click();
+            page.locator(pausereason).fill("leave");
+            page.locator(pausesubmitbutton).click();
+            Thread.sleep(10000);
 
 
+            Locator holdericon=page.locator(holdicon);
+            List<ElementHandle> allPlayIconsList = StreamSupport.stream(holdericon.elementHandles().spliterator(), false)
+                    .collect(Collectors.toList());
+            System.out.println(allPlayIconsList.size());
+            int count= allPlayIconsList.size();
 
 
+            // Iterate over each element and click it
+            for (int i = 0; i < count; i++) {
+                page.locator(holdicon).nth(i).click();
+                // Optionally add a delay if needed
+                Thread.sleep(3000);
+            }
 
+            page.locator(pausereason).fill("hold");
+            page.locator(pausesubmitbutton).click();
+            // page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
+
+
+        }
+
+        else if (articlepause.equals(true))
+        {
+            Locator holdericon=page.locator(holdicon);
+            List<ElementHandle> allPlayIconsList = StreamSupport.stream(holdericon.elementHandles().spliterator(), false)
+                    .collect(Collectors.toList());
+            System.out.println(allPlayIconsList.size());
+            int count= allPlayIconsList.size();
+
+
+            // Iterate over each element and click it
+            for (int i = 0; i < count; i++)
+            {
+                page.locator(holdicon).nth(i).click();
+                // Optionally add a delay if needed
+                Thread.sleep(3000);
+            }
+
+            page.locator(pausereason).fill("hold");
+            page.locator(pausesubmitbutton).click();
+            // page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
+
+
+        }
+        Thread.sleep(4000);
+        page.locator(searchbar).fill(arttimeid);
+        Thread.sleep(4000);
+        page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start'][1]").click();
+        logoutlogin(ltlunmae,ltupass);
+
+
+        page.locator(filterfields).click();
+        page.locator(clearall).click();
+        page.locator(Articleidfilter).click();
+        page.locator(searchbar).fill(arttimeid);
+
+        Thread.sleep(3000);
+        return page.locator("//*[text()='"+arttimeid+"']//following::img[@title='assign'][1]").isVisible();
 
 
     }
+
+    public Boolean verifyAvailableOfYtsHold(String pmuname,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String tluname,String tlupass,String luname1,String luname2) throws InterruptedException {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        logoutlogin(pmuname,pmupass);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        logoutlogin(luname,lupass);
+        page.locator(searchbar).fill(luname);
+        Thread.sleep(4000);
+        Boolean articleeditable = page.locator("//*[@title='pause']").isVisible();
+        System.out.println("articleeditable"+articleeditable);
+        Boolean articlepause=page.locator("//*[@title='hold']").isVisible();
+        Boolean articleenable = true;
+
+        if (articleeditable.equals(true))
+        {
+            page.locator(pausearticle).click();
+            page.locator(pausereason).fill("leave");
+            page.locator(pausesubmitbutton).click();
+            Thread.sleep(10000);
+
+
+            Locator holdericon=page.locator(holdicon);
+            List<ElementHandle> allPlayIconsList = StreamSupport.stream(holdericon.elementHandles().spliterator(), false)
+                    .collect(Collectors.toList());
+            System.out.println(allPlayIconsList.size());
+            int count= allPlayIconsList.size();
+
+
+            // Iterate over each element and click it
+            for (int i = 0; i < count; i++) {
+                page.locator(holdicon).nth(i).click();
+                // Optionally add a delay if needed
+                Thread.sleep(3000);
+            }
+
+            page.locator(pausereason).fill("hold");
+            page.locator(pausesubmitbutton).click();
+            // page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
+
+
+        }
+
+        else if (articlepause.equals(true))
+        {
+            Locator holdericon=page.locator(holdicon);
+            List<ElementHandle> allPlayIconsList = StreamSupport.stream(holdericon.elementHandles().spliterator(), false)
+                    .collect(Collectors.toList());
+            System.out.println(allPlayIconsList.size());
+            int count= allPlayIconsList.size();
+
+
+            // Iterate over each element and click it
+            for (int i = 0; i < count; i++)
+            {
+                page.locator(holdicon).nth(i).click();
+                // Optionally add a delay if needed
+                Thread.sleep(3000);
+            }
+
+            page.locator(pausereason).fill("hold");
+            page.locator(pausesubmitbutton).click();
+            // page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
+
+
+        }
+        page.locator(searchbar).fill(arttimeid);
+        page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']").click();
+        page.locator(homemenu).click();
+
+        page.locator(searchbar).fill(arttimeid);
+        page.locator(pausearticle).click();
+        page.locator(pausereason).fill("leave");
+        page.locator(pausesubmitbutton).click();
+        page.locator(holdicon).click();
+        page.locator(pausereason).fill("hold");
+        page.locator(pausesubmitbutton).click();
+        logoutlogin(tluname,tlupass);
+        page.locator("//*[text()='"+arttimeid+"']//following::img[@title='assign']").click();
+        page.locator(AssignArticleDropdown).click();
+        page.locator(assigntouser).click();
+        page.locator(assignarticlebutton).click();
+
+        page.locator("//*[text()='"+arttimeid+"']//following::img[@title='assign']").click();
+        page.locator(AssignArticleDropdown).click();
+        page.locator("//*[text()='Hemalatha (4321)']").click();
+        page.locator(assignarticlebutton).click();
+        logoutlogin(luname1,luname2);
+        page.locator(searchbar).fill(arttimeid);
+        assertThat(page.locator("//*[text()='"+arttimeid+"']")).isVisible();
+        return page.locator("//*[text()='"+arttimeid+"']").isVisible();
+
+
+    }
+
+    public void tlassignself(String pmuname,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String tluname,String tlupass,String luname1,String luname2)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        logoutlogin(pmuname,pmupass);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        logoutlogin(tluname,tlupass);
+        page.locator(searchbar).click();
+        page.locator("//*[text='"+arttimeid+"']//following::img[@title='assign']").click();
+        page.locator("//*[text()='Anbu (1915)']").click();
+
+
+    }
+
+    public Boolean VerifyUnAssignedUserCanStart(String pmuname,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String tluname,String tlupass,String luname1,String luname2,String css)
+    {
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        logoutlogin(pmuname,pmupass);
+        DoAddArticle(journalacro,arttimeid,artname,doinum,workflow);
+        logoutlogin(tluname,tlupass);
+        page.locator(searchbar).fill(arttimeid);
+        page.locator("//*[text()='"+arttimeid+"']//following::img[@title='assign']").click();
+        page.locator(AssignArticleDropdown).click();
+        page.locator("//*[text()='Hemalatha (4321)']").click();
+        page.locator(assignbutton).click();
+        logoutlogin(luname,lupass);
+        page.locator(searchbar).fill(arttimeid);
+         Locator playIcon=page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']");
+        String val = playIcon.evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", css).toString();
+        if(val.equals("not-allowed"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+}
 
 
 
