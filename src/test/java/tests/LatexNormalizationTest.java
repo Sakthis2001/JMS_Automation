@@ -73,8 +73,7 @@ public class LatexNormalizationTest extends BaseTest {
 
 
     @Test(priority =5,dataProvider = "addarticlesearchdata")
-    public void SearchFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow,String uname,String upass,String luname,String lpass)
-    {
+    public void SearchFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow,String uname,String upass,String luname,String lpass) throws InterruptedException {
        Boolean articlefilterIsSuccess=latexNormalizationPage.VerifySearchFunctionality(journalacro,articleid,artname,doinum,workflow,uname,upass,luname,lpass);
         Assert.assertTrue(articlefilterIsSuccess,"Article is not filtering in search bar");
     }
@@ -118,8 +117,7 @@ public class LatexNormalizationTest extends BaseTest {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",4);
     }
     @Test(priority = 8,description = " JMS-235 : ASSIGN option for TL and user - Version 1",dataProvider = "assignicon")
-    public void ISAssignIConDisplayed(String tluname,String tlupass,String luname,String lupass,String journalacro, String articleid, String artname, String doinum, String workflow)
-    {
+    public void ISAssignIConDisplayed(String tluname,String tlupass,String luname,String lupass,String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         Boolean AssignIsVisible=latexNormalizationPage.VerifyTlAssignFunctionality(tluname,tlupass,luname,lupass,journalacro,articleid,doinum,artname,workflow);
         Assert.assertTrue(AssignIsVisible,"Assing icon is not visible for the TL login");
 
@@ -167,13 +165,55 @@ public class LatexNormalizationTest extends BaseTest {
     }
 
     @Test(priority = 12,description = "JMS-284 : Verify Some other User takes assigned Task - Version 1",dataProvider = "ytshold")
-    public void  VerifyISArticleAvailableForUnassign(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2)
-    {
+    public void  VerifyISArticleAvailableForUnassign(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2) throws InterruptedException {
         String css="cursor";
         Boolean notvisible=latexNormalizationPage.VerifyUnAssignedUserCanStart(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,luname2,css);
         Assert.assertTrue(notvisible,"Can able to start the article by unassigned user");
 
     }
+
+    @DataProvider(name = "parallelwork")
+    public Object[][] verifyassignstartparallel() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",8);
+    }
+
+    @Test(priority = 13,description = "JMS-285 : TL can work on Article and do Assigning works Parallel - Version 1",dataProvider = "parallelwork")
+    public void verifytlparralel(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass) throws InterruptedException {
+        Boolean isassigned=latexNormalizationPage.VerifyTlParallelWork(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass);
+        Assert.assertTrue(isassigned,"Can not able to assign an article to user when tl in WIP");
+    }
+
+
+    @Test(priority = 14,description = "JMS-286 : TL holds the Incomplete article to some other - Version 1",dataProvider = "ytshold")
+    public void VerifyTlAssignHoldArticle(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+        Boolean isassigned=latexNormalizationPage.VerifytlAssignIncompleteArticle(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+        Assert.assertTrue(isassigned,"Can not able to assign an article to user when article in incomplete");
+    }
+
+    //Dashboard Actions
+
+    @Test(priority = 15,description = "JMS-242 : Starting an article - Version 1",dataProvider = "ytshold")
+    public void VerifyEditorPageText(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+        String editormsg=latexNormalizationPage.verifyLatexInitiaLDone(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+        System.out.println(editormsg);
+        Assert.assertEquals(editormsg,"LaTeX Initial Done!","Can not able to assign an article to user when article in incomplete");
+    }
+
+
+
+    @Test(priority = 16,description = "JMS-243 : Editor page - homepage navigation - Version 1 ",dataProvider = "ytshold")
+    public void VerifyNaviFromHomeToEditor(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+        List<Object> editorpage=latexNormalizationPage.VerifyHomePageNavigation(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+        System.out.println(editorpage);
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertTrue((Boolean) editorpage.get(0),"Navigate to honmepage is failed");
+        softAssert.assertEquals(editorpage.get(1),"LaTeX Initial Done!","Navigate to editoorpage is failed");
+        softAssert.assertTrue((Boolean) editorpage.get(2),"Navigate to honmepage is failed after from editorpage");
+        softAssert.assertAll();
+    }
+
+
+
 
 
 

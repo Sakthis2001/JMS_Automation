@@ -27,7 +27,7 @@
         <classes>
             <class name="tests.LatexNormalizationTest">
                 <methods>
-                    <include name="VerifyISArticleAvailableForUnassign"></include>
+                    <include name="VerifyNaviFromHomeToEditor"></include>
                 </methods>
             </class>
 
