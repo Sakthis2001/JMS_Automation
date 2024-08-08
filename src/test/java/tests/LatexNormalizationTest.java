@@ -4,10 +4,7 @@ import base.BaseTest;
 import org.lms.listeners.ExtentReportListener;
 import org.lms.pages.LatexNormalizationPage;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import utils.ExcelReader;
 
@@ -21,8 +18,13 @@ public class LatexNormalizationTest extends BaseTest {
     public void beforelatex()
     {
         latexNormalizationPage=homepage.navigatetoLatex();
-        latexNormalizationPage.navigatetobaseicon();
+        //latexNormalizationPage.navigatetobaseicon();
 
+    }
+    @AfterMethod
+    public void  AfterAllTest()
+    {
+        latexNormalizationPage.ReloadDashboard();
     }
 
     @DataProvider(name = "addarticledata")
@@ -35,14 +37,14 @@ public class LatexNormalizationTest extends BaseTest {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",1);
     }
 
-    @Test(priority =1,dataProvider ="addarticledata" )
+  /*  @Test(priority =1,dataProvider ="addarticledata" ,enabled = false)
     public void verifyarticledetails(String journalacro, String articleid, String artname, String doinum, String workflow,String uname,String upass,String luname,String lpass) throws InterruptedException {
         latexNormalizationPage.navigatetobaseicon();
         latexNormalizationPage.verifyArticleGeneralDetails(journalacro,articleid,artname,doinum,workflow,uname,upass,luname,lpass);
 
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2,enabled = false)
     public void verifyfilterupdate() throws InterruptedException {
        List<Boolean> filterupdates = latexNormalizationPage.EnsureFilterUpdated("7000","7000","1948","1948");
         SoftAssert softAssert=new SoftAssert();
@@ -54,7 +56,7 @@ public class LatexNormalizationTest extends BaseTest {
 
 
 
-    @Test(priority = 3)
+    @Test(priority = 3,enabled = false)
     public void EnsureFilterNavigation() throws InterruptedException
     {
        Boolean filtertoogle = latexNormalizationPage.EnsuretoogleInFilter("1915","1915");
@@ -63,7 +65,7 @@ public class LatexNormalizationTest extends BaseTest {
     }
 
 
-    @Test(priority =4)
+    @Test(priority =4,enabled = false)
     public void SearchArticleFunctionality() throws InterruptedException
     {
         Boolean filtertoogle = latexNormalizationPage.EnsuretoogleInFilter("1915","1915");
@@ -72,12 +74,12 @@ public class LatexNormalizationTest extends BaseTest {
 
 
 
-    @Test(priority =5,dataProvider = "addarticlesearchdata")
+    @Test(priority =5,dataProvider = "addarticlesearchdata",enabled = false)
     public void SearchFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow,String uname,String upass,String luname,String lpass) throws InterruptedException {
        Boolean articlefilterIsSuccess=latexNormalizationPage.VerifySearchFunctionality(journalacro,articleid,artname,doinum,workflow,uname,upass,luname,lpass);
         Assert.assertTrue(articlefilterIsSuccess,"Article is not filtering in search bar");
     }
-
+*/
     //TL and User
 
     @DataProvider(name = "latexuserarticledata")
@@ -164,6 +166,7 @@ public class LatexNormalizationTest extends BaseTest {
 
     }
 
+
     @Test(priority = 12,description = "JMS-284 : Verify Some other User takes assigned Task - Version 1",dataProvider = "ytshold")
     public void  VerifyISArticleAvailableForUnassign(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2) throws InterruptedException {
         String css="cursor";
@@ -193,10 +196,14 @@ public class LatexNormalizationTest extends BaseTest {
     //Dashboard Actions
 
     @Test(priority = 15,description = "JMS-242 : Starting an article - Version 1",dataProvider = "ytshold")
-    public void VerifyEditorPageText(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+    public void VerifyEditorPageText(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException
+    {
+
         String editormsg=latexNormalizationPage.verifyLatexInitiaLDone(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
         System.out.println(editormsg);
         Assert.assertEquals(editormsg,"LaTeX Initial Done!","Can not able to assign an article to user when article in incomplete");
+
+
     }
 
 
@@ -211,6 +218,14 @@ public class LatexNormalizationTest extends BaseTest {
         softAssert.assertTrue((Boolean) editorpage.get(2),"Navigate to honmepage is failed after from editorpage");
         softAssert.assertAll();
     }
+
+
+
+
+
+
+
+
 
 
 

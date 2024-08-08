@@ -236,7 +236,7 @@ public class LatexNormalizationPage {
     private String journalfilter = "//*[@name='Journal Acronym']";
     private String tatfilter = "//*[@name='Tat']";
     private String pausearticle = "//*[@title='pause']";
-    private String playarticle = "//*[@title='play']";
+    private String playarticle = "//*[@title='start']";
     private String dynamicarticleeditor = "//*[@title='pause']//following::img[@title='editor']";
     private String completeeditoricon = "//img[@title='complete']";
     private String movetopreedit = "//newbutton[text()='Pre Editing']";
@@ -264,8 +264,9 @@ public class LatexNormalizationPage {
     }
 
     public void navigatetobaseicon() {
-        page.locator(baseicon).click();
-        page.locator(managemenu).click();
+       /* page.locator(baseicon).click();
+        page.locator(managemenu).click();*/
+        page.locator(homemenu).click();
 
     }
 
@@ -345,7 +346,8 @@ public class LatexNormalizationPage {
         page.locator(selecttatinput).click();
         page.locator(Doino).fill(doinum);
         page.locator(workflowselection).click();
-        page.locator("//*[@alt='" + workflow + "']").click();
+        page.locator("//*[@alt='" + workflow +"']").click();
+        Thread.sleep(3000);
         page.locator(assignbutton).click();
         page.locator(noofpages).fill("200");
         page.locator(articletype).fill("Research");
@@ -580,7 +582,8 @@ public class LatexNormalizationPage {
         logoutlogin(latexuname, latexupass);
         Thread.sleep(4000);
 
-        Boolean article = page.locator(pausearticle).isEditable();
+        page.locator(searchbar).fill(latexuname);
+        Boolean article = page.locator(pausearticle).isVisible();
         System.out.println("Article is in WIP" + article);
         Boolean articleenable = false;
 
@@ -589,13 +592,15 @@ public class LatexNormalizationPage {
             page.locator(pausearticle).click();
             page.locator(pausereason).fill("leave");
             page.locator(pausesubmitbutton).click();
-            page.locator("//*[text()='" + arttimeid + "']//following::img[@title='hold']").click();
+            page.locator("//img[@title='hold']").click();
+            page.locator(searchbar).fill(arttimeid);
             Boolean val = page.locator(playarticle).isEditable();
             articleenable = val;
 
 
         } else {
             System.out.println("else condition executed");
+            page.locator(searchbar).fill(arttimeid);
             Boolean val = page.locator(playarticle).isEditable();
             articleenable = val;
 
@@ -628,6 +633,7 @@ public class LatexNormalizationPage {
         page.locator(clearall).click();
         page.locator(journalfilter).click();
         page.locator(Articleidfilter).click();
+
         page.locator(searchbar).fill(latexuname);
 
         Boolean articleeditable = page.locator("//*[@title='pause']").isVisible();
@@ -658,7 +664,6 @@ public class LatexNormalizationPage {
 
             page.locator(pausereason).fill("hold");
             page.locator(pausesubmitbutton).click();
-           // page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
 
 
         }
@@ -681,14 +686,17 @@ public class LatexNormalizationPage {
 
             page.locator(pausereason).fill("hold");
             page.locator(pausesubmitbutton).click();
-           // page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
 
 
         }
 
 
-            page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
-            page.locator(homemenu).click();
+        page.locator(searchbar).fill(arttimeid);
+        Thread.sleep(5000);
+        page.locator("//img[@title='start']").click();
+
+        page.locator(homemenu).click();
+
 
             //page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']");
             Locator allPlayIcons = page.locator("//*[@title='start']");
@@ -716,15 +724,17 @@ public class LatexNormalizationPage {
 
             }
 
+            Boolean articleFreetotake= articleenable;
+            page.locator(searchbar).fill(arttimeid);
+        Thread.sleep(4000);
+        page.locator(Editorpage).click();
 
+        page.locator(slidemove).click();
 
-
-        Boolean articleFreetotake= articleenable;
-        page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
-      //  page.locator(compilefile).click();
+        //  page.locator(compilefile).click();
         page.locator(savefile).click();
         page.locator(savefiletoastclose).click();
-        page.locator(slidemove).click();
+
         page.locator(completefile).click();
 
         page.locator(movefromlattopre).click();
@@ -736,7 +746,8 @@ public class LatexNormalizationPage {
         String doivalue1 = String.valueOf(doival1);
         DoAddArticle(journalacro, arttimeid1, artname, doivalue1, workflow);
         logoutlogin(latexuname,latexupass);
-        page.locator("//*[text()='" + arttimeid1 + "']//following::img[@title='start']").click();
+        page.locator(searchbar).fill(arttimeid1);
+        page.locator("//img[@title='start']").click();
         Boolean articleCanStart=true;
         List<Boolean> val=new ArrayList<>();
         val.add(articleenable);
@@ -864,7 +875,7 @@ public class LatexNormalizationPage {
         }
         Thread.sleep(4000);
         page.locator(searchbar).fill(arttimeid);
-        Thread.sleep(4000);
+        assertThat(page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']")).isEditable();
         page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start'][1]").click();
         logoutlogin(ltlunmae,ltupass);
 
@@ -944,16 +955,21 @@ public class LatexNormalizationPage {
 
             page.locator(pausereason).fill("hold");
             page.locator(pausesubmitbutton).click();
-            // page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
 
 
         }
+
+        System.out.println("ppppp");
         page.locator(searchbar).fill(arttimeid);
+        Thread.sleep(4000);
         page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']").click();
+
         page.locator(homemenu).click();
+        System.out.println("ppppp");
 
         page.locator(searchbar).fill(arttimeid);
-        page.locator(pausearticle).click();
+        Thread.sleep(4000);
+        page.locator("//*[text()='"+arttimeid+"']//following::img[@title='pause']").click();
         page.locator(pausereason).fill("leave");
         page.locator(pausesubmitbutton).click();
         page.locator(holdicon).click();
@@ -993,6 +1009,11 @@ public class LatexNormalizationPage {
 
     }
 
+    public void ReloadDashboard()
+    {
+        page.reload();
+    }
+
     public Boolean VerifyUnAssignedUserCanStart(String pmuname,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String tluname,String tlupass,String luname1,String luname2,String css) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         int doi = 1;
@@ -1009,6 +1030,7 @@ public class LatexNormalizationPage {
         page.locator(assignbutton).click();
         logoutlogin(luname,lupass);
         page.locator(searchbar).fill(arttimeid);
+        assertThat(page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']")).isEditable();
          Locator playIcon=page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']");
         String val = playIcon.evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", css).toString();
         if(val.equals("not-allowed"))
@@ -1101,8 +1123,9 @@ public class LatexNormalizationPage {
 
 
         page.locator(searchbar).fill(arttimeid);
-
+        assertThat(page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']")).isEditable();
         page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']").click();
+        Thread.sleep(4000);
 
         page.locator(homemenu).click();
         String arttimeidd = String.valueOf(System.currentTimeMillis());
@@ -1144,16 +1167,17 @@ public class LatexNormalizationPage {
           DoAddArticle(journalacro,arttimeid,artname,doivalue,workflow);
 
           logoutlogin(luname,lupass);
-          Thread.sleep(4000);
+
+        page.locator(searchbar).fill(luname);
+        Thread.sleep(4000);
 
         Boolean articleeditable = page.locator("//*[@title='pause']").isVisible();
         System.out.println("articleeditable"+articleeditable);
 
-
-
         if (articleeditable.equals(true))
         {
             page.locator(pausearticle).click();
+            Thread.sleep(4000);
             page.locator(pausereason).fill("leave");
             page.locator(pausesubmitbutton).click();
             Thread.sleep(10000);
@@ -1180,15 +1204,17 @@ public class LatexNormalizationPage {
 
         }
 
-          logoutlogin(luname,lupass);
-        Thread.sleep(3000);
+
            page.locator(searchbar).fill(arttimeid);
+
+        Thread.sleep(3000);
             page.locator("//*[text()='" + arttimeid + "']//following::img[@title='start']").click();
+        Thread.sleep(4000);
 
             page.locator(homemenu).click();
             page.locator(searchbar).fill(arttimeid);
 
-            page.locator("//*[text()='" + arttimeid + "']//following::img[@title='pause']").click();
+            page.locator("//*[text()='" + arttimeid +"']//following::img[@title='pause']").click();
             page.locator(pausereason).fill("hold");
             page.locator(pausesubmitbutton).click();
 
@@ -1206,6 +1232,7 @@ public class LatexNormalizationPage {
 
         logoutlogin(luname1,lupass1);
         page.locator(searchbar).fill(arttimeid);
+        Thread.sleep(2000);
         return page.locator("//*[text()='"+arttimeid+"']").isVisible();
 
 
@@ -1223,19 +1250,23 @@ public class LatexNormalizationPage {
         DoAddArticle(journalacro,arttimeid,artname,doivalue,workflow);
 
         logoutlogin(luname,lupass);
+        System.out.println(luname);
 
-        page.locator(searchbar).fill(tluname);
+        page.locator(searchbar).fill(luname);
         Thread.sleep(5000);
+
 
         Boolean articleeditable = page.locator("//*[@title='pause']").isVisible();
         System.out.println("articleeditable"+articleeditable);
 
         Boolean articlepause=page.locator("//*[@title='hold']").isVisible();
-        Boolean articleenable = true;
+        System.out.println("articlepause"+articlepause);
+
 
         if (articleeditable.equals(true))
         {
             page.locator(pausearticle).click();
+
             page.locator(pausereason).fill("leave");
             page.locator(pausesubmitbutton).click();
             Thread.sleep(10000);
@@ -1292,7 +1323,8 @@ public class LatexNormalizationPage {
 
         page.locator(searchbar).fill(arttimeid);
 
-        page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']").click();
+        page.locator("//*[@title='start']").click();
+        Thread.sleep(4000);
         return page.locator(latexinitializedone).textContent();
 
 
@@ -1376,12 +1408,20 @@ public class LatexNormalizationPage {
 
         page.locator(searchbar).fill(arttimeid);
         Thread.sleep(4000);
+        assertThat(page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']")).isEditable();
         page.locator("//*[text()='"+arttimeid+"']//following::img[@title='start']").click();
+
+
+
         page.locator(homemenu).click();
+        page.locator(searchbar).fill(arttimeid);
         Boolean homepage=page.locator(Editorpage).isVisible();
         page.locator(Editorpage).click();
+
         String editorpage= page.locator(latexinitializedone).textContent();
+
         page.locator(homemenu).click();
+        page.locator(searchbar).fill(arttimeid);
         Boolean homepage1=page.locator(Editorpage).isVisible();
         List<Object> navi=new ArrayList<>();
         navi.add(homepage);
@@ -1391,10 +1431,10 @@ public class LatexNormalizationPage {
 
     }
 
-    public void VerifyQueryIsAdded()
-    {
 
-    }
+
+
+
 
 
 
