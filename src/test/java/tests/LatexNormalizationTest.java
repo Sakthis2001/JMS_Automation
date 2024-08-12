@@ -37,14 +37,14 @@ public class LatexNormalizationTest extends BaseTest {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",1);
     }
 
-  /*  @Test(priority =1,dataProvider ="addarticledata" ,enabled = false)
+    @Test(priority =1,description="JMS-229 : Verify the Article's General details - Version 1",dataProvider ="addarticledata" ,enabled = false)
     public void verifyarticledetails(String journalacro, String articleid, String artname, String doinum, String workflow,String uname,String upass,String luname,String lpass) throws InterruptedException {
         latexNormalizationPage.navigatetobaseicon();
         latexNormalizationPage.verifyArticleGeneralDetails(journalacro,articleid,artname,doinum,workflow,uname,upass,luname,lpass);
 
     }
 
-    @Test(priority = 2,enabled = false)
+    @Test(priority = 2,description = "JMS-318 : LTX Norm DB: Apply filter on Pub, journal separately and ensure the list is updated by filter - Version 1")
     public void verifyfilterupdate() throws InterruptedException {
        List<Boolean> filterupdates = latexNormalizationPage.EnsureFilterUpdated("7000","7000","1948","1948");
         SoftAssert softAssert=new SoftAssert();
@@ -56,16 +56,22 @@ public class LatexNormalizationTest extends BaseTest {
 
 
 
-    @Test(priority = 3,enabled = false)
+   /* @Test(priority = 3,enabled = false)
     public void EnsureFilterNavigation() throws InterruptedException
     {
        Boolean filtertoogle = latexNormalizationPage.EnsuretoogleInFilter("1915","1915");
         Assert.assertTrue(filtertoogle,"Toogle is not working properly in Filter");
 
+    }*/
+
+    @Test(priority =3,description = " JMS-322 : LTX Norm DB: Search with any text and verify the list is updated accordingly - Version 1", dataProvider = "addarticlesearchdata")
+    public void SearchFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow,String uname,String upass,String luname,String lpass) throws InterruptedException {
+        Boolean articlefilterIsSuccess=latexNormalizationPage.VerifySearchFunctionality(journalacro,articleid,artname,doinum,workflow,uname,upass,luname,lpass);
+        Assert.assertTrue(articlefilterIsSuccess,"Article is not filtering in search bar");
     }
 
 
-    @Test(priority =4,enabled = false)
+    @Test(priority =4,description = "JMS-323 : LTX Norm DB: Toggle between column selections - Version 1")
     public void SearchArticleFunctionality() throws InterruptedException
     {
         Boolean filtertoogle = latexNormalizationPage.EnsuretoogleInFilter("1915","1915");
@@ -74,12 +80,8 @@ public class LatexNormalizationTest extends BaseTest {
 
 
 
-    @Test(priority =5,dataProvider = "addarticlesearchdata",enabled = false)
-    public void SearchFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow,String uname,String upass,String luname,String lpass) throws InterruptedException {
-       Boolean articlefilterIsSuccess=latexNormalizationPage.VerifySearchFunctionality(journalacro,articleid,artname,doinum,workflow,uname,upass,luname,lpass);
-        Assert.assertTrue(articlefilterIsSuccess,"Article is not filtering in search bar");
-    }
-*/
+
+
     //TL and User
 
     @DataProvider(name = "latexuserarticledata")
@@ -157,6 +159,11 @@ public class LatexNormalizationTest extends BaseTest {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",7);
     }
 
+    @DataProvider(name = "dualtl")
+    public Object[][] DualTeamleader() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",9);
+    }
+
     @Test(priority = 11,description = "JMS-238 : availability of HOLD/YTS tasks - Version 1",dataProvider = "ytshold")
     public void VerifyYtsHoldReassignarticle(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2) throws InterruptedException
     {
@@ -218,6 +225,161 @@ public class LatexNormalizationTest extends BaseTest {
         softAssert.assertTrue((Boolean) editorpage.get(2),"Navigate to honmepage is failed after from editorpage");
         softAssert.assertAll();
     }
+
+    @Test(priority =17,description ="JMS-247 : User restricted to take other task - Version 1",dataProvider = "ytshold")
+    public void VerifyArticleStartRestriction(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+        String css="cursor";
+        List <Boolean> articlerestriction=latexNormalizationPage.verifyOtherArticleCanTakeInPause(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1,css);
+        System.out.println(articlerestriction);
+        Assert.assertTrue(articlerestriction.get(0),"Pause is not visible");
+        Assert.assertTrue(articlerestriction.get(1),"can able to start when article is pause");
+        Assert.assertTrue(articlerestriction.get(2),"can able to start when article is pause");
+
+    }
+
+
+
+    @Test(priority =18,description ="JMS-254 : user hold and take same Task - Version 1",dataProvider = "ytshold")
+    public void VerifyHoldArticleStartAfterTlAssign(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+        String css="cursor";
+      Boolean articleacess=latexNormalizationPage.verifytUserTakeHoldTaskAfterTlAssign(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+       Assert.assertTrue(articleacess,"Cant able to start the article");
+    }
+
+
+    @Test(priority =19,description ="JMS-255 : User holds and other user been assigned the task - Version 1",dataProvider = "ytshold")
+    public void VerifyOtherUserHoldArticleStartAfterTlAssign(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+        String css="cursor";
+        List<Boolean> articleacess=latexNormalizationPage.verifytOtherUserTakeHoldTaskAfterTlAssign(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1,css);
+        System.out.println(articleacess);
+
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertTrue(articleacess.get(0),"Cant able to start the article");
+        softAssert.assertFalse(articleacess.get(1),"Cant able to start the article");
+
+    }
+
+
+
+    @Test(priority =20,description ="JMS-256 : user hold and take some other TASK - Version 1",dataProvider = "ytshold")
+    public void UserTakeOtherWhileHOld(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+        String css="cursor";
+        List<Boolean> articleacess=latexNormalizationPage.verifyUserTakeOtherAticleWhenHold(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1,css);
+        System.out.println(articleacess);
+
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertFalse(articleacess.get(0),"Cant able to start the article");
+        softAssert.assertFalse(articleacess.get(1),"Cant able to start the article");
+
+    }
+
+
+    @Test(priority =21,description ="JMS-259 : Confirmation Popup for Saving the Day's work - Version 1",dataProvider = "ytshold")
+    public void VerifyPopUpMsg(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+
+        Boolean articleacess=latexNormalizationPage.verifyAlertMsgForPause(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+        System.out.println(articleacess);
+
+         Assert.assertTrue(articleacess,"Pause popup is not displayed");
+    }
+
+    @Test(priority =23,description =" JMS-291 : Skipping of any mandatory process - should be prevented - Version 1",dataProvider = "ytshold")
+    public void VerifeComplete(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+
+        Boolean iscompleted=latexNormalizationPage.CompleteArticleDirectVerify(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+        Assert.assertFalse(iscompleted,"Article allowing to complete the article directly");
+
+
+    }
+
+    @Test(priority =23,description =" JMS-291 : Skipping of any mandatory process - should be prevented - Version 1",dataProvider = "ytshold")
+    public void VerifeCompleteAfterRestart(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+
+        Boolean iscompleted=latexNormalizationPage.RestartAndCompleteArticleDirectVerify(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+        Assert.assertFalse(iscompleted,"Article allowing to complete the article directly");
+
+
+    }
+
+
+    @Test(priority =23,description =" JMS-291 : Skipping of any mandatory process - should be prevented - Version 1",dataProvider = "ytshold")
+    public void VerifeSkipcompile(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+
+        Boolean iscompleted=latexNormalizationPage.VerifyCompleteWithoutCompile(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+        Assert.assertFalse(iscompleted,"Article allowing to complete the article directly");
+
+    }
+
+
+
+    @Test(priority =23,description =" JMS-292 : Generation of new Tex file after Normalise - Version 1",dataProvider = "ytshold")
+    public void VerifyLatexNormalizationDone(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+
+        Boolean isnormalizedone=latexNormalizationPage.VerifyNormalizeMsg(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+        Assert.assertTrue(isnormalizedone,"Normalize done message is not displayed");
+
+    }
+
+
+    @Test(priority =24,description =" JMS-232 : Entry of completed article - Version 1 ",dataProvider = "ytshold")
+    public void VerifyLatexCompletedArticle(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+
+        Boolean iscompleted=latexNormalizationPage.VerifyCompletedArticleInLatex(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1);
+        Assert.assertFalse(iscompleted,"Article allowing to complete the article directly");
+
+    }
+
+    @Test(priority =25,description =" JMS-230 : Non started Article Entry - Version 1 ",dataProvider = "ytshold")
+    public void VerifyNonStart(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+        String cssvalue="cursor";
+        List<Boolean> starticon=latexNormalizationPage.NonStartedArticle(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1,cssvalue);
+        System.out.println(starticon);
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertFalse(starticon.get(0),"Start icon is   disabled");
+        softAssert.assertFalse(starticon.get(1),"Start icon is   disabled");
+        softAssert.assertAll();
+
+    }
+
+
+    @Test(priority =26,description =" JMS-231 : Entry of other user's Task - Version 1 ",dataProvider = "ytshold")
+    public void VerifyOtherUserTask(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1) throws InterruptedException {
+
+        String cssvalue="cursor";
+        Boolean starticon=latexNormalizationPage.VerifyOtherUserEntry(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1,cssvalue);
+        Assert.assertFalse(starticon,"Article is editable in other user login,After one user started already");
+
+
+    }
+
+    @Test(priority = 27,description = "JMS-241 : Verify details on Multiple TLs dashboard - Version 1",dataProvider = "dualtl")
+    public void verifyMultipleDashboard(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String lupass1,String ltluname1,String ltlupass1) throws InterruptedException {
+       List<Boolean> verifyarticle=latexNormalizationPage.VerifMultipleTLEntry(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,lupass1,ltluname1,ltlupass1);
+       SoftAssert softAssert=new SoftAssert();
+       softAssert.assertTrue(verifyarticle.get(0),"Article is not visible");
+       softAssert.assertTrue(verifyarticle.get(1),"Article is not visible");
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
