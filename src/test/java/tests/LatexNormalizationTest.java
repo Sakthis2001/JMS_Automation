@@ -372,6 +372,55 @@ public class LatexNormalizationTest extends BaseTest {
     }
 
 
+    @Test(priority = 28,description = "JMS-244 : Raise query from Dashboard - Version 1",dataProvider = "ytshold")
+    public void VerifyQueryAddedFromDashboard(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2) throws InterruptedException {
+      Boolean verifyarticle=latexNormalizationPage.RaiseQueryFromDashboard(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,luname2);
+        Assert.assertTrue(verifyarticle,"Added Query is not showing");
+
+
+    }
+
+
+    @Test(priority = 29,description = "JMS-245 : Raise query from Editor view - Version 1",dataProvider = "ytshold")
+    public void VerifyQueryAddedFromEditor(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2) throws InterruptedException
+    {
+        Boolean verifyarticle=latexNormalizationPage.RaiseQueryFromEditorView(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,luname2);
+        Assert.assertTrue(verifyarticle,"Added Query is not showing");
+
+    }
+
+
+
+    @Test(priority = 30,description = "JMS-223 : Add article and verify the Cards - Version 1",dataProvider = "ytshold")
+    public void VerifyAddArticleCount(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2) throws InterruptedException
+    {
+        Boolean verifyarticle=latexNormalizationPage.VerifyArticleCount(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,luname2);
+        Assert.assertTrue(verifyarticle,"Count is not increased after added a article");
+
+    }
+
+    @Test(priority = 31,description = " JMS-224 : Complete article and Check count - Version 1",dataProvider = "ytshold")
+    public void VerifyArticleCountAfterCompleted(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2) throws InterruptedException
+    {
+        Boolean verifyarticlecount=latexNormalizationPage.CompletedArticleCount(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,luname2);
+        Assert.assertTrue(verifyarticlecount,"Count is not reduced after Completed ");
+
+    }
+
+    @Test(priority = 32,description = " JMS-224 : Complete article and Check count - Version 1",dataProvider = "ytshold")
+    public void VerifyUnassignPub(String pmunmae,String pmupass,String journalacro, String articleid, String artname, String doinum, String workflow,String luname,String lupass,String ltlunmae,String ltupass,String luname1,String luname2) throws InterruptedException {
+        latexNormalizationPage.IsArticleUpdatedAfterAssigned(pmunmae,pmupass,journalacro,articleid,artname,doinum,workflow,luname,lupass,ltlunmae,ltupass,luname1,luname2);
+
+
+
+      }
+
+
+
+
+
+
+
 
 
 

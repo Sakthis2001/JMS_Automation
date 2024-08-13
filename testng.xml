@@ -25,9 +25,9 @@
  <test name="LatexNormalizationTest">
 
         <classes>
-            <class name="tests.PreRequestTest">
+            <class name="tests.LatexNormalizationTest">
                 <methods>
-                    <include name="addUserFunctionality"></include>
+                    <include name="VerifyUnassignPub"></include>
                 </methods>
             </class>
 
