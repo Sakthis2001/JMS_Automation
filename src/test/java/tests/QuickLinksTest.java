@@ -22,7 +22,7 @@ public class QuickLinksTest extends BaseTest {
 
 
 
-    @Test(priority = 0, description = "Verify the quicklinks displays all three icons (Add Publisher, Journal, Article) and user can navigate to respective pages correctly - verify this on PM login")
+    @Test(priority = 0, description = "JMS-66,Verify the quicklinks displays all three icons (Add Publisher, Journal, Article) and user can navigate to respective pages correctly - verify this on PM login")
     public void NavigatetoBaseIcon() throws InterruptedException {
         cateogry();
         ExtentReportListener.getTest().log(Status.INFO,"Login with valid credential for manager");
@@ -63,7 +63,7 @@ public class QuickLinksTest extends BaseTest {
 
     }
 
-    @Test(priority = 2, description = "Verify apart from PM, login users, quicklinks is not available for other users")
+    @Test(priority = 2, description = "JMS-67,Verify apart from PM, login users, quicklinks is not available for other users")
     public void  EnsureManagerNotHaveQuickLinks()
     {
         cateogry();
@@ -82,7 +82,7 @@ public class QuickLinksTest extends BaseTest {
     }
 
 
-    @Test(priority = 3, description = "verify Quicklinks is available from that page and working fine from every page")
+    @Test(priority = 3, description = "JMS-68 verify Quicklinks is available from that page and working fine from every page")
     public void VerifyQuickLinkIsWorkingINFlow()
     {
         cateogry();

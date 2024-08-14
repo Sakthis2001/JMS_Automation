@@ -57,7 +57,7 @@ public class AddPublisherTest extends BaseTest {
 
         }
 
-        @Test(priority = 1, dataProvider = "getdata",description = "verifying the add publisher functionality by adding with the copy of general data")
+        @Test(priority = 1, dataProvider = "getdata",description = "JMS-118:verifying the add publisher functionality by adding with the copy of general data")
         public void AddPublisherWithCopyTatData(String acro,String pub) {
             ExtentReportListener.getTest().assignCategory("Add Publisher");
             ExtentReportListener.getTest().log(Status.INFO,"Enter all the input which are mandatory");
@@ -142,7 +142,7 @@ public class AddPublisherTest extends BaseTest {
 
 
 
-    @Test(priority =3,dataProvider = "addpub",description = "validate the all the FastTrack and General TAT values are equal  which is imported from general")
+    @Test(priority =3,dataProvider = "addpub",description = "JMS-127:validate the all the FastTrack and General TAT values are equal  which is imported from general")
     public void VerifyAcronymCopyTatValue(String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m,String n,String o,String p,String q,String r,String s,String t,String u,String v,String w,String x,String y,String z,String aa)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -205,7 +205,7 @@ public Object[][] getdecdata() throws IOException {
     }
 
 
-    @Test(priority =4,dataProvider = "geterrordata",description = "validate the error alert is showing while adding with neither duplicate acro or duplicate publisher")
+    @Test(priority =4,dataProvider = "geterrordata",description = "JMS-119 :validate the error alert is showing while adding with neither duplicate acro or duplicate publisher")
     public void VerifyAlertIsShowingWhenAddDuplicateInPubAndAcro(String a,String b)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -229,7 +229,7 @@ public Object[][] getdecdata() throws IOException {
 
     }
 
-    @Test(priority =5,dataProvider = "getfilename",description = "validate  image is added after created a Publisher")
+    @Test(priority =5,dataProvider = "getfilename",description = "JMS:222-validate  image is added after created a Publisher")
     public void verifyAddedPublisherLogo(String a,String b,String c)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -274,7 +274,7 @@ public Object[][] getdecdata() throws IOException {
     }
 
 
-    @Test(priority =7,description = "Change the logo and verify the change in Pub. view")
+    @Test(priority =7,description = "JMS-122:Change the logo and verify the change in Pub. view")
     public void verifyupdatedlogo()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -293,7 +293,7 @@ public Object[][] getdecdata() throws IOException {
 
 
 
-    @Test(priority = 8,dependsOnMethods = "AddPublisherWithCopyTatData",description = "Verify the created publishers are available while creating the Journals")
+    @Test(priority = 8,dependsOnMethods = "AddPublisherWithCopyTatData",description = "JMS-123:Verify the created publishers are available while creating the Journals")
     public void VerifyPubAvailInAddJournal()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -327,7 +327,7 @@ public Object[][] getdecdata() throws IOException {
 
     }
 
-    @Test(priority =10,description = "Files added now should be in Latest files, unless moved to archive")
+    @Test(priority =10,description = "JMS-131:Files added now should be in Latest files, unless moved to archive")
     public void VerifyFileInRecentUntilMoveTOArchieve()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -345,7 +345,7 @@ public Object[][] getdecdata() throws IOException {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",6);
     }
 
-    @Test(priority = 11,dataProvider = "getstyfilename",description = "Verify other than ‘.sty’ files can’t be uploaded in template")
+    @Test(priority = 11,dataProvider = "getstyfilename",description = "JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template")
     public void VerifyStypeUploadRestriction(String a)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -368,7 +368,7 @@ public Object[][] getdecdata() throws IOException {
 
 
 
-    @Test(priority = 12,dataProvider = "getguidelinefilename",description = "Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed")
+    @Test(priority = 12,dataProvider = "getguidelinefilename",description = "JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed")
     public  void verifyguidelinesuploadverification(String a)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -381,7 +381,7 @@ public Object[][] getdecdata() throws IOException {
     }
 
 
-    @Test(priority = 13,description = "Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document")
+    @Test(priority = 13,description = "JMS:134-Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document")
     public  void verifyisdocumentUploadCanUploadMore()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -399,7 +399,7 @@ public Object[][] getdecdata() throws IOException {
 
     }
 
-    @Test(priority = 14,description = "Ensure STY files can be viewed and modified in publisher view")
+    @Test(priority = 14,description = "JMS-135:Ensure STY files can be viewed and modified in publisher view")
     public void verifyISStyDocIsUpdated()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -438,7 +438,7 @@ public Object[][] getdecdata() throws IOException {
   }
 
   @Test(priority = 16,dataProvider = "getfilesname",description =
-  "Ensure Files can be moved back and forth from Latest to Archive. Also ensure while creating journal, current list must be fetched")
+  "JMS:138-Ensure Files can be moved back and forth from Latest to Archive. Also ensure while creating journal, current list must be fetched")
   public void ISArchiveListIsShowingCorrectFiles(String a,String b,String c,String d)
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -465,7 +465,7 @@ public Object[][] getdecdata() throws IOException {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",9);
     }
 
-  @Test(priority = 17,dataProvider ="fname",description = "Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher")
+  @Test(priority = 17,dataProvider ="fname",description = "JMS-139:Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher")
   public void AddPubWithAtleastOneRecentFiles(String a,String b)
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -481,7 +481,7 @@ public Object[][] getdecdata() throws IOException {
 
   }
 
-  @Test(priority =18,description = "Ensure SFTP related parameters are not mandatory for publisher")
+  @Test(priority =18,description = "JMS:124-Ensure SFTP related parameters are not mandatory for publisher")
   public void AddPubWithoutFTPDetails()
   {
 
@@ -502,7 +502,7 @@ public Object[][] getdecdata() throws IOException {
       return ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",10);
   }
 
-  @Test(priority = 19,dataProvider ="getftpartialltestdata" ,description = "Ensure among 4 SFTP parameters, ensure user should either fill all 4 details or leave out all 4 details. Partially filling should not be allowed to create publisher")
+  @Test(priority = 19,dataProvider ="getftpartialltestdata" ,description = "JMS:125-Ensure among 4 SFTP parameters, ensure user should either fill all 4 details or leave out all 4 details. Partially filling should not be allowed to create publisher")
   public void AddPubWithPartiallData(String c,String d,String e,String f)
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -547,7 +547,7 @@ public Object[][] getdecdata() throws IOException {
 
   }
 
-  @Test(priority = 20,description = "After Copied, verify the TAT modification be possible")
+  @Test(priority = 20,description = "JMS:128-After Copied, verify the TAT modification be possible")
   public void EditCopyTatValue()
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -584,7 +584,7 @@ public Object[][] getdecdata() throws IOException {
 
   }
 
-  @Test( priority =21,description = "Editing on SFTP should be possible. Needs to edit the parameters and verify the updated parameters again in edit-publisher and from SFTP page")
+  @Test( priority =21,description = "JMS-126:Editing on SFTP should be possible. Needs to edit the parameters and verify the updated parameters again in edit-publisher and from SFTP page")
   public  void VerifyFtpUpdatedValue()
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");

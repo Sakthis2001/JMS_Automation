@@ -26,6 +26,8 @@ public class AddArticlePage {
     private String addpubicon = "id=add_publisher";
     private String viewtype = "id=select_view";
     private String articleview = "//*[text()='Articles View']";
+    private String searchbar = "//*[@placeholder='Search...']";
+    private String viewnotes="//img[@title='show_notes']";
 
 
     private String pub_acronym = "//input[@data-testid='publisher-acronym']";
@@ -179,6 +181,7 @@ public class AddArticlePage {
     private String addnotetoastclose = "//*[text()='JMS - Add Notes']//following::span[1]";
     private String checklist = "//*[text()='Check Lists']";
     private String figurechecklist = "id=figures";
+    private String Tables="id=tables";
     private String checlistalert = "//*[text()='Alert']//following::newbutton[text()='Yes']";
     private String checklisttoast = "//*[text()='JMS - Check Lists']//following::span[1]";
     private String mailpreview = "//*[text()='Preview']";
@@ -1056,7 +1059,8 @@ public class AddArticlePage {
         page.locator(tomail).click();
         page.locator(checkall).click();
         page.locator(Acknowlegeemtnsavemailbutton).click();
-        page.locator(Acknowledgementyesalert).click();
+        page.waitForSelector(Acknowledgementyesalert).click();
+       // page.locator(Acknowledgementyesalert).click();
         page.locator(Acknowlegementtoastclose).click();
         page.locator(notificationmail).click();
         page.locator(ccmail).click();
@@ -1180,6 +1184,102 @@ public class AddArticlePage {
 
     }
 
+
+    public Boolean VerifyToogleChecklist(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+
+        page.keyboard().press("Enter");
+
+        DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        page.locator(checklist).click();
+
+
+        page.locator(Tables).click();
+        Thread.sleep(3000);
+        page.locator(figurechecklist).click();
+        page.locator(figurechecklist).click();
+        return page.locator(figurechecklist).isChecked();
+
+    }
+
+    public Boolean VerifyNotesAvailable(String journalacro, String articleid, String artname, String doinum, String workflow,String pmuname,String pmupass,String luname,String lupass,String notes) throws InterruptedException {
+
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+
+        page.keyboard().press("Enter");
+
+        DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        System.out.println(arttimeid);
+        checklist();
+        uploadfiles();
+        page.locator(addnotes).click();
+        page.locator(Plzwwritehere).fill(notes);
+        page.locator(AddNoteutton).click();
+        page.locator(addnotetoastclose).click();
+        page.locator(addarticlebutton).click();
+        page.locator(logout).click();
+        page.locator(username).fill(luname);
+        page.locator(password).fill(lupass);
+        page.keyboard().press("Enter");
+        page.locator(searchbar).fill(arttimeid);
+        page.locator(viewnotes).click();
+       return page.locator("//p[text()='"+notes+"']").isVisible();
+    }
+
+
+
+    public boolean VerifyAddArticleAvailableForRemovalFile(String journalacro, String articleid, String artname, String doinum, String workflow, String pmuname, String pmupass, String luname, String lupass, String notes) throws InterruptedException {
+
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+        System.out.println(articlename);
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+
+        page.keyboard().press("Enter");
+
+        DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        System.out.println(arttimeid);
+        checklist();
+        AddNotes();
+        fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
+        fileChooser.setFiles(new Path[]{
+                    Paths.get("GGD-805.zip"),
+                    Paths.get("Resume.pdf"),
+                    Paths.get("Resume1.pdf"),
+
+
+        });
+
+        page.locator("//*[@title='Resume.pdf']//following::img[1]").click();
+        page.locator("//*[@title='Resume1.pdf']//following::img[1]").click();
+
+        page.locator(addarticlebutton).click();
+        return page.waitForSelector(addarticlealert).isVisible();
+
+    }
+
+
+
+
+
+
+
     public Boolean AddArticleByMandatoryFields(String journalacro, String articleid, String artname, String doinum, String workflow) {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
@@ -1231,10 +1331,10 @@ public class AddArticlePage {
 
 
     public Boolean verifyUnauthorizedUserAddArticle(String uname, String upass) {
-        page.locator(logout).click();
-        page.locator(username).fill(uname);
+        //page.locator(logout).click();
+      /*  page.locator(username).fill(uname);
         page.locator(password).fill(upass);
-        page.keyboard().press("Enter");
+        page.keyboard().press("Enter");*/
         try {
             page.locator("xpath=//img[@src='/jms/src/assets/GeneralIcons/shortcuts.svg']")
                     .waitFor(new Locator.WaitForOptions().setTimeout(2000).setState(WaitForSelectorState.VISIBLE));
@@ -1311,10 +1411,10 @@ public class AddArticlePage {
 
 
     public List<String> Verifychecklistfunctionality(String uname, String upass, String cssProperty) {
-        page.locator(logout).click();
-        page.locator(username).fill(uname);
+       // page.locator(logout).click();
+       /* page.locator(username).fill(uname);
         page.locator(password).fill(upass);
-        page.keyboard().press("Enter");
+        page.keyboard().press("Enter");*/
         addarticlepage();
         page.locator(form).click();
 
@@ -1358,10 +1458,10 @@ public class AddArticlePage {
         long doival = doi + doinumber;
         String doivalue = String.valueOf(doival);
 
-        page.locator(logout).click();
-        page.locator(username).fill("7000");
+      //  page.locator(logout).click();
+      /*  page.locator(username).fill("7000");
         page.locator(password).fill("7000");
-        page.keyboard().press("Enter");
+        page.keyboard().press("Enter");*/
         addarticlepage();
         page.locator(form).click();
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
@@ -1389,7 +1489,7 @@ public class AddArticlePage {
         long doinumber = Long.parseLong(arttimeid);
         long doival = doi + doinumber;
         String doivalue = String.valueOf(doival);
-        page.locator(logout).click();
+       page.locator(logout).click();
         page.locator(username).fill("7000");
         page.locator(password).fill("7000");
         page.keyboard().press("Enter");
@@ -1426,7 +1526,7 @@ public class AddArticlePage {
         long doival = doi + doinumber;
         String doivalue = String.valueOf(doival);
 
-        page.locator(logout).click();
+       page.locator(logout).click();
         page.locator(username).fill("7000");
         page.locator(password).fill("7000");
         page.keyboard().press("Enter");
@@ -1473,8 +1573,9 @@ public class AddArticlePage {
         String doivalue = String.valueOf(doival);
 
         page.locator(logout).click();
-        page.locator(username).fill("7000");
+       page.locator(username).fill("7000");
         page.locator(password).fill("7000");
+
         page.keyboard().press("Enter");
         addarticlepage();
         page.locator(form).click();

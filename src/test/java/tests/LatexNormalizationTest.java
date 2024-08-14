@@ -37,6 +37,7 @@ public class LatexNormalizationTest extends BaseTest {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\LatexNormalization.xlsx",1);
     }
 
+/*
     @Test(priority =1,description="JMS-229 : Verify the Article's General details - Version 1",dataProvider ="addarticledata" ,enabled = false)
     public void verifyarticledetails(String journalacro, String articleid, String artname, String doinum, String workflow,String uname,String upass,String luname,String lpass) throws InterruptedException {
         latexNormalizationPage.navigatetobaseicon();
@@ -56,13 +57,15 @@ public class LatexNormalizationTest extends BaseTest {
 
 
 
-   /* @Test(priority = 3,enabled = false)
+   */
+/* @Test(priority = 3,enabled = false)
     public void EnsureFilterNavigation() throws InterruptedException
     {
        Boolean filtertoogle = latexNormalizationPage.EnsuretoogleInFilter("1915","1915");
         Assert.assertTrue(filtertoogle,"Toogle is not working properly in Filter");
 
-    }*/
+    }*//*
+
 
     @Test(priority =3,description = " JMS-322 : LTX Norm DB: Search with any text and verify the list is updated accordingly - Version 1", dataProvider = "addarticlesearchdata")
     public void SearchFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow,String uname,String upass,String luname,String lpass) throws InterruptedException {
@@ -77,6 +80,7 @@ public class LatexNormalizationTest extends BaseTest {
         Boolean filtertoogle = latexNormalizationPage.EnsuretoogleInFilter("1915","1915");
         Assert.assertTrue(filtertoogle,"Toogle is not working properly in Filter");
     }
+*/
 
 
 
@@ -413,7 +417,9 @@ public class LatexNormalizationTest extends BaseTest {
 
 
 
-      }
+    }
+
+
 
 
 

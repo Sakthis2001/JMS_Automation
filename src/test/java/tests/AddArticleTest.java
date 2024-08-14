@@ -36,7 +36,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "Ensure navigation of Form navigates to form filling page of article")
+    @Test(priority = 0, description = "Ensure navigation of Form navigates to form filling page of article")
     public void navigatetoaddarticle() {
         addarticlepage.addarticlepage();
     }
@@ -58,7 +58,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority = 2, description = "Ensure three options to add article - Form, Upload, SFTP all are available ")
+    @Test(priority = 2, description = "JMS:13-Ensure three options to add article - Form, Upload, SFTP all are available ")
     public void ensureThreeOptIsVisible() throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().log(Status.INFO, "Click on the Add Article");
@@ -76,7 +76,7 @@ public class AddArticleTest extends BaseTest {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx", 2);
     }
 
-    @Test(priority = 3, dataProvider = "duplicatedata")
+    @Test(priority = 3, dataProvider = "duplicatedata",description = "JMS-15 : verify article duplication is prevented across PM and Login ")
     public void AddArticle(String journalacro, String articleid, String artname, String doinum, String workflow) {
         System.out.println(journalacro);
         System.out.println(articleid);
@@ -96,12 +96,15 @@ public class AddArticleTest extends BaseTest {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx", 3);
     }
 
-    @Test(priority = 4, dataProvider = "articleaddacess")
+
+    @Test(priority = 4, dataProvider = "articleaddacess",description = "JMS-14 : Article can be added by both PM and LOGIN user. Other users should not be able to add article")
     public void VerifyAddArticleAcess(String journalacro, String articleid, String artname, String doinum, String workflow, String username, String password, String jacrm, String pubname) {
         ExtentReportListener.getTest().assignCategory(cateogry);
         Boolean addarticleSuccess = addarticlepage.addarticleacess(journalacro, articleid, artname, doinum, workflow, username, password, jacrm, pubname);
         Assert.assertTrue(addarticleSuccess, "Article add functionality failed");
     }
+
+
 
     @DataProvider(name = "addarticleUnauthorizedacess")
     public Object[][] adddArticledataFromotherThanPMUser() throws IOException {
@@ -109,14 +112,15 @@ public class AddArticleTest extends BaseTest {
     }
 
     @Test(priority = 5, dataProvider = "addarticleUnauthorizedacess", description = "Other than PM and Login should create the Add article ")
-    public void verifyOtherUserShoulNotCreateArticle(String uname, String upass) {
+    public void verifyOtherUserShoulNotCreateArticle(String uname, String upass)
+    {
         ExtentReportListener.getTest().assignCategory(cateogry);
         Boolean visible = addarticlepage.verifyUnauthorizedUserAddArticle(uname, upass);
         Assert.assertFalse(visible, "Add articl icon is showing");
 
     }
 
-    @Test(priority = 6)
+    @Test(priority = 6,description = "JMS-39 : On/OFF any option is applicable for all entries ")
     public void veriychecklistradiobuttonfunctionality() {
         ExtentReportListener.getTest().assignCategory(cateogry);
         String uname = prop.getProperty("username");
@@ -151,7 +155,7 @@ public class AddArticleTest extends BaseTest {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx", 7);
     }
 
-    @Test(priority = 7, dataProvider = "articletolatex", description = "Article with no images should not move to Graphics Department")
+    @Test(priority = 7, dataProvider = "articletolatex", description = "JMS:40-Article with no images should not move to Graphics Department")
     public void verifyarticlemovingToLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount) {
         ExtentReportListener.getTest().assignCategory(cateogry);
         boolean IsarticleShowingInGraphics = addarticlepage.verifyArticleMovedToLatex(journalacro, articleid, artname, doinum, workflow, uname, upass, displayfigcount, Inlinefigcount);
@@ -160,7 +164,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority = 8, dataProvider = "articletographics", description = "Article with  images should  move to Graphics Department")
+    @Test(priority = 8, dataProvider = "articletographics", description = "JMS-41:Article with  images should  move to Graphics Department")
     public void verifyarticlemoveToGraphics(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount) {
         ExtentReportListener.getTest().assignCategory(cateogry);
         boolean IsarticleShowingInGraphics = addarticlepage.verifyArticleShouldMoveToGraphics(journalacro, articleid, artname, doinum, workflow, uname, upass, displayfigcount, Inlinefigcount);
@@ -187,7 +191,7 @@ public class AddArticleTest extends BaseTest {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx", 8);
     }
 
-    @Test(priority = 10, dataProvider = "addarticlewithoutfile", description = "JMS-42 : Article with Graphics - verify the initial flow")
+    @Test(priority = 10, dataProvider = "addarticlewithoutfile", description = " JMS-112 : One ZIP package is mandatory, without this Article addition should not be done")
     public void verifyFileIsMandatory(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().log(Status.INFO, "Adding Article without the file ");
@@ -268,7 +272,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority = 15, dataProvider = "addarticlewithoutfile", description = "JMS-116 : Downloading the files should be possible from download icon - verify")
+    @Test(priority = 15, dataProvider = "addarticlewithoutfile", description = " JMS-117 : File removal can be possible from Remove icon - Version 1")
     public void verifyRemovalFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().log(Status.INFO, "Add Article with Files");
@@ -617,6 +621,7 @@ public class AddArticleTest extends BaseTest {
                 addedDays++;
             }
         }
+
        String firstproofduedate=addarticlepage.VerifyDueDateAutoCalculate(journalacro, articleid, artname, doinum, workflow,pub,jour);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Adjust the pattern according to your date format
@@ -1060,9 +1065,9 @@ public class AddArticleTest extends BaseTest {
         Assert.assertFalse(IsArticleAdded,"Invalid format is accepting in mail id");
 
         ExtentReportListener.getTest().log(Status.INFO,"The Mail Id should be accepted");
-
-
     }
+
+
     @DataProvider(name = "Articlenameformat")
     public Object[][] ArticleFormat() throws IOException {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx",17);
@@ -1102,7 +1107,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority =53,dataProvider ="duplicatedata",description = "String journalacro, String articleid, String artname, String doinum, String workflow ")
+    @Test(priority =53,dataProvider ="duplicatedata",description = "JMS-92 : DOI number and ensure it is indicated accordingly and further article can be added  ")
     public void VerifyDoiAlert(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException
     {
         ExtentReportListener.getTest().assignCategory(cateogry);
@@ -1145,6 +1150,46 @@ public class AddArticleTest extends BaseTest {
 
     }
 
+    @Test(priority = 55,dataProvider = "addarticlewithoutfile",description = " JMS-196 : Toggle any checkboxes above for Tables,Figures - Version 1")
+    public void VerifyChecklistToogle(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+        ExtentReportListener.getTest().assignCategory(cateogry);
+
+        Boolean ischecked = addarticlepage.VerifyToogleChecklist(journalacro, articleid, artname, doinum, workflow);
+        System.out.println("ischecked"+ischecked);
+        Assert.assertFalse(ischecked,"figure is still checked");
+
+
+
+    }
+
+
+
+    @DataProvider(name = "notes")
+    public Object[][] availablenotes() throws IOException {
+        return ExcelReader.ReadExcelData("D:\\uploadtest\\AddArticle.xlsx", 19);
+    }
+
+    @Test(priority = 56,dataProvider = "notes",description = " JMS-196 : Toggle any checkboxes above for Tables,Figures - Version 1")
+    public void VerifyNotesAvailableAtLaterStage(String journalacro, String articleid, String artname, String doinum, String workflow,String pmuname,String pmupass,String luname,String lupass,String notes) throws InterruptedException {
+        ExtentReportListener.getTest().assignCategory(cateogry);
+
+        Boolean isnotesavailable = addarticlepage.VerifyNotesAvailable(journalacro, articleid, artname, doinum, workflow,pmuname,pmupass,luname,lupass,notes);
+        System.out.println("ischecked"+isnotesavailable);
+       Assert.assertTrue(isnotesavailable,"Notes not available");
+
+
+    }
+
+
+
+
+    @Test(priority = 57,dataProvider = "notes",description = "JMS-185 : When any Additional files are removed, still Article addition can be possible")
+    public void VerifyFileRemovalAddArticle(String journalacro, String articleid, String artname, String doinum, String workflow,String pmuname,String pmupass,String luname,String lupass,String notes) throws InterruptedException {
+        ExtentReportListener.getTest().assignCategory(cateogry);
+        Boolean isadded=addarticlepage.VerifyAddArticleAvailableForRemovalFile(journalacro, articleid, artname, doinum, workflow,pmuname,pmupass,luname,lupass,notes);
+        Assert.assertTrue(isadded,"Without the AdditionalFiles article not added");
+
+    }
 
 
 

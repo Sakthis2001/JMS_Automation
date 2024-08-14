@@ -1,81 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" thread-count="2" parallel="tests">
+<suite name="All Test Suite" thread-count="4" parallel="tests">
    <test name="HomePageTest">
         <classes>
             <class name="tests.HomePageTest"></class>
         </classes>
    </test>
 
-   <!-- <test name="AddArticleTest">
-
-        <classes>
-            <class name="tests.LatexNormalizationTest">
-                <methods>
-                    <include name="AddJournal"></include>
-                </methods>
-
-            </class>
-
-
-        </classes>-->
-
-
-
- <test name="LatexNormalizationTest">
-
-        <classes>
-            <class name="tests.LatexNormalizationTest">
-                <methods>
-                    <include name="VerifyUnassignPub"></include>
-                </methods>
-            </class>
-
-        </classes>
-
-    </test>
-
-        </suite>
-
-
-  <!--<test name="QuickLinksTest" >
+  <!--  <test name="QuickLinkTest">
         <classes>
             <class name="tests.QuickLinksTest"></class>
         </classes>
-    </test>
-
-
--->
-
-  <!--  <test name="AddPublisherTest">
-
-        <classes>
-            <class name="tests.AddPublisherTest">
-
-            </class>
-
-        </classes>
-
     </test>-->
 
 
+  <!-- <test name="AddPublisherTest">
+        <classes>
+            <class name="tests.AddPublisherTest"></class>
+        </classes>
+    </test>-->
 
-<!--
+
     <test name="AddArticleTest">
-
         <classes>
             <class name="tests.AddArticleTest">
                 <methods>
-                    <include name="AddJournal"></include>
+                    <include name="VerifyFileRemovalAddArticle"></include>
                 </methods>
-
             </class>
-
-
         </classes>
+    </test>
 
 
 
 
-    </test>-->
+
+
+</suite>
+
+
 
