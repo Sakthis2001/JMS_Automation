@@ -22,6 +22,8 @@ import static utils.ExcelReader.ReadExcelData;
 @Listeners(ExtentReportListener.class)
 public class AddPublisherTest extends BaseTest {
 
+    private  String authorname="Sakthi";
+
     @BeforeMethod
     public void beforeallTest()
     {
@@ -41,6 +43,8 @@ public class AddPublisherTest extends BaseTest {
     public void NavigateToAddPubIcon()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
+
         ExtentReportListener.getTest().log(Status.INFO,"Clicking the Base icon");
         ExtentReportListener.getTest().log(Status.INFO,"Clicking the add publisher icon");
 
@@ -53,13 +57,14 @@ public class AddPublisherTest extends BaseTest {
 
         @DataProvider(name = "getdata")
         public Object[][] getpublisherdata() throws IOException {
-            return ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",4);
+            return ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",4);
 
         }
 
         @Test(priority = 1, dataProvider = "getdata",description = "JMS-118:verifying the add publisher functionality by adding with the copy of general data")
         public void AddPublisherWithCopyTatData(String acro,String pub) {
             ExtentReportListener.getTest().assignCategory("Add Publisher");
+            ExtentReportListener.getTest().assignAuthor(authorname);
             ExtentReportListener.getTest().log(Status.INFO,"Enter all the input which are mandatory");
             ExtentReportListener.getTest().log(Status.INFO,"verifying publiher is added");
 
@@ -113,7 +118,7 @@ public class AddPublisherTest extends BaseTest {
 
     @DataProvider(name = "getalldata")
     public Object[][] getallpublisherdata() throws IOException {
-        return ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",1);
+        return ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",1);
 
     }
 
@@ -122,6 +127,7 @@ public class AddPublisherTest extends BaseTest {
     @Test(priority = 2, dataProvider = "getalldata",description = "validate the AddPublisher Functionality by add all the TAT Data without copy")
     public void AddPublisherWithAllInputData(String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m,String n,String o,String p,String q,String r,String s,String t,String u,String v,String w,String x,String y,String z,String aa,String bb,String cc,String dd,String ee,String ff,String gg,String hh,String ii,String jj,String kk,String ll,String mm,String nn,String oo,String pp,String qq,String rr,String ss) {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"Enter all the input which are mandatory");
         ExtentReportListener.getTest().log(Status.INFO,"verifying publiher is added");
 
@@ -135,7 +141,7 @@ public class AddPublisherTest extends BaseTest {
 
     @DataProvider(name = "addpub")
     public Object[][] addpub() throws IOException {
-        return  ExcelReader.ReadExcelData ("D:\\uploadtest\\addpublisher.xlsx",0);
+        return  ExcelReader.ReadExcelData (".//src//test//resources//files//addpublisher.xlsx",0);
     }
 
 
@@ -146,6 +152,7 @@ public class AddPublisherTest extends BaseTest {
     public void VerifyAcronymCopyTatValue(String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m,String n,String o,String p,String q,String r,String s,String t,String u,String v,String w,String x,String y,String z,String aa)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"Enter all the input which are mandatory");
         ExtentReportListener.getTest().log(Status.INFO,"click the copy tat icon");
         ExtentReportListener.getTest().log(Status.INFO,"verifing the Latexduedate for fasttrack which is imported from general");
@@ -189,7 +196,7 @@ public class AddPublisherTest extends BaseTest {
 
  @DataProvider(name = "getdecdata")
 public Object[][] getdecdata() throws IOException {
-    return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",0);
+    return ExcelReader.ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",0);
 }
 
 
@@ -200,7 +207,7 @@ public Object[][] getdecdata() throws IOException {
 
     @DataProvider(name = "geterrordata")
     public Object[][] getallpublisher() throws IOException {
-        return ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",2);
+        return ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",2);
 
     }
 
@@ -209,6 +216,7 @@ public Object[][] getdecdata() throws IOException {
     public void VerifyAlertIsShowingWhenAddDuplicateInPubAndAcro(String a,String b)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"verify duplicate alert is showing When add a duplicate pub");
 
         String error=addpublisherpage.VerifyPublisherNotDuplicate(a,b);
@@ -225,7 +233,7 @@ public Object[][] getdecdata() throws IOException {
 
     @DataProvider(name = "getfilename")
     public Object[][] getallpublisherlog() throws IOException {
-        return ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",3);
+        return ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",3);
 
     }
 
@@ -233,6 +241,7 @@ public Object[][] getdecdata() throws IOException {
     public void verifyAddedPublisherLogo(String a,String b,String c)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"Adding publisher");
         ExtentReportListener.getTest().log(Status.INFO,"Verifing the uploaded logo is correctly visible in EditPub Page");
 
@@ -253,6 +262,7 @@ public Object[][] getdecdata() throws IOException {
     public void verifyupdatedpublisher()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"Publisher added successfully");
         ExtentReportListener.getTest().log(Status.INFO,"verifing the updated field in Edit publisher");
         LocalDate today = LocalDate.now();
@@ -270,7 +280,7 @@ public Object[][] getdecdata() throws IOException {
 
     @DataProvider
     public Object[][] verifylogo() throws IOException {
-        return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",5);
+        return ExcelReader.ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",5);
     }
 
 
@@ -278,6 +288,7 @@ public Object[][] getdecdata() throws IOException {
     public void verifyupdatedlogo()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"Adding Publisher");
         ExtentReportListener.getTest().log(Status.INFO,"Updating the Logo");
 
@@ -297,6 +308,7 @@ public Object[][] getdecdata() throws IOException {
     public void VerifyPubAvailInAddJournal()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"Adding Publisher");
         ExtentReportListener.getTest().log(Status.INFO,"Verifing the Added Publisher is displayed While adding a journal");
 
@@ -319,6 +331,8 @@ public Object[][] getdecdata() throws IOException {
     @Test(priority =9,dataProvider = "addpub",description = "Need to ensure the inputs days in TAT in decimal should be allowed (0.8,0.9,1.2)")
     public void verifyTatacceptsDecimal(String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m,String n,String o,String p,String q,String r,String s,String t,String u,String v,String w,String x,String y,String z,String aa)
     {
+        ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         String f_vl=addpublisherpage.verifyaddpub(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,aa);
         ExtentReportListener.getTest().log(Status.INFO,"Verifing Tat Accepts decimal");
 
@@ -331,6 +345,7 @@ public Object[][] getdecdata() throws IOException {
     public void VerifyFileInRecentUntilMoveTOArchieve()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         String text=  addpublisherpage.checkrecentfiles();
         ExtentReportListener.getTest().log(Status.INFO,"verifing the uploaded files is showing in Recent files");
         Assert.assertEquals(text,"Latest Files","showing unexpected name:"+text);
@@ -342,13 +357,14 @@ public Object[][] getdecdata() throws IOException {
 
     @DataProvider(name = "getstyfilename")
     public Object[][] getstylefilename() throws IOException {
-        return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",6);
+        return ExcelReader.ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",6);
     }
 
     @Test(priority = 11,dataProvider = "getstyfilename",description = "JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template")
     public void VerifyStypeUploadRestriction(String a)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"verifing add pub with other than .sty file in sty template field");
 
 
@@ -363,7 +379,7 @@ public Object[][] getdecdata() throws IOException {
 
     @DataProvider(name = "getguidelinefilename")
     public Object[][] getguidelinefilename() throws IOException {
-        return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",7);
+        return ExcelReader.ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",7);
     }
 
 
@@ -372,6 +388,7 @@ public Object[][] getdecdata() throws IOException {
     public  void verifyguidelinesuploadverification(String a)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"verifing the Guideline file extension alert in add pub ");
 
         String actualMessage= addpublisherpage.verifyfuidelinesdocuploadverification( a);
@@ -385,6 +402,7 @@ public Object[][] getdecdata() throws IOException {
     public  void verifyisdocumentUploadCanUploadMore()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"Adding publisher with more no of doc");
 
         int text=addpublisherpage.VerifyNoOfFileInTeamplateAndGuidelines();
@@ -403,6 +421,7 @@ public Object[][] getdecdata() throws IOException {
     public void verifyISStyDocIsUpdated()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"Add the publisher");
         ExtentReportListener.getTest().log(Status.INFO,"Updating the  styfile");
         ExtentReportListener.getTest().log(Status.INFO,"verifing sty file is updated");
@@ -420,6 +439,7 @@ public Object[][] getdecdata() throws IOException {
   public void IsStyMandatoryAlertIsShowing()
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
+      ExtentReportListener.getTest().assignAuthor(authorname);
       ExtentReportListener.getTest().log(Status.INFO,"Adding publisher without the .sty files");
       ExtentReportListener.getTest().log(Status.INFO,"verifing styfile upload alert is showing");
 
@@ -434,7 +454,7 @@ public Object[][] getdecdata() throws IOException {
 
   @DataProvider(name = "getfilesname")
   public  Object[][] getfiles() throws IOException {
-      return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",8);
+      return ExcelReader.ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",8);
   }
 
   @Test(priority = 16,dataProvider = "getfilesname",description =
@@ -442,6 +462,7 @@ public Object[][] getdecdata() throws IOException {
   public void ISArchiveListIsShowingCorrectFiles(String a,String b,String c,String d)
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
+      ExtentReportListener.getTest().assignAuthor(authorname);
       ExtentReportListener.getTest().log(Status.INFO,"Adding Publisher with archived files");
       ExtentReportListener.getTest().log(Status.INFO,"Verifing archived files are only showing in Edit Pub");
 
@@ -462,13 +483,14 @@ public Object[][] getdecdata() throws IOException {
 
     @DataProvider(name = "fname")
     public  Object[][] getfname() throws IOException {
-        return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",9);
+        return ExcelReader.ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",9);
     }
 
   @Test(priority = 17,dataProvider ="fname",description = "JMS-139:Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher")
   public void AddPubWithAtleastOneRecentFiles(String a,String b)
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
+      ExtentReportListener.getTest().assignAuthor(authorname);
       ExtentReportListener.getTest().log(Status.INFO,"Adding pub without the recent files");
       ExtentReportListener.getTest().log(Status.INFO,"verifing recentfile erro message is displayed");
 
@@ -486,6 +508,7 @@ public Object[][] getdecdata() throws IOException {
   {
 
       ExtentReportListener.getTest().assignCategory("Add Publisher");
+      ExtentReportListener.getTest().assignAuthor(authorname);
       ExtentReportListener.getTest().log(Status.INFO,"Adding pub without the ftp related data");
       ExtentReportListener.getTest().log(Status.INFO,"Verifing publisher is added");
 
@@ -499,13 +522,14 @@ public Object[][] getdecdata() throws IOException {
 
   @DataProvider(name="getftpartialltestdata")
   public Object[][] getftptestdata() throws IOException {
-      return ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",10);
+      return ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",10);
   }
 
   @Test(priority = 19,dataProvider ="getftpartialltestdata" ,description = "JMS:125-Ensure among 4 SFTP parameters, ensure user should either fill all 4 details or leave out all 4 details. Partially filling should not be allowed to create publisher")
   public void AddPubWithPartiallData(String c,String d,String e,String f)
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
+      ExtentReportListener.getTest().assignAuthor(authorname);
 
       List<Object[]> excelData = ExcelUtils.getExcelData("D:\\uploadtest\\addpublisher.xlsx",11);
 
@@ -551,6 +575,7 @@ public Object[][] getdecdata() throws IOException {
   public void EditCopyTatValue()
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
+      ExtentReportListener.getTest().assignAuthor(authorname);
      List<String>edittatval =addpublisherpage.editcopytat("AM","Amplifier");
 
 
@@ -588,6 +613,7 @@ public Object[][] getdecdata() throws IOException {
   public  void VerifyFtpUpdatedValue()
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
+      ExtentReportListener.getTest().assignAuthor("Sakthi");
       List<String> updatedftpval=addpublisherpage.editFtpvalue("bp","BrilliantPost");
       ExtentReportListener.getTest().log(Status.INFO,"Publisher added");
       ExtentReportListener.getTest().log(Status.INFO,"navigated to the ManageMeenu");

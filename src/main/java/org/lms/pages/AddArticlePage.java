@@ -279,7 +279,7 @@ public class AddArticlePage {
     private String Mailpreviewtab="//p[text()='Mail Preview']";
     private String Mailpreviewcheckbox="id=preview";
     private String subjectmail="//label[text()='Subject']//following::input[1]";
-    private String updatearticletoast="//*[text()='JMS - Article Update']//following::div[2]";
+    private String updatearticletoast="//*[text()='JMS - Article Update']";
     private String authornamealert="//*[contains(text(),'only allowed')]";
 
 
@@ -1330,18 +1330,14 @@ public class AddArticlePage {
     }
 
 
-    public Boolean verifyUnauthorizedUserAddArticle(String uname, String upass) {
-        //page.locator(logout).click();
-      /*  page.locator(username).fill(uname);
+    public Boolean verifyUnauthorizedUserAddArticle(String uname, String upass) throws InterruptedException {
+
+        page.locator(logout).click();
+        page.locator(username).fill(uname);
         page.locator(password).fill(upass);
-        page.keyboard().press("Enter");*/
-        try {
-            page.locator("xpath=//img[@src='/jms/src/assets/GeneralIcons/shortcuts.svg']")
-                    .waitFor(new Locator.WaitForOptions().setTimeout(2000).setState(WaitForSelectorState.VISIBLE));
-            return true;
-        } catch (PlaywrightException e) {
-            return false;
-        }
+        page.keyboard().press("Enter");
+        Thread.sleep(6000);
+        return page.locator("//img[@src='/jms/src/assets/GeneralIcons/shortcuts.svg']").isVisible();
 
 
     }
@@ -1411,8 +1407,8 @@ public class AddArticlePage {
 
 
     public List<String> Verifychecklistfunctionality(String uname, String upass, String cssProperty) {
-       // page.locator(logout).click();
-       /* page.locator(username).fill(uname);
+      /*  page.locator(logout).click();
+       page.locator(username).fill(uname);
         page.locator(password).fill(upass);
         page.keyboard().press("Enter");*/
         addarticlepage();
@@ -1511,9 +1507,10 @@ public class AddArticlePage {
         page.locator(username).fill(uname);
         page.locator(password).fill(upass);
         page.keyboard().press("Enter");
-        assertThat(page.locator("(//*[text()='" + arttimeid + "'])[1]")).isAttached();
+        page.locator(searchbar).fill(arttimeid);
+        assertThat(page.locator("//*[text()='"+arttimeid+"']")).isAttached();
+        return page.locator("//*[text()='"+arttimeid+"']").isVisible();
 
-        return true;
 
     }
 
@@ -1553,7 +1550,8 @@ public class AddArticlePage {
         page.locator(username).fill(luname);
         page.locator(password).fill(lupass);
         page.keyboard().press("Enter");
-        assertThat(page.locator("(//*[text()='" + arttimeid + "'])[1]")).isAttached();
+        page.locator(searchbar).fill(arttimeid);
+        assertThat(page.locator("//*[text()='" + arttimeid + "']")).isAttached();
         boolean articleinlatex = page.locator("(//*[text()='" + arttimeid + "'])[1]").isVisible();
         List<Boolean> articlevisiblile = new ArrayList<>();
         articlevisiblile.add(articleingraphics);
@@ -1704,10 +1702,11 @@ public class AddArticlePage {
         page.locator(form).click();
         DoAddArticle(journalacro, arttimeid, artname, doivalue, workflow);
 
-        //uploadfiles();
+
         /*fileChooser = page.waitForFileChooser(() -> page.locator(fileupload).click());
         fileChooser.setFiles(Paths.get("Ai.jpg"));*/
         page.locator(filefieldexpand).click();
+        uploadfiles();
 
         assertThat(page.locator("//p[@title='GGD-805.zip']//following::img[1]")).isAttached();
         assertThat(page.locator("//p[@title='GGD-805.zip']//following::img[2]")).isAttached();
@@ -1944,12 +1943,13 @@ public class AddArticlePage {
         System.out.println(doivalue);
 
         DoAddArticle(journalacro, arttimeid, artname, doivalue, workflow);
+        uploadfiles();
         checklist();
         AddNotes();
         page.locator(addarticlebutton).click();
         page.locator(addarticlealert).click();
-        assertThat(page.locator("//em[text()='" + doivalue + "']")).isAttached();
-        page.locator("(//em[text()='" + doivalue + "'])[1]//preceding::td[2]").click();
+
+        page.waitForSelector("(//em[text()='" + doivalue + "'])[1]//preceding::td[2]").click();
         page.locator(checklist).click();
 
         page.locator(tables).click();
@@ -2395,8 +2395,7 @@ public class AddArticlePage {
 
     }
 
-    public Boolean VerifyMailAfterChangeHighLevels(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
-    {
+    public Boolean VerifyMailAfterChangeHighLevels(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
 
         System.out.println(arttimeid);
@@ -2407,12 +2406,35 @@ public class AddArticlePage {
         System.out.println(doivalue);
 
         DoAddArticleForMail(journalacro, arttimeid, artname, doivalue, workflow);
-        ArticleMail();
+
+        page.locator(mailpreview).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+
+        page.locator("//p[text()='Hello All,']//following::p[1]").fill("hello sakthi");
+
+        page.locator(Acknowlegeemtnsavemailbutton).click();
+        page.waitForSelector(Acknowledgementyesalert).click();
+        // page.locator(Acknowledgementyesalert).click();
+        page.locator(Acknowlegementtoastclose).click();
+        page.locator(notificationmail).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(savenotificationmail).click();
+        page.locator(notificationalert).click();
+        page.locator(notificationsuccesstoastmail).click();
+
         page.locator(Selectpubdropdown).click();
         page.locator("//p[normalize-space(text())='MT(M)']").click();
         page.locator(mailpreview).click();
+        Thread.sleep(3000);
+       return page.locator("//p[text()='hello sakthi']").isVisible();
 
-        return page.locator(subjectmail).isEditable();
+
 
     }
 

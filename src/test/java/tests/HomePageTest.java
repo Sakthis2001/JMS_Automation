@@ -11,12 +11,14 @@ import java.io.IOException;
 @Listeners(ExtentReportListener.class)
 public class HomePageTest extends BaseTest {
 
+    private String authorname="Sakthi";
 
    @Test(priority = 0)
     public void verifyhometitle()
     {
 
         ExtentReportListener.getTest().assignCategory("HomePageTests");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().info("Login successfully");
         ExtentReportListener.getTest().info("verifing the title");
         ExtentReportListener.getTest().info("Title expected as LMS");
@@ -35,6 +37,7 @@ public class HomePageTest extends BaseTest {
     {
 
         ExtentReportListener.getTest().assignCategory("HomePageTests");
+        ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().info("Login successfully");
         ExtentReportListener.getTest().info("verifing the url");
         ExtentReportListener.getTest().info("url expected as https://pdmrindia.co.in/tester/LMS/auth/signin");
@@ -49,7 +52,8 @@ public class HomePageTest extends BaseTest {
     public void verifyIconIsDisplayed()
     {
         ExtentReportListener.getTest().assignCategory("HomePageTests");
-        ExtentReportListener.getTest().assignCategory("HomePageTests");
+        ExtentReportListener.getTest().assignAuthor(authorname);
+
         ExtentReportListener.getTest().info("verify icon is display or not");
 
         boolean visible=homepage.isbaseicondisplayed();

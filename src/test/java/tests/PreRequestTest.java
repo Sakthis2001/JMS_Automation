@@ -64,7 +64,7 @@ public class PreRequestTest extends BaseTest {
     @DataProvider(name = "getgraphicsuserdata")
     public Object[][] getgraphicspublisherdata() throws IOException
     {
-        return ReadExcelData("D:\\uploadtest\\Prerequest.xlsx",0);
+        return ReadExcelData(".//src//test//resources//files//Prerequest.xlsx",0);
 
     }
 

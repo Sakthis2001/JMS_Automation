@@ -7,26 +7,25 @@
         </classes>
    </test>
 
-  <!--  <test name="QuickLinkTest">
+
+   <test name="QuickLinkTest">
         <classes>
             <class name="tests.QuickLinksTest"></class>
         </classes>
-    </test>-->
+    </test>
 
 
-  <!-- <test name="AddPublisherTest">
+ <test name="AddPublisherTest">
         <classes>
             <class name="tests.AddPublisherTest"></class>
         </classes>
-    </test>-->
+    </test>
+
 
 
     <test name="AddArticleTest">
         <classes>
             <class name="tests.AddArticleTest">
-                <methods>
-                    <include name="VerifyFileRemovalAddArticle"></include>
-                </methods>
             </class>
         </classes>
     </test>
