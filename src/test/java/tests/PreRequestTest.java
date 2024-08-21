@@ -1,9 +1,13 @@
 package tests;
 
 import base.BaseTest;
+import com.aventstack.extentreports.Status;
+import org.lms.listeners.ExtentReportListener;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.ExcelReader;
 import utils.ExcelUtils;
 
 import java.io.IOException;
@@ -68,13 +72,31 @@ public class PreRequestTest extends BaseTest {
 
     }
 
-    @Test(priority = 1,dataProvider ="getgraphicsuserdata")
+    @DataProvider(name = "duplicatedata")
+    public Object[][] addduplicateArticle() throws IOException {
+        return ExcelReader.ReadExcelData(".//src//test//resources//files//AddArticle.xlsx", 2);
+    }
+
+    @Test(priority =3,dataProvider ="duplicatedata", description = "Upon providing valid inputs, Article can be added - need to be listed")
+    public void addarticle(String journalacro,String articleid,String artname,String doinum,String workflow) throws InterruptedException {
+
+
+
+        prerequestpage= homepage.navigatetocommonpage();
+        Boolean isadded= prerequestpage.AddArticleByMandatoryFields(journalacro,articleid,artname,doinum,workflow);
+        Assert.assertTrue(isadded,"Article is not added with only the mandatory data");
+        ExtentReportListener.getTest().log(Status.INFO, " article is added in article view ");
+
+    }
+
+    @Test(priority = 4,dataProvider ="getgraphicsuserdata")
     public void addUserFunctionality(String name,String employeeid,String designation,String email,String access,String gender,String departmentname,String role)
     {
 
         prerequestpage= homepage.navigatetocommonpage();
         prerequestpage.adduser(name,employeeid,designation,email,access,gender,departmentname,role);
     }
+
 
 
 

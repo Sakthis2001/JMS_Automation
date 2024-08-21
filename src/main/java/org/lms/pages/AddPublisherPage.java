@@ -130,7 +130,7 @@ public class AddPublisherPage {
     }
 
 
-    public String addpublisher(String acro, String pub, String c, String d, String e, String f, String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r, String s, String t, String u, String v, String w, String x, String y, String z, String aa) {
+    public List<String> addpublisher(String acro, String pub, String c, String d, String e, String f, String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r, String s, String t, String u, String v, String w, String x, String y, String z, String aa) throws InterruptedException {
 
         page.locator(pub_acronym).fill(acro);
         page.locator(pub_name_textbox).fill(pub);
@@ -190,7 +190,28 @@ public class AddPublisherPage {
         page.locator(managemenu).click();
 
         String val = page.locator("//th[text()='" + acro + "']").textContent();
-        return val;
+
+        page.locator("//th[text()='" +acro+ "']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='" +acro+ "']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+
+
+        List<String> pubdetails=new ArrayList<>();
+        String pubacro=page.locator(pub_acronym).inputValue();
+        String pubname=page.locator(pub_name_textbox).inputValue();
+     String pubmail=page.locator(pub_mail_textbox).inputValue();
+     String description=page.locator(desc_inputbox).inputValue();
+     String publocation=page.locator(pub_location).inputValue();
+     pubdetails.add(pubacro);
+     pubdetails.add(pubname);
+     pubdetails.add(pubmail);
+     pubdetails.add(description);
+     pubdetails.add(publocation);
+
+
+
+
+
+        return pubdetails;
 
 
     }

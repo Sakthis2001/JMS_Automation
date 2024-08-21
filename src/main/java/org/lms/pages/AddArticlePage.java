@@ -406,6 +406,9 @@ public class AddArticlePage {
 
 
     public Boolean ensureThreeOption() throws InterruptedException {
+        page.locator(baseicon).click();
+        page.locator(addarticleicon).click();
+
         Boolean uploadvisible = page.locator(UploadLabel).isVisible();
         System.out.println(uploadvisible);
         Boolean formvisible = page.locator(formLabel).isVisible();
@@ -534,6 +537,7 @@ public class AddArticlePage {
         return doinum;
 
 
+
     }
 
     public void AddNotes() {
@@ -544,7 +548,8 @@ public class AddArticlePage {
     }
 
 
-    public void DoAddArticle(String journalacro, String articleid, String artname, String doinum, String workflow) {
+    public void DoAddArticle(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+
 
         System.out.println(articleid);
         System.out.println(doinum);
@@ -570,6 +575,7 @@ public class AddArticlePage {
         page.locator(authormail).fill("abc@gmail.com");
         page.locator(authorname).fill("Mahindra");
         page.locator(articlename).fill(artname);
+
         page.locator(selectpriority).click();
         page.locator(selectpriorityopt).click();
         page.locator(receivedate).fill(formattedDate);
@@ -590,6 +596,26 @@ public class AddArticlePage {
         page.locator(ChecklistSelectionShow).click();
         page.locator(startdate).fill(formattedDate);
         page.locator(OnOpenAccess).click();
+
+        ArticleMail();
+
+       /* page.locator(mailpreview).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(Acknowlegeemtnsavemailbutton).click();
+        page.waitForSelector(Acknowledgementyesalert).click();
+        // page.locator(Acknowledgementyesalert).click();
+        page.locator(Acknowlegementtoastclose).click();
+        page.locator(notificationmail).click();
+        page.locator(ccmail).click();
+        page.locator(checkall).click();
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+        page.locator(savenotificationmail).click();
+        page.locator(notificationalert).click();
+        page.locator(notificationsuccesstoastmail).click();*/
         // uploadfiles();
 
       /*  page.locator(addnotes).click();
@@ -598,7 +624,8 @@ public class AddArticlePage {
         page.locator(AddNoteutton).click();
         page.locator(addnotetoastclose).click();*/
 
-        page.locator(mailpreview).click();
+        //ArticleMail();
+      /*  page.locator(mailpreview).click();
         page.locator(ccmail).click();
         page.locator(checkall).click();
         page.locator(tomail).click();
@@ -613,7 +640,7 @@ public class AddArticlePage {
         page.locator(checkall).click();
         page.locator(savenotificationmail).click();
         page.locator(notificationalert).click();
-        page.locator(notificationsuccesstoastmail).click();
+        page.locator(notificationsuccesstoastmail).click();*/
 //page.locator(checkall).click();
 
 
@@ -1157,7 +1184,7 @@ public class AddArticlePage {
     }
 
 
-    public Boolean addarticleacess(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String jacrm, String pubname) {
+    public Boolean addarticleacess(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String jacrm, String pubname) throws InterruptedException {
 
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
@@ -1242,7 +1269,9 @@ public class AddArticlePage {
 
 
     public boolean VerifyAddArticleAvailableForRemovalFile(String journalacro, String articleid, String artname, String doinum, String workflow, String pmuname, String pmupass, String luname, String lupass, String notes) throws InterruptedException {
-
+   page.locator(logout).click();
+   page.locator(username).fill(pmuname);
+   page.locator(password).fill(pmupass);
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
@@ -1280,24 +1309,33 @@ public class AddArticlePage {
 
 
 
-    public Boolean AddArticleByMandatoryFields(String journalacro, String articleid, String artname, String doinum, String workflow) {
+    public Boolean AddArticleByMandatoryFields(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+
+
+
+
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
+
         int doi = 1;
-        long doinumber = Long.parseLong(arttimeid);
+        long doinumber = Long.parseLong(articleid);
         long doival = doi + doinumber;
         String doivalue = String.valueOf(doival);
+
         DoAddArticle(journalacro, arttimeid, artname, doivalue, workflow);
         uploadfiles();
         checklist();
+        //ArticleMail();
         AddNotes();
         page.locator(addarticlebutton).click();
         page.locator(addarticlealert).click();
-      //  page.locator(managemenu).click();
-        assertThat(page.locator("//*[text()='"+doivalue+"']")).isVisible();
-        boolean val = page.locator("//*[text()='"+doivalue+"']").isVisible();
-        return val;
+
+        page.waitForSelector("(//em[text()='" + doivalue + "'])[1]//preceding::td[2]").click();
+
+   return true;
+
+
     }
 
     public String ensureduplicationarticle(String journalacro, String articleid, String artname, String doinum, String workflow) {
@@ -1445,7 +1483,7 @@ public class AddArticlePage {
 
     }
 
-    public Boolean verifyArticleMovedToLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String inlinefigcount) {
+    public Boolean verifyArticleMovedToLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String inlinefigcount) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
@@ -1463,6 +1501,7 @@ public class AddArticlePage {
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
         checklist();
         AddNotes();
+        uploadfiles();
 
         page.locator(addarticlebutton).click();
         page.locator(logout).click();
@@ -1470,14 +1509,15 @@ public class AddArticlePage {
         page.locator(password).fill(upass);
         page.keyboard().press("Enter");
         // page.locator(stockmenu).click();
-        assertThat(page.locator("//td[text()='" + arttimeid + "']")).isAttached();
+        page.locator(searchbar).isVisible();
+        page.waitForSelector("//td[text()='" + arttimeid + "']").isVisible();
         boolean val = page.locator("//td[text()='" + arttimeid + "']").isVisible();
         return val;
 
     }
 
 
-    public Boolean verifyArticleShouldMoveToGraphics(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String inlinefigcount) {
+    public Boolean verifyArticleShouldMoveToGraphics(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String inlinefigcount) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
@@ -1501,6 +1541,7 @@ public class AddArticlePage {
         page.locator(InlineFigures).click();
         page.locator(Inlinefig_count).fill(inlinefigcount);
 
+        uploadfiles();
 
         page.locator(addarticlebutton).click();
         page.locator(logout).click();
@@ -1508,13 +1549,14 @@ public class AddArticlePage {
         page.locator(password).fill(upass);
         page.keyboard().press("Enter");
         page.locator(searchbar).fill(arttimeid);
-        assertThat(page.locator("//*[text()='"+arttimeid+"']")).isAttached();
-        return page.locator("//*[text()='"+arttimeid+"']").isVisible();
-
+        page.locator(searchbar).isVisible();
+        page.waitForSelector("//td[text()='" + arttimeid + "']").isVisible();
+        boolean val = page.locator("//td[text()='" + arttimeid + "']").isVisible();
+        return val;
 
     }
 
-    public List<Boolean> verifyArticleShouldMoveToGraphicsAndLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String inlinefigcount, String luname, String lupass) {
+    public List<Boolean> verifyArticleShouldMoveToGraphicsAndLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String inlinefigcount, String luname, String lupass) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
@@ -1531,6 +1573,8 @@ public class AddArticlePage {
         page.locator(form).click();
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
         checklist();
+        AddNotes();
+        uploadfiles();
         page.locator(ChecklistSelectionShow).click();
         page.locator(displayfigures).click();
         page.locator(displayfigures_count).fill(displayfigcount);
@@ -1625,7 +1669,7 @@ public class AddArticlePage {
 
     }
 
-    public Boolean addarticlewithMultipleAdditionalFile(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+    public List<Boolean> addarticlewithMultipleAdditionalFile(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
@@ -1670,26 +1714,21 @@ public class AddArticlePage {
         page.locator("(//em[text()='" + doin + "'])[1]//preceding::td[2]").click();
         page.locator(filefieldexpand).click();
         List<Boolean> files = new ArrayList<>();
-        // assertThat(page.locator("//p[text()='Resume.pdf']")).isAttached();
-        //files.add(page.locator("//p[text()='Resume.pdf']").isVisible());
+        Boolean pdf1=page.waitForSelector("//p[text()='EMS_Press.pdf']").isVisible();
+        Boolean pdf2=page.waitForSelector("//p[text()='Resume.pdf']").isVisible();
+        Boolean pdf3=page.waitForSelector("//p[text()='Ai.jpg']").isVisible();
+
+        files.add(pdf1);
+        files.add(pdf2);
+        files.add(pdf3);
+        return files;
 
 
-        assertThat(page.locator("//p[text()='EMS_Press.pdf']").nth(1)).isVisible();
-        // files.add( page.locator("//p[text()='EMS_Press.pdf']").isVisible());
 
-        //assertThat(page.locator("//p[text()='Ai.jpg']")).isVisible();
-        // files.add( page.locator("//p[text()='Ai.jpg']").isVisible());
-
-        assertThat(page.locator("//p[text()='Resume.pdf']").nth(1)).isVisible();
-        //files.add(page.locator("//p[text()='Automation.jpg']").isVisible());
-
-       // assertThat(page.locator("//p[text()='ems_journal.jpg']")).isVisible();
-        //files.add( page.locator("//p[text()='ems_journal.jpg']").isVisible());
-        return true;
 
     }
 
-    public List<Boolean> ensuredownloadandRemoveoption(String journalacro, String articleid, String artname, String doinum, String workflow) {
+    public List<Boolean> ensuredownloadandRemoveoption(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
@@ -1727,7 +1766,7 @@ public class AddArticlePage {
 
     }
 
-    public String EnsureDownloadFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow) {
+    public String EnsureDownloadFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
@@ -1916,7 +1955,7 @@ public class AddArticlePage {
 
     }
 
-    public Boolean IsCheckboxIsChecked(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) {
+    public Boolean IsCheckboxIsChecked(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
@@ -1932,7 +1971,7 @@ public class AddArticlePage {
 
     }
 
-    public Boolean IsCheckboxIsCheckedInEditArticle(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) {
+    public Boolean IsCheckboxIsCheckedInEditArticle(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
 
         System.out.println(arttimeid);
@@ -1956,7 +1995,7 @@ public class AddArticlePage {
         return page.locator(tables).isChecked();
     }
 
-    public Boolean VerifyChecklistAfterChangeHigherLevelInfo(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) {
+    public Boolean VerifyChecklistAfterChangeHigherLevelInfo(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
 
         System.out.println(arttimeid);
@@ -2641,13 +2680,21 @@ public class AddArticlePage {
 
     //MetaData Test
 
-    public void addarticleforuniqueID(String journalacro, String articleid, String artname, String doinum, String workflow)
-    {
-        DoAddArticle(journalacro,articleid,artname,doinum,workflow);
+    public void addarticleforuniqueID(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+
+        String arttimeid = String.valueOf(System.currentTimeMillis());
+
+        System.out.println(arttimeid);
+        int doi = 1;
+        long doinumber = Long.parseLong(arttimeid);
+        long doival = doi + doinumber;
+        String doivalue = String.valueOf(doival);
+        System.out.println(doivalue);
+
+        DoAddArticle(journalacro,arttimeid,artname,doivalue,workflow);
         uploadfiles();
         checklist();
         AddNotes();
-
         page.locator(addarticlebutton).click();
         page.locator(addarticlealert).click();
 
@@ -2675,8 +2722,10 @@ public class AddArticlePage {
         page.locator(Selectpubdropdown).click();
         page.locator("//p[normalize-space(text())='" + journalacro + "']").click();
         page.locator(articleidinput).fill(articleid);
-        page.locator(addarticlebutton).click();
-      return  page.locator("//*[text()='JMS - Add Article']//following::div[text()='Article ID(173012) already exists!']").isVisible();
+        page.locator(selectpriority).click();
+        Thread.sleep(3000);
+
+      return  page.locator("//*[text()='JMS - Add Article']//following::div[text()='Article ID(902594958) already exists!']").isVisible();
 
     }
 

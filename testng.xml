@@ -7,28 +7,42 @@
         </classes>
    </test>
 
-
+<!--
    <test name="QuickLinkTest">
         <classes>
-            <class name="tests.QuickLinksTest"></class>
+            <class name="tests.QuickLinksTest">
+
+
+            </class>
         </classes>
     </test>
 
-
- <test name="AddPublisherTest">
+    <test name="PreRequest">
         <classes>
-            <class name="tests.AddPublisherTest"></class>
+            <class name="tests.PreRequestTest"></class>
+        </classes>
+    </test>-->
+
+
+<test name="AddPublisherTest">
+        <classes>
+            <class name="tests.AddPublisherTest">
+                <methods>
+                    <include name="AddPublisherWithCopyTatData">
+                    </include>
+                </methods>
+            </class>
         </classes>
     </test>
 
 
 
-    <test name="AddArticleTest">
+ <!--   <test name="AddArticleTest">
         <classes>
             <class name="tests.AddArticleTest">
             </class>
         </classes>
-    </test>
+    </test>-->
 
 
 

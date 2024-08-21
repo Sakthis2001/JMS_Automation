@@ -61,12 +61,25 @@ public class AddPublisherTest extends BaseTest {
 
         }
 
-        @Test(priority = 1, dataProvider = "getdata",description = "JMS-118:verifying the add publisher functionality by adding with the copy of general data")
-        public void AddPublisherWithCopyTatData(String acro,String pub) {
+        @Test(priority = 1, dataProvider = "getdata",description = " JMS-118 : Add publisher with valid mandatory details - Version 2")
+        public void AddPublisherWithCopyTatData(String acro,String pub) throws InterruptedException {
             ExtentReportListener.getTest().assignCategory("Add Publisher");
             ExtentReportListener.getTest().assignAuthor(authorname);
             ExtentReportListener.getTest().log(Status.INFO,"Enter all the input which are mandatory");
+            ExtentReportListener.getTest().log(Status.INFO,"Click on 'ADD publisher'");
             ExtentReportListener.getTest().log(Status.INFO,"verifying publiher is added");
+            ExtentReportListener.getTest().log(Status.INFO,"Verify each publisher's details from Edit-Publisher page\n" +
+                    "\n" +
+                    "Publisher Acronym \n" +
+                    "Publisher Name \n" +
+                    "Email \n" +
+                    "Description\n" +
+                    "On Board \n" +
+                    "Publisher Location\n" +
+                    "TAT\n" +
+                    "Logo\n" +
+                    "Guidelines \n" +
+                    "Style template ");
 
             List<Object[]> excelData = ExcelUtils.getExcelData("D:\\uploadtest\\addpublisher.xlsx",0);
 
@@ -104,14 +117,25 @@ public class AddPublisherTest extends BaseTest {
                     String z = row[25].toString();
                     String aa = row[26].toString();
 
-                    String Acroname = addpublisherpage.addpublisher(acro, pub, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, aa);
-                    System.out.println("Publisher added: " + Acroname);
-                    Assert.assertEquals(Acroname, acro, "Publisher not added successfully");
-                } else {
+                    List<String> pubmetadata = addpublisherpage.addpublisher(acro, pub, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, aa);
+                    System.out.println("Publisher added: " + pubmetadata);
+                    SoftAssert softAssert=new SoftAssert();
+                    System.out.println(pubmetadata);
+                    softAssert.assertEquals(pubmetadata.get(0),acro,"acro name seems wrong");
+                    softAssert.assertEquals(pubmetadata.get(1),pub,"pub name seems wrong");
+                    softAssert.assertEquals(pubmetadata.get(2),c,"pub mail seems wrong");
+                    softAssert.assertEquals(pubmetadata.get(3),d,"description name seems wrong");
+                    softAssert.assertEquals(pubmetadata.get(4),e," pub location  seems wrong");
+                    softAssert.assertAll();
+
+                }
+                else
+                {
                     System.out.println("Row does not have the expected number of columns: " + row.length);
                 }
             }
             ExtentReportListener.getTest().log(Status.INFO,"Publisher added successfully");
+            ExtentReportListener.getTest().log(Status.INFO,"Details are added successfully");
         }
 
 
@@ -212,17 +236,20 @@ public Object[][] getdecdata() throws IOException {
     }
 
 
-    @Test(priority =4,dataProvider = "geterrordata",description = "JMS-119 :validate the error alert is showing while adding with neither duplicate acro or duplicate publisher")
+    @Test(priority =4,dataProvider = "geterrordata",description = "MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2")
     public void VerifyAlertIsShowingWhenAddDuplicateInPubAndAcro(String a,String b)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
         ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"verify duplicate alert is showing When add a duplicate pub");
+        ExtentReportListener.getTest().log(Status.INFO,"Add a new publisher (Pub- B) with unique details (including a pub-acronym and pub-name)");
+        ExtentReportListener.getTest().log(Status.INFO,"\t\n" +
+                "Add another publisher (Pub - C) with the same acronym as the previously added publisher but a different pub-name");
 
         String error=addpublisherpage.VerifyPublisherNotDuplicate(a,b);
         System.out.println(error);
         Assert.assertEquals(error,"Publisher already exists","alert is not showing");
-        ExtentReportListener.getTest().log(Status.INFO,"publisher and Acro name should not duplicate");
+        ExtentReportListener.getTest().log(Status.INFO,"The system should display an error message indicating that the publisher name already exists and cannot be duplicated.");
 
 
     }
@@ -284,7 +311,7 @@ public Object[][] getdecdata() throws IOException {
     }
 
 
-    @Test(priority =7,description = "JMS-122:Change the logo and verify the change in Pub. view")
+    @Test(priority =7,description = "JMS-122:Change the logo and verify the change in Pub. view version-2")
     public void verifyupdatedlogo()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -304,13 +331,20 @@ public Object[][] getdecdata() throws IOException {
 
 
 
-    @Test(priority = 8,dependsOnMethods = "AddPublisherWithCopyTatData",description = "JMS-123:Verify the created publishers are available while creating the Journals")
+    @Test(priority = 8,dependsOnMethods = "AddPublisherWithCopyTatData",description = "JMS-123:Verify the created publishers are available while creating the Journals - version 2")
     public void VerifyPubAvailInAddJournal()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
         ExtentReportListener.getTest().assignAuthor(authorname);
-        ExtentReportListener.getTest().log(Status.INFO,"Adding Publisher");
-        ExtentReportListener.getTest().log(Status.INFO,"Verifing the Added Publisher is displayed While adding a journal");
+
+        ExtentReportListener.getTest().log(Status.INFO,"Pre Request -Add The Publisher");
+
+        ExtentReportListener.getTest().log(Status.INFO,"Navigate to the JMS dashboard and click on the 'Add Journal' icon.");
+        ExtentReportListener.getTest().log(Status.INFO,"Click on the publisher selection dropdown");
+        ExtentReportListener.getTest().log(Status.INFO,"Check for the publisher from Pre-Condition");
+        ExtentReportListener.getTest().log(Status.INFO,"Select the said publisher and proceed with creating journal");
+        ExtentReportListener.getTest().log(Status.INFO,"All publisher are available fr journal creation");
+
 
 
 
@@ -398,7 +432,7 @@ public Object[][] getdecdata() throws IOException {
     }
 
 
-    @Test(priority = 13,description = "JMS:134-Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document")
+    @Test(priority = 13,description = "JMS-134 : Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document ")
     public  void verifyisdocumentUploadCanUploadMore()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -503,7 +537,7 @@ public Object[][] getdecdata() throws IOException {
 
   }
 
-  @Test(priority =18,description = "JMS:124-Ensure SFTP related parameters are not mandatory for publisher")
+  @Test(priority =18,description = "JMS-124 : Ensure SFTP related parameters are not mandatory for publisher - Version 3")
   public void AddPubWithoutFTPDetails()
   {
 
@@ -609,18 +643,19 @@ public Object[][] getdecdata() throws IOException {
 
   }
 
-  @Test( priority =21,description = "JMS-126:Editing on SFTP should be possible. Needs to edit the parameters and verify the updated parameters again in edit-publisher and from SFTP page")
+  @Test( priority =21,description = "JMS-126 : Editing on SFTP should be possible. - Version 3 ")
   public  void VerifyFtpUpdatedValue()
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
       ExtentReportListener.getTest().assignAuthor("Sakthi");
       List<String> updatedftpval=addpublisherpage.editFtpvalue("bp","BrilliantPost");
-      ExtentReportListener.getTest().log(Status.INFO,"Publisher added");
-      ExtentReportListener.getTest().log(Status.INFO,"navigated to the ManageMeenu");
-      ExtentReportListener.getTest().log(Status.INFO,"Navigated to the EditPages");
-      ExtentReportListener.getTest().log(Status.INFO,"Change the ftphost name");
-      ExtentReportListener.getTest().log(Status.INFO,"Change the ftp username");
-      ExtentReportListener.getTest().log(Status.INFO,"Verifing Whether values are updated ");
+      ExtentReportListener.getTest().log(Status.INFO,"PreCondition-Create a publisher with some SFTP parameters and verify from Edit publisher page\n" +
+              "\n");
+      ExtentReportListener.getTest().log(Status.INFO,"After preconditions is verified, Modify the SFTP parameters and update\n" +
+              "\n" +
+              "(Note: Provide a Valid SFTP parameters)");
+      ExtentReportListener.getTest().log(Status.INFO,"Check again from Edit-Pub Page, whether the updation is done correctly");
+      ExtentReportListener.getTest().log(Status.INFO,"Proceed with Add article via SFTP from this publisher and check the Auto-filled parameters are updated ones, Not older ones");
 
 
       SoftAssert softAssert=new SoftAssert();
@@ -628,7 +663,7 @@ public Object[][] getdecdata() throws IOException {
       softAssert.assertEquals(updatedftpval.get(0),"140.23.45","ftphost value not updated");
       softAssert.assertEquals(updatedftpval.get(1),"ftp username","ftp username value not updated");
       softAssert.assertAll();
-      ExtentReportListener.getTest().log(Status.INFO,"All the Values are  updated");
+      ExtentReportListener.getTest().log(Status.INFO,"Updated parameters has been fetched into Auto-fill");
 
   }
 

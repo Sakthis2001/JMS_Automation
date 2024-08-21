@@ -57,8 +57,8 @@ public class AddArticleTest extends BaseTest {
        Assert.assertTrue(isadded,"Article is not added with only the mandatory data");
        ExtentReportListener.getTest().log(Status.INFO, " article is added in article view ");
 
-
     }
+
 
     @Test(priority = 2, description = "JMS:13-Ensure three options to add article - Form, Upload, SFTP all are available ")
     public void ensureThreeOptIsVisible() throws InterruptedException {
@@ -81,7 +81,7 @@ public class AddArticleTest extends BaseTest {
     }
 
     @Test(priority = 3, dataProvider = "duplicatedata",description = "JMS-15 : verify article duplication is prevented across PM and Login ")
-    public void AddArticle(String journalacro, String articleid, String artname, String doinum, String workflow) {
+    public void AddArticleDuplication(String journalacro, String articleid, String artname, String doinum, String workflow) {
         System.out.println(journalacro);
         System.out.println(articleid);
         System.out.println(artname);
@@ -103,8 +103,7 @@ public class AddArticleTest extends BaseTest {
 
 
     @Test(priority = 4, dataProvider = "articleaddacess",description = "JMS-14 : Article can be added by both PM and LOGIN user. Other users should not be able to add article")
-    public void VerifyAddArticleAcess(String journalacro, String articleid, String artname, String doinum, String workflow, String username, String password, String jacrm, String pubname)
-    {
+    public void VerifyAddArticleAcess(String journalacro, String articleid, String artname, String doinum, String workflow, String username, String password, String jacrm, String pubname) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
 
@@ -172,7 +171,7 @@ public class AddArticleTest extends BaseTest {
     }
 
     @Test(priority = 7, dataProvider = "articletolatex", description = "JMS:40-Article with no images should not move to Graphics Department")
-    public void verifyarticlemovingToLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount) {
+    public void verifyarticlemovingToLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
 
@@ -183,7 +182,7 @@ public class AddArticleTest extends BaseTest {
 
 
     @Test(priority = 8, dataProvider = "articletographics", description = "JMS-41:Article with  images should  move to Graphics Department")
-    public void verifyarticlemoveToGraphics(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount) {
+    public void verifyarticlemoveToGraphics(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
 
@@ -193,7 +192,7 @@ public class AddArticleTest extends BaseTest {
     }
 
     @Test(priority = 9, dataProvider = "articletographicsandlatex", description = "JMS-42 : Article with Graphics - verify the initial flow")
-    public void verifyarticlemoveToGraphicsAndLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount, String luname, String lupass) {
+    public void verifyarticlemoveToGraphicsAndLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount, String luname, String lupass) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
 
@@ -262,8 +261,11 @@ public class AddArticleTest extends BaseTest {
 
         ExtentReportListener.getTest().log(Status.INFO, "AddAticle with Addtional files ");
         ExtentReportListener.getTest().log(Status.INFO, "verify additonal file is added");
-        Boolean filesvisible = addarticlepage.addarticlewithMultipleAdditionalFile(journalacro, articleid, artname, doinum, workflow);
-        Assert.assertTrue(filesvisible, "files is not showing");
+        List<Boolean> filesvisible = addarticlepage.addarticlewithMultipleAdditionalFile(journalacro, articleid, artname, doinum, workflow);
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertTrue(filesvisible.get(0), "files is not showing");
+        softAssert.assertTrue(filesvisible.get(1), "files is not showing");
+        softAssert.assertTrue(filesvisible.get(2), "files is not showing");
         ExtentReportListener.getTest().log(Status.INFO, "Additonal file is added");
 
     }
@@ -1043,8 +1045,7 @@ public class AddArticleTest extends BaseTest {
     }
 
     @Test(priority =44,dataProvider ="uniquearticleid",description = " JMS-84 : Verify article ID is unique for every article")
-    public void addArticleUniqueID(String journalacro, String articleid, String artname, String doinum, String workflow)
-    {
+    public void addArticleUniqueID(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
 
