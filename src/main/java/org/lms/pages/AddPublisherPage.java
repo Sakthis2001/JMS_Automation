@@ -2,7 +2,6 @@ package org.lms.pages;
 
 import com.microsoft.playwright.FileChooser;
 import com.microsoft.playwright.Page;
-import utils.ExcelUtils;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -117,6 +116,8 @@ public class AddPublisherPage {
     private String reovefileyes = "//*[text()='Remove File']//following::newbutton[text()='Yes']";
     private String ftphost = "//input[@data-testid='ftp-host']";
     private String StyShow="(//*[text()='Latest Files']//following::img[@title='Show'])[1]";
+    private String guideShow="//*[text()='GuideLines Document']//following::img[@title='Show'][1]";
+    private String Styleshow="//*[text()='Style Template']//following::img[@title='Show'][1]";
 
 
     public AddPublisherPage(Page page) {
@@ -782,9 +783,60 @@ public class AddPublisherPage {
 
     }
 
+    public String AddPubs()
+    {
+        Long val=System.currentTimeMillis();
+        String acron="a"+val;
+        String pubn="b"+val;
 
-    public int VerifyNoOfFileInTeamplateAndGuidelines() {
-        //addpub();
+        page.locator(pub_acronym).fill(acron);
+        page.locator(pub_name_textbox).fill(pubn);
+        page.locator(pub_mail_textbox).fill("sak@gmail.com");
+        page.locator(desc_inputbox).fill("1");
+        LocalDate today = LocalDate.now();
+        LocalDate tomarrow = today.plusDays(1);
+
+        String formattedDate = today.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        String tomorrow = (today.plusDays(1)).format(DateTimeFormatter.ISO_DATE);
+
+
+        page.locator(selectdateinput).fill(tomorrow);
+
+        page.locator(pub_location).fill("1");
+        page.locator(ftpusername).fill("1");
+        page.locator(ftppassword).fill("1");
+
+
+        page.locator(ftp_initial_directory).fill("1");
+        page.locator(daysforlatexnormalization).fill("1");
+        page.locator(daysforgraphics).fill("1");
+        page.locator(daysforPreediting).fill("1");
+        page.locator(daysforcopyediting).fill("1");
+        page.locator(daysforlatexnormalization).fill("1");
+        page.locator(daysfortypesettings).fill("1");
+        page.locator(daysforqc).fill("1");
+        page.locator(daysforaupag).fill("1");
+        page.locator(daysforauqc).fill("1");
+        page.locator(daysforpepag).fill("1");
+        page.locator(daysforpeqc).fill("1");
+        page.locator(daysforonlinepag).fill("1");
+        page.locator(daysforonlineqc).fill("1");
+        page.locator(daysforonlinexml).fill("1");
+        page.locator(IssuePag).fill("1");
+        page.locator(IssueQC).fill("1");
+        page.locator(printpag).fill("1");
+        page.locator(printQC).fill("1");
+        //assertThat(page.locator(printxml)).isAttached();
+        page.locator(printxml).fill("1");
+
+        page.locator(CopyTat).click();
+        page.locator(CopyTatConfirm).click();
+        return acron;
+    }
+
+    public int VerifyNoOfFileInTeamplateAndGuidelines() throws InterruptedException {
+
+       String acro= AddPubs();
         fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
 
         fileChooser.setFiles(new Path[]{
@@ -793,6 +845,27 @@ public class AddPublisherPage {
                 Paths.get("test3.docx")
         });
 
+        fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
+        fileChooser.setFiles(new Path[]{
+                Paths.get("ABC.sty"),
+                Paths.get("A.sty"),
+                Paths.get("B.sty"),
+                Paths.get("styledoc.sty"),
+                Paths.get("def.sty")
+
+        });
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
+        fileChooser.setFiles(Paths.get("Automation.jpg"));
+
+        page.locator(addbutton).click();
+        page.locator(addalertclose).click();
+        page.locator(managemenu).click();
+        page.locator("//th[text()='"+acro+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+acro+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        Thread.sleep(10000);
+        page.locator(Styleshow).click();
+        page.locator(guideShow).click();
         int text = page.locator(CountofGuideLinesFile).count();
         return text;
 
@@ -923,7 +996,7 @@ public class AddPublisherPage {
     public String bool1;
     public String bool2;
 
-    public void EnsureArchiveAndListFiles(String a, String b, String c, String d) {
+    public void EnsureArchiveAndListFiles(String a, String b, String c, String d) throws InterruptedException {
         addpub();
         fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
         fileChooser.setFiles(Paths.get("ABC.sty"));
@@ -935,9 +1008,9 @@ public class AddPublisherPage {
         fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
         fileChooser.setFiles(new Path[]{
                 Paths.get(a),
-                Paths.get(b),
-                Paths.get(c),
-                Paths.get(d)
+                Paths.get(b)
+              /*  Paths.get(c),
+                Paths.get(d)*/
 
 
         });
@@ -947,8 +1020,16 @@ public class AddPublisherPage {
 
         page.locator("//h2[text()='Latest Files']//following::p[@title='" + a + "']//following::div[1]").click();
         page.locator("//h2[text()='Move File']//following::div//following::newbutton[text()='Yes']").click();
-        page.locator("//h2[text()='Latest Files']//following::p[@title='" + d + "']//following::div[1]").click();
+
+        page.locator("//h2[text()='Latest Files']//following::p[@title='" + b+ "']//following::div[1]").click();
         page.locator("//h2[text()='Move File']//following::div//following::newbutton[text()='Yes']").click();
+
+        page.locator("//h2[text()='Latest Files']//following::p[@title='" + a + "']//following::div[1]").click();
+        page.locator("//h2[text()='Move File']//following::div//following::newbutton[text()='Yes']").click();
+
+
+        Thread.sleep(100000);
+
 
 
         page.locator(addbutton).click();
@@ -1296,7 +1377,7 @@ public class AddPublisherPage {
 
 
 
-return TextPresent;
+        return TextPresent;
 
 
 
@@ -1333,7 +1414,80 @@ return TextPresent;
 
     }
 
-    public void EditBStyContent(String b) {
+
+    public List<String> verifyUpdatedPub()
+    {
+        String acro=AddPubs();
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
+
+        fileChooser.setFiles(new Path[]{
+                Paths.get("guidelines.docx"),
+                Paths.get("test2.docx"),
+                Paths.get("test3.docx")
+        });
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
+        fileChooser.setFiles(new Path[]{
+                Paths.get("ABC.sty"),
+                Paths.get("A.sty"),
+                Paths.get("B.sty"),
+                Paths.get("styledoc.sty"),
+                Paths.get("def.sty")
+
+        });
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
+        fileChooser.setFiles(Paths.get("Automation.jpg"));
+
+        page.locator(addbutton).click();
+        page.locator(addalertclose).click();
+        page.locator(managemenu).click();
+        page.locator("//th[text()='"+acro+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+acro+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        page.locator(pub_mail_textbox).fill("sakthi@pdmrindia.com");
+        page.locator(daysfortypesettings).fill("2");
+        page.locator(updatebutton).click();
+        page.locator(updatealertclose).click();
+        page.locator(managemenu).click();
+        page.locator("//th[text()='"+acro+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+acro+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        String pubmail= page.locator(pub_mail_textbox).inputValue();
+        String tsval=page.locator(daysfortypesettings).inputValue();
+        List<String> pubdetails=new ArrayList<>();
+
+        pubdetails.add(pubmail);
+        pubdetails.add(tsval);
+        pubdetails.add(page.locator(pub_location).inputValue());
+        pubdetails.add( page.locator(ftpusername).inputValue());
+        pubdetails.add(page.locator(ftppassword).inputValue());
+        pubdetails.add(page.locator(ftp_initial_directory).inputValue());
+        pubdetails.add(page.locator(daysforlatexnormalization).inputValue());
+        pubdetails.add(page.locator(daysforgraphics).inputValue());
+        pubdetails.add(page.locator(daysforPreediting).inputValue());
+        pubdetails.add(page.locator(daysforcopyediting).inputValue());
+        pubdetails.add(page.locator(daysforlatexnormalization).inputValue());
+        pubdetails.add( page.locator(daysfortypesettings).inputValue());
+        pubdetails.add((page.locator(daysforaupag)).inputValue());
+        pubdetails.add(page.locator(daysforauqc).inputValue());
+        pubdetails.add(page.locator(daysforpepag).inputValue());
+        pubdetails.add( page.locator(daysforpeqc).inputValue());
+        pubdetails.add(page.locator(daysforonlinepag).inputValue());
+        pubdetails.add(page.locator(daysforonlineqc).inputValue());
+        pubdetails.add(page.locator(daysforonlinexml).inputValue());
+        pubdetails.add(page.locator(IssuePag).inputValue());
+        pubdetails.add(page.locator(IssueQC).inputValue());
+        pubdetails.add(page.locator(printpag).inputValue());
+        pubdetails.add(page.locator(printQC).inputValue());
+        pubdetails.add(page.locator(printxml).inputValue());
+        System.out.println(pubdetails);
+
+        return pubdetails;
+
+    }
+
+    public void EditBStyContent(String b)
+    {
         page.locator(managemenu).click();
         page.locator("//th[text()='"+b+"']//following::span[@data-target='#dropright'][1]").click();
         page.locator("//th[text()='"+b+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
@@ -1357,6 +1511,50 @@ return TextPresent;
         page.locator(updatealertclose).click();
         //page.locatorvvmmvkv
     }
+
+    public void MoveTemplateAndPdfToArchive()
+    {
+        String acro=AddPubs();
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
+
+        fileChooser.setFiles(new Path[]{
+                Paths.get("guidelines.docx"),
+                Paths.get("test2.docx"),
+                Paths.get("test3.docx")
+        });
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
+        fileChooser.setFiles(new Path[]{
+                Paths.get("ABC.sty"),
+                Paths.get("A.sty"),
+                Paths.get("B.sty"),
+                Paths.get("styledoc.sty"),
+                Paths.get("def.sty")
+
+        });
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
+        fileChooser.setFiles(Paths.get("Automation.jpg"));
+
+        page.locator(addbutton).click();
+        page.locator(addalertclose).click();
+        page.locator(managemenu).click();
+        page.locator("//th[text()='"+acro+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+acro+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        page.locator(pub_mail_textbox).fill("sakthi@pdmrindia.com");
+        page.locator(daysfortypesettings).fill("2");
+        page.locator(updatebutton).click();
+        page.locator(updatealertclose).click();
+        page.locator(managemenu).click();
+        page.locator("//th[text()='"+acro+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+acro+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+
+    }
+
+
+
+
 }
 
 

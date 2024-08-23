@@ -264,7 +264,7 @@ public Object[][] getdecdata() throws IOException {
 
     }
 
-    @Test(priority =5,dataProvider = "getfilename",description = "JMS:222-validate  image is added after created a Publisher")
+    @Test(priority =5,dataProvider = "getfilename",description = "JMS:222-validate  image is added after created a Publisher-version 2")
     public void verifyAddedPublisherLogo(String a,String b,String c)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -394,7 +394,7 @@ public Object[][] getdecdata() throws IOException {
         return ExcelReader.ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",6);
     }
 
-    @Test(priority = 11,dataProvider = "getstyfilename",description = "JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template")
+    @Test(priority = 11,dataProvider = "getstyfilename",description = "JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2")
     public void VerifyStypeUploadRestriction(String a)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -418,23 +418,25 @@ public Object[][] getdecdata() throws IOException {
 
 
 
-    @Test(priority = 12,dataProvider = "getguidelinefilename",description = "JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed")
+    @Test(priority = 12,dataProvider = "getguidelinefilename",description = "JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2")
     public  void verifyguidelinesuploadverification(String a)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
         ExtentReportListener.getTest().assignAuthor(authorname);
-        ExtentReportListener.getTest().log(Status.INFO,"verifing the Guideline file extension alert in add pub ");
+        ExtentReportListener.getTest().log(Status.INFO,"Navigate to \"Add publisher\" page");
+        ExtentReportListener.getTest().log(Status.INFO,"Navigate to the file upload section where drag and drop functionality is available.");
+        ExtentReportListener.getTest().log(Status.INFO,"Try uploading a file format other than \"doc', 'docx', or 'pdf\" in the guidelines document area.");
+        ExtentReportListener.getTest().log(Status.INFO,"Upload and verify that only \"doc,docx,pdf\" can upload in the gudieliness document");
 
         String actualMessage= addpublisherpage.verifyfuidelinesdocuploadverification( a);
         Assert.assertEquals(actualMessage,"Only files with  following extensions allowed .doc, .docx, .pdf", "File upload validation failed for: " + a);
-        ExtentReportListener.getTest().log(Status.INFO,"Alert is displayed");
+        ExtentReportListener.getTest().log(Status.INFO,"The guidelines document section should only accept 'doc', 'docx', or 'pdf' files .,Alert is displayed");
 
     }
 
 
-    @Test(priority = 13,description = "JMS-134 : Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document ")
-    public  void verifyisdocumentUploadCanUploadMore()
-    {
+    @Test(priority = 13,description = "JMS-134 : Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document -version 1")
+    public  void verifyisdocumentUploadCanUploadMore() throws InterruptedException {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
         ExtentReportListener.getTest().assignAuthor(authorname);
         ExtentReportListener.getTest().log(Status.INFO,"Adding publisher with more no of doc");
@@ -442,12 +444,8 @@ public Object[][] getdecdata() throws IOException {
         int text=addpublisherpage.VerifyNoOfFileInTeamplateAndGuidelines();
         String count=Integer.toString(text);
         System.out.println(count);
-        Assert.assertEquals(count,"3","count not equal some file is missing");
+        Assert.assertEquals(count,"8","count not equal some file is missing");
         ExtentReportListener.getTest().log(Status.INFO,"Adding publisher with more no of doc successfully");
-
-
-
-
 
     }
 
@@ -492,14 +490,12 @@ public Object[][] getdecdata() throws IOException {
   }
 
   @Test(priority = 16,dataProvider = "getfilesname",description =
-  "JMS:138-Ensure Files can be moved back and forth from Latest to Archive. Also ensure while creating journal, current list must be fetched")
-  public void ISArchiveListIsShowingCorrectFiles(String a,String b,String c,String d)
-  {
+  "JMS:138-Ensure Files can be moved back and forth from Latest to Archive. Also ensure while creating journal, current list must be fetched-version 2")
+  public void ISArchiveListIsShowingCorrectFiles(String a,String b,String c,String d) throws InterruptedException {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
       ExtentReportListener.getTest().assignAuthor(authorname);
       ExtentReportListener.getTest().log(Status.INFO,"Adding Publisher with archived files");
       ExtentReportListener.getTest().log(Status.INFO,"Verifing archived files are only showing in Edit Pub");
-
 
 
       System.out.println(a);
@@ -667,6 +663,39 @@ public Object[][] getdecdata() throws IOException {
 
   }
 
+    @Test( priority =22,description = "JMS-661 : Modify the publisher details and verify - Version 1")
+    public void VerifyUpdatedPub() throws IOException
+    {
+        List<String> pubmail=addpublisherpage.verifyUpdatedPub();
+        System.out.println(pubmail);
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertEquals(pubmail.get(0),"sakthi@pdmrindia.com","Pub mail not updated");
+        softAssert.assertEquals(pubmail.get(1),"2","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(2),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(3),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(4),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(5),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(6),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(7),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(8),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(9),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(10),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(11),"2","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(12),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(13),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(14),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(15),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(16),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(17),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(18),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(19),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(20),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(21),"1","general fresh ts val not updated");
+        softAssert.assertEquals(pubmail.get(22),"1","general fresh ts val not updated");
+        softAssert.assertAll();
+
+    }
+
    /* @DataProvider(name = "adddiffpub")
     public  Object[][] adddiffpub() throws IOException {
         return ExcelReader.ReadExcelData("D:\\uploadtest\\addpublisher.xlsx",11);
@@ -680,6 +709,8 @@ public Object[][] getdecdata() throws IOException {
 
 
     }*/
+
+
 
 
 

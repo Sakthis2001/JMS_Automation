@@ -7,8 +7,8 @@
         </classes>
    </test>
 
-<!--
-   <test name="QuickLinkTest">
+
+  <!-- <test name="QuickLinkTest">
         <classes>
             <class name="tests.QuickLinksTest">
 
@@ -27,23 +27,22 @@
 <test name="AddPublisherTest">
         <classes>
             <class name="tests.AddPublisherTest">
-                <methods>
-                    <include name="AddPublisherWithCopyTatData">
-                    </include>
-                </methods>
+   <methods>
+    <include name="ISArchiveListIsShowingCorrectFiles"></include>
+   </methods>
             </class>
         </classes>
     </test>
 
 
 
- <!--   <test name="AddArticleTest">
+   <!-- <test name="AddArticleTest">
         <classes>
             <class name="tests.AddArticleTest">
             </class>
         </classes>
-    </test>-->
-
+    </test>
+-->
 
 
 
