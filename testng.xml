@@ -1,48 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" thread-count="4" parallel="tests">
+<suite name="All Test Suite" thread-count="2" parallel="tests">
    <test name="HomePageTest">
         <classes>
             <class name="tests.HomePageTest"></class>
         </classes>
    </test>
 
-
-  <!-- <test name="QuickLinkTest">
+   <!-- <test name="PreRequest">
         <classes>
-            <class name="tests.QuickLinksTest">
-
+            <class name="tests.PreRequestTest">
 
             </class>
         </classes>
     </test>
 
-    <test name="PreRequest">
+
+<test name="QuickLinkTest">
         <classes>
-            <class name="tests.PreRequestTest"></class>
+            <class name="tests.QuickLinksTest">
+            </class>
         </classes>
-    </test>-->
+    </test>
+
+
 
 
 <test name="AddPublisherTest">
         <classes>
             <class name="tests.AddPublisherTest">
-   <methods>
-    <include name="ISArchiveListIsShowingCorrectFiles"></include>
-   </methods>
+
             </class>
         </classes>
-    </test>
+    </test>-->
 
 
 
-   <!-- <test name="AddArticleTest">
+ <test name="AddArticleTest">
         <classes>
             <class name="tests.AddArticleTest">
+             <methods>
+                    <include name="notecancel"></include>
+                </methods>
             </class>
         </classes>
     </test>
--->
+
 
 
 

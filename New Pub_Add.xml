@@ -11,15 +11,15 @@
                 <class name="tests.AddPublisherTest"></class>
             </classes>
         </test>-->
-  <!--  <test name="AddPublisherManual">
+   <test name="AddPublisherManual">
         <parameter name="acro" value="o"></parameter>
         <parameter name="pub" value="One"></parameter>
         <classes>
             <class name="tests.AddPublisherManual"></class>
         </classes>
-    </test>-->
+    </test>
 
-    <test name="AddArticleManual">
+   <!-- <test name="AddArticleManual">
         <parameter name="journalacro" value="s1(sarath)"></parameter>
         <parameter name="articleid" value="0603"></parameter>
         <parameter name="articlename" value="fun"></parameter>
@@ -30,5 +30,5 @@
 
             <class name="tests.AddArticleManual"></class>
         </classes>
-    </test>
+    </test>-->
 </suite>

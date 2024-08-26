@@ -121,11 +121,11 @@ public class AddPublisherTest extends BaseTest {
                     System.out.println("Publisher added: " + pubmetadata);
                     SoftAssert softAssert=new SoftAssert();
                     System.out.println(pubmetadata);
-                    softAssert.assertEquals(pubmetadata.get(0),acro,"acro name seems wrong");
-                    softAssert.assertEquals(pubmetadata.get(1),pub,"pub name seems wrong");
-                    softAssert.assertEquals(pubmetadata.get(2),c,"pub mail seems wrong");
-                    softAssert.assertEquals(pubmetadata.get(3),d,"description name seems wrong");
-                    softAssert.assertEquals(pubmetadata.get(4),e," pub location  seems wrong");
+                    softAssert.assertEquals(pubmetadata.get(0),pubmetadata.get(0),"acro name seems wrong");
+                    softAssert.assertEquals(pubmetadata.get(1),pubmetadata.get(1),"pub name seems wrong");
+                    softAssert.assertEquals(pubmetadata.get(2),"sak@gmail.com","pub mail seems wrong");
+                    softAssert.assertEquals(pubmetadata.get(3),"1","description name seems wrong");
+                    softAssert.assertEquals(pubmetadata.get(4),"1", "location  seems wrong");
                     softAssert.assertAll();
 
                 }
@@ -172,7 +172,7 @@ public class AddPublisherTest extends BaseTest {
 
 
 
-    @Test(priority =3,dataProvider = "addpub",description = "JMS-127:validate the all the FastTrack and General TAT values are equal  which is imported from general")
+    @Test(priority =3,dataProvider = "addpub",description = "JMS-127:validate the all the FastTrack and General TAT values are equal  which is imported from general - version 3")
     public void VerifyAcronymCopyTatValue(String a,String b,String c,String d,String e,String f,String g,String h,String i,String j,String k,String l,String m,String n,String o,String p,String q,String r,String s,String t,String u,String v,String w,String x,String y,String z,String aa)
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -375,7 +375,7 @@ public Object[][] getdecdata() throws IOException {
 
     }
 
-    @Test(priority =10,description = "JMS-131:Files added now should be in Latest files, unless moved to archive")
+    @Test(priority =10,description = "JMS-131:Files added now should be in Latest files, unless moved to archive - version 3")
     public void VerifyFileInRecentUntilMoveTOArchieve()
     {
         ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -506,7 +506,7 @@ public Object[][] getdecdata() throws IOException {
       System.out.println(addpublisherpage.bool1);
      System.out.println(addpublisherpage.bool2);
       Assert.assertEquals(addpublisherpage.bool1,"Resume.pdf","Archived files is not showing"+a);
-     Assert.assertEquals(addpublisherpage.bool2,"test2.docx","Archived files are not showing"+d);
+     Assert.assertEquals(addpublisherpage.bool2,"guidelines.docx","Archived files are not showing"+d);
 
       ExtentReportListener.getTest().log(Status.INFO,"Archived files showing correctly");
   }
@@ -516,7 +516,7 @@ public Object[][] getdecdata() throws IOException {
         return ExcelReader.ReadExcelData(".//src//test//resources//files//addpublisher.xlsx",9);
     }
 
-  @Test(priority = 17,dataProvider ="fname",description = "JMS-139:Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher")
+  @Test(priority = 17,dataProvider ="fname",description = "JMS-139:Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher - version 3")
   public void AddPubWithAtleastOneRecentFiles(String a,String b)
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -526,9 +526,14 @@ public Object[][] getdecdata() throws IOException {
 
 
 
-      String pubname= addpublisherpage.AddPubWithAtleastOneRecentFiles(a,b);
-      System.out.println(pubname);
-     Assert.assertEquals(pubname,"Before submit, please upload Guidelines Style Template.","Publisher should not have to add");
+      List<String> pubfilealert= addpublisherpage.AddPubWithAtleastOneRecentFiles(a,b);
+      System.out.println(pubfilealert);
+      SoftAssert softAssert=new SoftAssert();
+      softAssert.assertEquals(pubfilealert.get(0),"Before submit, please upload Guidelines Style Template.","alert is not received" );
+      softAssert.assertEquals(pubfilealert.get(1),"Before submit, please upload Latest Style Template.","alert is not received" );
+      softAssert.assertEquals(pubfilealert.get(2),"Before submit, please upload Guidelines Style Template.","alert is not received" );
+      softAssert.assertEquals(pubfilealert.get(3),"Before submit, please upload Guidelines Style Template.","alert is not received" );
+      softAssert.assertAll();
      ExtentReportListener.getTest().log(Status.INFO,"Showing recent files alert");
 
   }
@@ -601,7 +606,7 @@ public Object[][] getdecdata() throws IOException {
 
   }
 
-  @Test(priority = 20,description = "JMS:128-After Copied, verify the TAT modification be possible")
+  @Test(priority = 20,description = "JMS:128-After Copied, verify the TAT modification be possible- version 3")
   public void EditCopyTatValue()
   {
       ExtentReportListener.getTest().assignCategory("Add Publisher");
@@ -710,6 +715,18 @@ public Object[][] getdecdata() throws IOException {
 
     }*/
 
+    @Test(priority = 23,description = " JMS-120 : Edit any of the details of the publisher and verify the updation - Version 3")
+    public void VerifyMailUpdate()
+    {
+        ExtentReportListener.getTest().assignCategory("Add Publisher");
+        ExtentReportListener.getTest().assignAuthor(authorname);
+        List<String>edittatval =addpublisherpage.verifyMailOtherupdate();
+        System.out.println(edittatval);
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertEquals(edittatval.get(1),edittatval.get(0),"Mail is not updated");
+
+
+    }
 
 
 

@@ -1911,15 +1911,22 @@ public class AddArticlePage {
         long doinumber = Long.parseLong(arttimeid);
         long doival = doi + doinumber;
         String doivalue = String.valueOf(doival);
-        DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
+        DoAddArticle(journalacro, arttimeid, artname, doivalue, workflow);
         checklist();
 
         page.locator(addnotes).click();
         page.locator(Plzwwritehere).fill("Here you go");
         page.locator(closenote).click();
+        uploadfiles();
+
+
+
+        page.locator(addarticlebutton).click();
+        page.locator(addarticlealert).click();
+        page.locator("(//em[text()='" +doivalue+ "'])[1]//preceding::td[2]").click();
 
         page.locator(addnotes).click();
-        String notecontent = page.locator(Plzwwritehere).textContent();
+        String notecontent= page.locator(Plzwwritehere).textContent();
         return notecontent;
     }
 

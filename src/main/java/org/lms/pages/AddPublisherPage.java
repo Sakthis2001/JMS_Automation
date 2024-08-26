@@ -119,6 +119,11 @@ public class AddPublisherPage {
     private String guideShow="//*[text()='GuideLines Document']//following::img[@title='Show'][1]";
     private String Styleshow="//*[text()='Style Template']//following::img[@title='Show'][1]";
 
+    //file alert error
+    private String  stylemandatoryalert="//h2[text()='JMS - Upload']//following::div[text()='Before submit, please upload Latest Style Template.']";
+    private String  guidelinemandatoryalert="//h2[text()='JMS - Upload']//following::div[text()='Before submit, please upload Guidelines Style Template.']";
+
+
 
     public AddPublisherPage(Page page) {
         this.page = page;
@@ -133,41 +138,8 @@ public class AddPublisherPage {
 
     public List<String> addpublisher(String acro, String pub, String c, String d, String e, String f, String g, String h, String i, String j, String k, String l, String m, String n, String o, String p, String q, String r, String s, String t, String u, String v, String w, String x, String y, String z, String aa) throws InterruptedException {
 
-        page.locator(pub_acronym).fill(acro);
-        page.locator(pub_name_textbox).fill(pub);
-        // Assert.assertEquals(page.locator(pub_acronym).inputValue(), a, "pub_acronym not filled correctly");
-        page.locator(pub_mail_textbox).fill(c);
-        page.locator(desc_inputbox).fill(d);
-        LocalDate currentDate = LocalDate.now();
-        String formattedDate = currentDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
-        page.locator(selectdateinput).fill(formattedDate);
-        page.locator(selectdateinput).fill(formattedDate);
-        page.locator(pub_location).fill(e);
-        page.locator(ftpusername).fill(f);
-        page.locator(ftppassword).fill(g);
 
-
-        page.locator(ftp_initial_directory).fill(h);
-        page.locator(daysforlatexnormalization).fill("1");
-        page.locator(daysforgraphics).fill(j);
-        page.locator(daysforPreediting).fill(k);
-        page.locator(daysforcopyediting).fill(l);
-        page.locator(daysforlatexnormalization).fill(m);
-        page.locator(daysfortypesettings).fill(n);
-        page.locator(daysforqc).fill(o);
-        page.locator(daysforaupag).fill(p);
-        page.locator(daysforauqc).fill(q);
-        page.locator(daysforpepag).fill(r);
-        page.locator(daysforpeqc).fill(s);
-        page.locator(daysforonlinepag).fill(t);
-        page.locator(daysforonlineqc).fill(u);
-        page.locator(daysforonlinexml).fill(v);
-        page.locator(IssuePag).fill(w);
-        page.locator(IssueQC).fill(x);
-        page.locator(printpag).fill(y);
-        page.locator(printQC).fill(z);
-        //assertThat(page.locator(printxml)).isAttached();
-        page.locator(printxml).fill(aa);
+        String pubs=AddPubs();
 
 
         fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
@@ -190,10 +162,10 @@ public class AddPublisherPage {
         page.locator(addalertclose).click();
         page.locator(managemenu).click();
 
-        String val = page.locator("//th[text()='" + acro + "']").textContent();
+        //String val = page.locator("//th[text()='" + pub + "']").textContent();
 
-        page.locator("//th[text()='" +acro+ "']//following::span[@data-target='#dropright'][1]").click();
-        page.locator("//th[text()='" +acro+ "']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        page.locator("//th[text()='" +pubs+ "']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='" +pubs+ "']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
 
 
         List<String> pubdetails=new ArrayList<>();
@@ -697,8 +669,24 @@ public class AddPublisherPage {
     }
 
     public String checkrecentfiles() {
+        String acro=AddPubs();
+
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
+        fileChooser.setFiles(Paths.get("Automation.jpg"));
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
+        fileChooser.setFiles(Paths.get("ABC.sty"));
+
         fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
         fileChooser.setFiles(Paths.get("guidelines.docx"));
+
+        page.locator(addbutton).click();
+        page.locator(addalertclose).click();
+        page.locator(managemenu).click();
+        page.locator("//th[text()='"+acro+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+acro+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+        page.locator(guideShow).click();
         String text = page.locator("//*[text()='guidelines.docx']//preceding::h2[1]").textContent();
         return text;
 
@@ -997,7 +985,7 @@ public class AddPublisherPage {
     public String bool2;
 
     public void EnsureArchiveAndListFiles(String a, String b, String c, String d) throws InterruptedException {
-        addpub();
+        String pubacro=AddPubs();
         fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
         fileChooser.setFiles(Paths.get("ABC.sty"));
 
@@ -1028,7 +1016,7 @@ public class AddPublisherPage {
         page.locator("//h2[text()='Move File']//following::div//following::newbutton[text()='Yes']").click();
 
 
-        Thread.sleep(100000);
+
 
 
 
@@ -1037,62 +1025,21 @@ public class AddPublisherPage {
         page.locator(baseicon).click();
         page.locator(addjournalicon).click();
         page.locator(journal_pub_drop).click();
-        page.locator("//p[normalize-space()='pa']").click();
+        page.locator("//p[normalize-space()='"+pubacro+"']").click();
         page.locator("//h3[text()='GuideLines Document']//following::div[@title='Import from Publisher']").click();
         page.locator("//h2[text()='Import Guideline Files']//following::div//following::newbutton[text()='Yes']").click();
-        bool1 = page.locator("//*[text()='Archive Files']//following::li/p[@title='" + a + "']").textContent();
-        bool2 = page.locator("//*[text()='Archive Files']//following::li/p[@title='" + d + "']").textContent();
+        bool1 = page.locator("//*[text()='Latest Files']//following::li/p[@title='" + a + "']").textContent();
+        bool2 = page.locator("//*[text()='Archive Files']//following::li/p[@title='" + b + "']").textContent();
 
     }
 
-    public String AddPubWithAtleastOneRecentFiles(String a, String b) {
+    public List<String> AddPubWithAtleastOneRecentFiles(String a, String b) {
 
-        addpub();
-      /*  page.locator(pub_acronym).fill("pp");
-        page.locator(pub_name_textbox).fill("Peppentagon");
-        page.locator(pub_mail_textbox).fill("sak@gmail.com");
-        page.locator(desc_inputbox).fill("1");
-        LocalDate today = LocalDate.now();
-        LocalDate tomarrow=today.plusDays(1);
+        AddPubs();
 
-        String formattedDate = today.format(DateTimeFormatter.ISO_LOCAL_DATE);
-        String tomorrow = (today.plusDays(1)).format(DateTimeFormatter.ISO_DATE);
-
-
-        page.locator(selectdateinput).fill(tomorrow);
-
-        page.locator(pub_location).fill("1");
-        page.locator(ftpusername).fill("1");
-        page.locator(ftppassword).fill("1");
-
-
-        page.locator(ftp_initial_directory).fill("1");
-        page.locator(daysforlatexnormalization).fill("1");
-        page.locator(daysforgraphics).fill("1");
-        page.locator(daysforPreediting).fill("1");
-        page.locator(daysforcopyediting).fill("1");
-        page.locator(daysforlatexnormalization).fill("1");
-        page.locator(daysfortypesettings).fill("1");
-        page.locator(daysforqc).fill("1");
-        page.locator(daysforaupag).fill("1");
-        page.locator(daysforauqc).fill("1");
-        page.locator(daysforpepag).fill("1");
-        page.locator(daysforpeqc).fill("1");
-        page.locator(daysforonlinepag).fill("1");
-        page.locator(daysforonlineqc).fill("1");
-        page.locator(daysforonlinexml).fill("1");
-        page.locator(IssuePag).fill("1");
-        page.locator(IssueQC).fill("1");
-        page.locator(printpag).fill("1");
-        page.locator(printQC).fill("1");
-        //assertThat(page.locator(printxml)).isAttached();
-        page.locator(printxml).fill("1");
-
-        page.locator(CopyTat).click();
-        page.locator(CopyTatConfirm).click();*/
         fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
         fileChooser.setFiles(Paths.get("Automation.jpg"));
-        fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
+      fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
         fileChooser.setFiles(Paths.get("ABC.sty"));
         /*fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
         fileChooser.setFiles(Paths.get("guidelines.docx"));*/
@@ -1111,8 +1058,85 @@ public class AddPublisherPage {
         page.locator("//h2[text()='Move File']//following::div//following::newbutton[text()='Yes']").click();
 
         page.locator(addbutton).click();
-        String text = page.locator(guidestyleerroralert).textContent();
-        return text;
+        String latestguidealert = page.locator(guidelinemandatoryalert).textContent();
+
+        page.reload();
+        AddPubs();
+        fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
+        fileChooser.setFiles(Paths.get("Automation.jpg"));
+        fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
+
+        fileChooser.setFiles(new Path[]{
+                Paths.get(a),
+                Paths.get(b)
+
+        });
+        page.locator(addbutton).click();
+        String styalert=page.locator(stylemandatoryalert).textContent();
+
+
+      page.reload();
+        AddPubs();
+        fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
+        fileChooser.setFiles(Paths.get("Automation.jpg"));
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
+        fileChooser.setFiles(Paths.get("ABC.sty"));
+        page.locator(addbutton).click();
+
+
+        String guidealertmsg=page.locator(guidelinemandatoryalert).textContent();
+        List<String> filealert=new ArrayList<>();
+        filealert.add(latestguidealert);
+        filealert.add(styalert);
+        filealert.add(guidealertmsg);
+        page.reload();
+
+
+
+        String acros=AddPubs();
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
+        fileChooser.setFiles(Paths.get("Automation.jpg"));
+        fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
+        fileChooser.setFiles(Paths.get("ABC.sty"));
+        /*fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
+        fileChooser.setFiles(Paths.get("guidelines.docx"));*/
+
+        fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
+
+        fileChooser.setFiles(new Path[]{
+                Paths.get(a),
+                Paths.get(b)
+
+        });
+
+
+
+        page.locator(addbutton).click();
+        page.locator(addalertclose).click();
+
+
+        page.locator(managemenu).click();
+        page.locator("//th[text()='"+acros+"']//following::span[@data-target='#dropright'][1]").click();
+        page.locator("//th[text()='"+acros+"']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+
+      page.locator(guideShow).click();
+
+        page.locator("//h2[text()='Latest Files']//following::p[@title='" + a + "']//following::div[1]").click();
+        page.locator("//h2[text()='Move File']//following::div//following::newbutton[text()='Yes']").click();
+        page.locator("//h2[text()='Latest Files']//following::p[@title='" + b + "']//following::div[1]").click();
+        page.locator("//h2[text()='Move File']//following::div//following::newbutton[text()='Yes']").click();
+
+        page.locator(updatebutton).click();
+
+        String latestguidealertupdate = page.locator(guidelinemandatoryalert).textContent();
+        filealert.add(latestguidealertupdate);
+        return filealert;
+
+
+
+
 
 
     }
@@ -1552,7 +1576,59 @@ public class AddPublisherPage {
 
     }
 
+public List<String> verifyMailOtherupdate()
+{
+    String pubs=AddPubs();
 
+
+    fileChooser = page.waitForFileChooser(() -> page.locator(Imageuploadbutton).click());
+    fileChooser.setFiles(Paths.get("Automation.jpg"));
+
+    fileChooser = page.waitForFileChooser(() -> page.locator(styletemplate).click());
+    fileChooser.setFiles(Paths.get("ABC.sty"));
+
+
+    fileChooser = page.waitForFileChooser(() -> page.locator(guidelinesdoc).click());
+    fileChooser.setFiles(Paths.get("guidelines.docx"));
+
+    page.locator(CopyTat).click();
+
+
+    page.locator(CopyTatConfirm).click();
+
+
+    page.locator(addbutton).click();
+    page.locator(addalertclose).click();
+    page.locator(managemenu).click();
+
+    //String val = page.locator("//th[text()='" + pub + "']").textContent();
+
+    page.locator("//th[text()='" +pubs+ "']//following::span[@data-target='#dropright'][1]").click();
+    page.locator("//th[text()='" +pubs+ "']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+   long val= System.currentTimeMillis();
+   String mail="sakthi"+val+"@gmail.com";
+    page.locator(pub_mail_textbox).fill(mail);
+    page.locator(updatebutton).click();
+    page.locator(updatealertclose).click();
+    page.locator(managemenu).click();
+
+    //String val = page.locator("//th[text()='" + pub + "']").textContent();
+
+    page.locator("//th[text()='" +pubs+ "']//following::span[@data-target='#dropright'][1]").click();
+    page.locator("//th[text()='" +pubs+ "']//following::div[@id='dropright']/div[text()='Edit Publisher']").click();
+    String Updatedmail=page.locator(pub_mail_textbox).inputValue();
+    List<String> mails=new ArrayList<>();
+    mails.add(mail);
+    mails.add(Updatedmail);
+    return mails;
+
+
+
+
+
+
+
+}
 
 
 }

@@ -47,21 +47,21 @@ public class PageFactory {
          context=browser.newContext();
          page=context.newPage();
         // Evaluate the screen width and height
-      /*  int screenWidth = (int) page.evaluate("() => window.screen.width");
+        int screenWidth = (int) page.evaluate("() => window.screen.width");
         int screenHeight = (int) page.evaluate("() => window.screen.height");
         page.setViewportSize(screenWidth, screenHeight);
-*/
 
 
 
 
-        // Get screen dimensions
+
+       /* // Get screen dimensions
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screenSize.getWidth();
         int height = (int) screenSize.getHeight();
 
         // Set viewport size to screen dimensions
-        page.setViewportSize(width, height);
+        page.setViewportSize(width, height);*/
 
         page.navigate(prop.getProperty("url"));
          page.locator(username).fill(prop.getProperty("username"));
