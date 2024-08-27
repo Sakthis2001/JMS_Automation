@@ -7,7 +7,7 @@
         </classes>
    </test>
 
-   <!-- <test name="PreRequest">
+    <test name="PreRequest">
         <classes>
             <class name="tests.PreRequestTest">
 
@@ -32,16 +32,13 @@
 
             </class>
         </classes>
-    </test>-->
+    </test>
 
 
 
  <test name="AddArticleTest">
         <classes>
             <class name="tests.AddArticleTest">
-             <methods>
-                    <include name="notecancel"></include>
-                </methods>
             </class>
         </classes>
     </test>

@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">JMS_Automation_Test_Report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Aug 26, 2024 07:11:47 PM</span></a>
+<a href="#"><span class="badge badge-primary">Aug 27, 2024 07:47:43 PM</span></a>
 </li>
 </ul>
 </div>
@@ -45,6 +45,11 @@
 <li class="nav-item dropdown" onclick="toggleView('test-view')">
 <a id="nav-test" class="dropdown-toggle" href="#">
 <span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('exception-view')">
+<a id="nav-exception" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bug"></i></span>
 </a>
 </li>
 <li class="nav-item dropdown" onclick="toggleView('category-view')">
@@ -77,6 +82,7 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
 <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -90,20 +96,20 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">HomePageTests</a><a class="dropdown-item" href="#">addarticle</a>
+<a class="dropdown-item" href="#">AddPublisher</a>
 </ul>
 </li>
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="pass" test-id="1"
+        <li class="test-item"  status="pass" test-id="26"
           author="Sakthi"
-          tag="HomePageTests"
+          tag="AddPublisher"
           device="">
           <div class="test-detail">
-            <p class="name">verifyhometitle</p>
+            <p class="name">Verifying Navigating to the Add Publisher Page successfully</p>
             <p class="text-sm">
-              <span>7:11:59 PM</span> / <span>00:00:00:196</span>
+              <span>7:47:50 PM</span> / <span>00:00:00:878</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -111,16 +117,16 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">verifyhometitle</h5>
-<span class='badge badge-success'>08.26.2024 7:11:59 PM</span>
-<span class='badge badge-danger'>08.26.2024 7:11:59 PM</span>
-<span class='badge badge-default'>00:00:00:196</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+<h5 class="test-status text-pass">Verifying Navigating to the Add Publisher Page successfully</h5>
+<span class='badge badge-success'>08.27.2024 7:47:50 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:47:51 PM</span>
+<span class='badge badge-default'>00:00:00:878</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=26</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 <div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
-<span class="badge badge-pill badge-default">HomePageTests</span></div>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
 </div>
 </div><div class="detail-body mt-4">
 <table class="table table-sm">
@@ -128,44 +134,37 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:47:50 PM</td>
         <td>
-          Login successfully
+          Clicking the Base icon
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:47:50 PM</td>
         <td>
-          verifing the title
+          Clicking the add publisher icon
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:47:51 PM</td>
         <td>
-          Title expected as LMS
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
-        <td>
-          JMS  right
+          Navigated successfully to the addpublisher page
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:47:51 PM</td>
         <td>
           Test Passed
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:47:51 PM</td>
         <td>
-          Trace saved: <a href='traces/verifyhometitle.zip'>traces/verifyhometitle.zip</a>
+          Trace saved: <a href='traces/NavigateToAddPubIcon.zip'>traces/NavigateToAddPubIcon.zip</a>
         </td>
       </tr>
   </tbody>
@@ -173,14 +172,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="2"
+        <li class="test-item"  status="pass" test-id="27"
           author="Sakthi"
-          tag="HomePageTests"
+          tag="AddPublisher"
           device="">
           <div class="test-detail">
-            <p class="name">verifyurl</p>
+            <p class="name"> JMS-118 : Add publisher with valid mandatory details - Version 2</p>
             <p class="text-sm">
-              <span>7:11:59 PM</span> / <span>00:00:00:183</span>
+              <span>7:47:54 PM</span> / <span>00:00:19:103</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -188,16 +187,16 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">verifyurl</h5>
-<span class='badge badge-success'>08.26.2024 7:11:59 PM</span>
-<span class='badge badge-danger'>08.26.2024 7:11:59 PM</span>
-<span class='badge badge-default'>00:00:00:183</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+<h5 class="test-status text-pass"> JMS-118 : Add publisher with valid mandatory details - Version 2</h5>
+<span class='badge badge-success'>08.27.2024 7:47:54 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:48:13 PM</span>
+<span class='badge badge-default'>00:00:19:103</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=27</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 <div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
-<span class="badge badge-pill badge-default">HomePageTests</span></div>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
 </div>
 </div><div class="detail-body mt-4">
 <table class="table table-sm">
@@ -205,44 +204,83 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:47:54 PM</td>
         <td>
-          Login successfully
+          Parameter: T
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:47:54 PM</td>
         <td>
-          verifing the url
+          Parameter: test
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:47:54 PM</td>
         <td>
-          url expected as https://pdmrindia.co.in/tester/LMS/auth/signin
+          Enter all the input which are mandatory
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:47:54 PM</td>
         <td>
-          http://192.168.1.39:3002/jms/stock   is right
+          Click on 'ADD publisher'
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:47:54 PM</td>
+        <td>
+          verifying publiher is added
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:47:54 PM</td>
+        <td>
+          Verify each publisher's details from Edit-Publisher page
+
+Publisher Acronym 
+Publisher Name 
+Email 
+Description
+On Board 
+Publisher Location
+TAT
+Logo
+Guidelines 
+Style template 
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:09 PM</td>
+        <td>
+          Publisher added successfully
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:09 PM</td>
+        <td>
+          Details are added successfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:48:09 PM</td>
         <td>
           Test Passed
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:48:13 PM</td>
         <td>
-          Trace saved: <a href='traces/verifyurl.zip'>traces/verifyurl.zip</a>
+          Trace saved: <a href='traces/AddPublisherWithCopyTatData.zip'>traces/AddPublisherWithCopyTatData.zip</a>
         </td>
       </tr>
   </tbody>
@@ -250,14 +288,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="3"
+        <li class="test-item"  status="pass" test-id="28"
           author="Sakthi"
-          tag="HomePageTests"
+          tag="AddPublisher"
           device="">
           <div class="test-detail">
-            <p class="name">verifyIconIsDisplayed</p>
+            <p class="name">validate the AddPublisher Functionality by add all the TAT Data without copy</p>
             <p class="text-sm">
-              <span>7:11:59 PM</span> / <span>00:00:01:539</span>
+              <span>7:48:17 PM</span> / <span>00:00:18:541</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -265,16 +303,16 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">verifyIconIsDisplayed</h5>
-<span class='badge badge-success'>08.26.2024 7:11:59 PM</span>
-<span class='badge badge-danger'>08.26.2024 7:12:01 PM</span>
-<span class='badge badge-default'>00:00:01:539</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+<h5 class="test-status text-pass">validate the AddPublisher Functionality by add all the TAT Data without copy</h5>
+<span class='badge badge-success'>08.27.2024 7:48:17 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:48:36 PM</span>
+<span class='badge badge-default'>00:00:18:541</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=28</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 <div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
-<span class="badge badge-pill badge-default">HomePageTests</span></div>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
 </div>
 </div><div class="detail-body mt-4">
 <table class="table table-sm">
@@ -282,30 +320,352 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:11:59 PM</td>
+        <td>7:48:17 PM</td>
         <td>
-          verify icon is display or not
+          Parameter: AT
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:00 PM</td>
+        <td>7:48:17 PM</td>
         <td>
-          verify icon is displayed
+          Parameter: AllTat
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: sakthi@pdmrindia.com
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: Graphics is not for this publisher 
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: Chennai
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: FTp name
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: Ftp Password
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: ./jms/publisher
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          Enter all the input which are mandatory
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:17 PM</td>
+        <td>
+          verifying publiher is added
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:31 PM</td>
+        <td>
+          Publisher added successfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>7:12:00 PM</td>
+        <td>7:48:31 PM</td>
         <td>
           Test Passed
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:36 PM</td>
         <td>
-          Trace saved: <a href='traces/verifyIconIsDisplayed.zip'>traces/verifyIconIsDisplayed.zip</a>
+          Trace saved: <a href='traces/AddPublisherWithAllInputData.zip'>traces/AddPublisherWithAllInputData.zip</a>
         </td>
       </tr>
   </tbody>
@@ -313,14 +673,14 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="4"
+        <li class="test-item"  status="pass" test-id="29"
           author="Sakthi"
-          tag="addarticle"
+          tag="AddPublisher"
           device="">
           <div class="test-detail">
-            <p class="name">JMS-192 :Clicking on ‘X’ - doesn’t saves the content and returns to Add article page - version 2</p>
+            <p class="name">JMS-127:validate the all the FastTrack and General TAT values are equal  which is imported from general - version 3</p>
             <p class="text-sm">
-              <span>7:12:01 PM</span> / <span>00:00:25:275</span>
+              <span>7:48:41 PM</span> / <span>00:00:07:603</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -328,16 +688,16 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">JMS-192 :Clicking on ‘X’ - doesn’t saves the content and returns to Add article page - version 2</h5>
-<span class='badge badge-success'>08.26.2024 7:12:01 PM</span>
-<span class='badge badge-danger'>08.26.2024 7:12:27 PM</span>
-<span class='badge badge-default'>00:00:25:275</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+<h5 class="test-status text-pass">JMS-127:validate the all the FastTrack and General TAT values are equal which is imported from general - version 3</h5>
+<span class='badge badge-success'>08.27.2024 7:48:41 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:48:48 PM</span>
+<span class='badge badge-default'>00:00:07:603</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=29</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 <div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
-<span class="badge badge-pill badge-default">addarticle</span></div>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
 </div>
 </div><div class="detail-body mt-4">
 <table class="table table-sm">
@@ -345,107 +705,2550 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Parameter: MT(M)
+          Parameter: mms1
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Parameter: 1234
+          Parameter: Testing
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Parameter: ArticleAutomationTest
+          Parameter: sakthi@pdmrindia.com
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Parameter: 1730
+          Parameter: Graphics is not for this publisher 
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Parameter: Test Workflow By Santhosh
+          Parameter: Chennai
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Parameter: M
+          Parameter: FTp name
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Parameter: MT
+          Parameter: Ftp Password
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Parameter: this particular article is from general workflow
+          Parameter: ./jms/publisher
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Cick  on Add Article option
+          Parameter: 1.1
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Ensure that Mandatory Text Fields Are Filled
+          Parameter: 1
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          Clicking on X doesn't save the content and Return to Add Article PAge
+          Parameter: 1
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:01 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          verify and reopen and check again
+          Parameter: 1
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:25 PM</td>
+        <td>7:48:41 PM</td>
         <td>
-          It should be empty field showing successfully
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          Enter all the input which are mandatory
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          click the copy tat icon
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:41 PM</td>
+        <td>
+          verifing the Latexduedate for fasttrack which is imported from general
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:46 PM</td>
+        <td>
+          Value  fetched successfully to Fast Track and also verification is wright!
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:46 PM</td>
+        <td>
+          Values are fetched successfully to Fast Track and also values are equal
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>7:12:25 PM</td>
+        <td>7:48:46 PM</td>
         <td>
           Test Passed
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>7:12:27 PM</td>
+        <td>7:48:48 PM</td>
         <td>
-          Trace saved: <a href='traces/notecancel.zip'>traces/notecancel.zip</a>
+          Trace saved: <a href='traces/VerifyAcronymCopyTatValue.zip'>traces/VerifyAcronymCopyTatValue.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="30"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</p>
+            <p class="text-sm">
+              <span>7:48:51 PM</span> / <span>00:00:11:970</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</h5>
+<span class='badge badge-success'>08.27.2024 7:48:51 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:49:03 PM</span>
+<span class='badge badge-default'>00:00:11:970</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=30</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:51 PM</td>
+        <td>
+          Parameter: T
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:51 PM</td>
+        <td>
+          Parameter: Automation
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:51 PM</td>
+        <td>
+          verify duplicate alert is showing When add a duplicate pub
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:51 PM</td>
+        <td>
+          Add a new publisher (Pub- B) with unique details (including a pub-acronym and pub-name)
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:48:51 PM</td>
+        <td>
+          	
+Add another publisher (Pub - C) with the same acronym as the previously added publisher but a different pub-name
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:00 PM</td>
+        <td>
+          The system should display an error message indicating that the publisher name already exists and cannot be duplicated.
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:49:00 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:03 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyAlertIsShowingWhenAddDuplicateInPubAndAcro.zip'>traces/VerifyAlertIsShowingWhenAddDuplicateInPubAndAcro.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="31"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</p>
+            <p class="text-sm">
+              <span>7:49:06 PM</span> / <span>00:00:10:932</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</h5>
+<span class='badge badge-success'>08.27.2024 7:49:06 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:49:17 PM</span>
+<span class='badge badge-default'>00:00:10:932</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=31</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:06 PM</td>
+        <td>
+          Parameter: A
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:06 PM</td>
+        <td>
+          Parameter: Selenium
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:06 PM</td>
+        <td>
+          verify duplicate alert is showing When add a duplicate pub
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:06 PM</td>
+        <td>
+          Add a new publisher (Pub- B) with unique details (including a pub-acronym and pub-name)
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:06 PM</td>
+        <td>
+          	
+Add another publisher (Pub - C) with the same acronym as the previously added publisher but a different pub-name
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:15 PM</td>
+        <td>
+          The system should display an error message indicating that the publisher name already exists and cannot be duplicated.
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:49:15 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:17 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyAlertIsShowingWhenAddDuplicateInPubAndAcro.zip'>traces/VerifyAlertIsShowingWhenAddDuplicateInPubAndAcro.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="32"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</p>
+            <p class="text-sm">
+              <span>7:49:20 PM</span> / <span>00:00:11:452</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</h5>
+<span class='badge badge-success'>08.27.2024 7:49:20 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:49:31 PM</span>
+<span class='badge badge-default'>00:00:11:452</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=32</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:20 PM</td>
+        <td>
+          Parameter: Se
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:20 PM</td>
+        <td>
+          Parameter: Selenium
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:20 PM</td>
+        <td>
+          verify duplicate alert is showing When add a duplicate pub
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:20 PM</td>
+        <td>
+          Add a new publisher (Pub- B) with unique details (including a pub-acronym and pub-name)
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:20 PM</td>
+        <td>
+          	
+Add another publisher (Pub - C) with the same acronym as the previously added publisher but a different pub-name
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:29 PM</td>
+        <td>
+          The system should display an error message indicating that the publisher name already exists and cannot be duplicated.
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:49:29 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:31 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyAlertIsShowingWhenAddDuplicateInPubAndAcro.zip'>traces/VerifyAlertIsShowingWhenAddDuplicateInPubAndAcro.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="33"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS:222-validate  image is added after created a Publisher-version 2</p>
+            <p class="text-sm">
+              <span>7:49:34 PM</span> / <span>00:00:15:382</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS:222-validate image is added after created a Publisher-version 2</h5>
+<span class='badge badge-success'>08.27.2024 7:49:34 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:49:50 PM</span>
+<span class='badge badge-default'>00:00:15:382</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=33</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:34 PM</td>
+        <td>
+          Parameter: mg
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:34 PM</td>
+        <td>
+          Parameter: magnesium
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:34 PM</td>
+        <td>
+          Parameter: Automation.jpg
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:34 PM</td>
+        <td>
+          Adding publisher
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:34 PM</td>
+        <td>
+          Verifing the uploaded logo is correctly visible in EditPub Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:46 PM</td>
+        <td>
+           logo is correctly Displayed in EditPub Page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:49:46 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:50 PM</td>
+        <td>
+          Trace saved: <a href='traces/verifyAddedPublisherLogo.zip'>traces/verifyAddedPublisherLogo.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="34"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">verify the update functionality</p>
+            <p class="text-sm">
+              <span>7:49:53 PM</span> / <span>00:00:21:448</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">verify the update functionality</h5>
+<span class='badge badge-success'>08.27.2024 7:49:53 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:50:15 PM</span>
+<span class='badge badge-default'>00:00:21:448</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=34</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:53 PM</td>
+        <td>
+          Publisher added successfully
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:49:53 PM</td>
+        <td>
+          verifing the updated field in Edit publisher
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:50:13 PM</td>
+        <td>
+          Publisher details updated successfully
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:50:13 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:50:15 PM</td>
+        <td>
+          Trace saved: <a href='traces/verifyupdatedpublisher.zip'>traces/verifyupdatedpublisher.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="35"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS-122:Change the logo and verify the change in Pub. view version-2</p>
+            <p class="text-sm">
+              <span>7:50:21 PM</span> / <span>00:00:35:802</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS-122:Change the logo and verify the change in Pub. view version-2</h5>
+<span class='badge badge-success'>08.27.2024 7:50:21 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:50:57 PM</span>
+<span class='badge badge-default'>00:00:35:802</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=35</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:50:21 PM</td>
+        <td>
+          Adding Publisher
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:50:21 PM</td>
+        <td>
+          Updating the Logo
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:50:55 PM</td>
+        <td>
+          Image reuploaded successfully and correctly viewed in the publisher view
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:50:55 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:50:57 PM</td>
+        <td>
+          Trace saved: <a href='traces/verifyupdatedlogo.zip'>traces/verifyupdatedlogo.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="36"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS-123:Verify the created publishers are available while creating the Journals - version 2</p>
+            <p class="text-sm">
+              <span>7:51:03 PM</span> / <span>00:00:25:478</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS-123:Verify the created publishers are available while creating the Journals - version 2</h5>
+<span class='badge badge-success'>08.27.2024 7:51:03 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:51:28 PM</span>
+<span class='badge badge-default'>00:00:25:478</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=36</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:03 PM</td>
+        <td>
+          Pre Request -Add The Publisher
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:03 PM</td>
+        <td>
+          Navigate to the JMS dashboard and click on the 'Add Journal' icon.
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:03 PM</td>
+        <td>
+          Click on the publisher selection dropdown
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:03 PM</td>
+        <td>
+          Check for the publisher from Pre-Condition
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:03 PM</td>
+        <td>
+          Select the said publisher and proceed with creating journal
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:03 PM</td>
+        <td>
+          All publisher are available fr journal creation
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:27 PM</td>
+        <td>
+          Added pub is available While adding a journal
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:51:27 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:28 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyPubAvailInAddJournal.zip'>traces/VerifyPubAvailInAddJournal.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="37"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">Need to ensure the inputs days in TAT in decimal should be allowed (0.8,0.9,1.2)</p>
+            <p class="text-sm">
+              <span>7:51:34 PM</span> / <span>00:00:43:775</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Need to ensure the inputs days in TAT in decimal should be allowed (0.8,0.9,1.2)</h5>
+<span class='badge badge-success'>08.27.2024 7:51:34 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:52:18 PM</span>
+<span class='badge badge-default'>00:00:43:775</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=37</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div>    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='screenshots/verifyTatacceptsDecimal.png' src="screenshots/verifyTatacceptsDecimal.png">
+    
+    </div></div>
+<div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: mms1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: Testing
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: sakthi@pdmrindia.com
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: Graphics is not for this publisher 
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: Chennai
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: FTp name
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: Ftp Password
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: ./jms/publisher
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1.1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:51:34 PM</td>
+        <td>
+          Parameter: 1
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>7:52:14 PM</td>
+        <td>
+          Test Failed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>7:52:14 PM</td>
+        <td>
+          <textarea readonly class="code-block">com.microsoft.playwright.TimeoutError: Error {
+  message='Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for locator("xpath=//h2[text()='JMS - Add Publisher']//following::span[1]")
+============================================================
+  name='TimeoutError
+  stack='TimeoutError: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for locator("xpath=//h2[text()='JMS - Add Publisher']//following::span[1]")
+============================================================
+    at ProgressController.run (C:\Users\sakthi\AppData\Local\Temp\playwright-java-14387545045168473758\package\lib\server\progress.js:88:26)
+    at Frame.click (C:\Users\sakthi\AppData\Local\Temp\playwright-java-14387545045168473758\package\lib\server\frames.js:998:23)
+    at FrameDispatcher.click (C:\Users\sakthi\AppData\Local\Temp\playwright-java-14387545045168473758\package\lib\server\dispatchers\frameDispatcher.js:151:30)
+    at DispatcherConnection.dispatch (C:\Users\sakthi\AppData\Local\Temp\playwright-java-14387545045168473758\package\lib\server\dispatchers\dispatcher.js:312:46)
+}
+	at com.microsoft.playwright.impl.WaitableResult.get(WaitableResult.java:52)
+	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:111)
+	at com.microsoft.playwright.impl.Connection.sendMessage(Connection.java:126)
+	at com.microsoft.playwright.impl.ChannelOwner.sendMessage(ChannelOwner.java:102)
+	at com.microsoft.playwright.impl.FrameImpl.clickImpl(FrameImpl.java:252)
+	at com.microsoft.playwright.impl.FrameImpl.lambda$click$8(FrameImpl.java:243)
+	at com.microsoft.playwright.impl.LoggingSupport.lambda$withLogging$0(LoggingSupport.java:36)
+	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:47)
+	at com.microsoft.playwright.impl.ChannelOwner.withLogging(ChannelOwner.java:87)
+	at com.microsoft.playwright.impl.LoggingSupport.withLogging(LoggingSupport.java:35)
+	at com.microsoft.playwright.impl.FrameImpl.click(FrameImpl.java:243)
+	at com.microsoft.playwright.impl.LocatorImpl.click(LocatorImpl.java:140)
+	at com.microsoft.playwright.Locator.click(Locator.java:2297)
+	at org.lms.pages.AddPublisherPage.verifyaddpub(AddPublisherPage.java:376)
+	at tests.AddPublisherTest.verifyTatacceptsDecimal(AddPublisherTest.java:370)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.testng.TestRunner.privateRun(TestRunner.java:829)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+	at org.testng.TestNG.runSuites(TestNG.java:1099)
+	at org.testng.TestNG.run(TestNG.java:1067)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+Caused by: com.microsoft.playwright.TimeoutError: Error {
+  message='Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for locator("xpath=//h2[text()='JMS - Add Publisher']//following::span[1]")
+============================================================
+  name='TimeoutError
+  stack='TimeoutError: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for locator("xpath=//h2[text()='JMS - Add Publisher']//following::span[1]")
+============================================================
+    at ProgressController.run (C:\Users\sakthi\AppData\Local\Temp\playwright-java-14387545045168473758\package\lib\server\progress.js:88:26)
+    at Frame.click (C:\Users\sakthi\AppData\Local\Temp\playwright-java-14387545045168473758\package\lib\server\frames.js:998:23)
+    at FrameDispatcher.click (C:\Users\sakthi\AppData\Local\Temp\playwright-java-14387545045168473758\package\lib\server\dispatchers\frameDispatcher.js:151:30)
+    at DispatcherConnection.dispatch (C:\Users\sakthi\AppData\Local\Temp\playwright-java-14387545045168473758\package\lib\server\dispatchers\dispatcher.js:312:46)
+}
+	at com.microsoft.playwright.impl.Connection.dispatch(Connection.java:224)
+	at com.microsoft.playwright.impl.Connection.processOneMessage(Connection.java:206)
+	at com.microsoft.playwright.impl.ChannelOwner.runUntil(ChannelOwner.java:109)
+	... 40 more
+</textarea>
+          
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:18 PM</td>
+        <td>
+          Trace saved: <a href='traces/verifyTatacceptsDecimal.zip'>traces/verifyTatacceptsDecimal.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="38"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS-131:Files added now should be in Latest files, unless moved to archive - version 3</p>
+            <p class="text-sm">
+              <span>7:52:21 PM</span> / <span>00:00:18:231</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS-131:Files added now should be in Latest files, unless moved to archive - version 3</h5>
+<span class='badge badge-success'>08.27.2024 7:52:21 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:52:39 PM</span>
+<span class='badge badge-default'>00:00:18:231</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=38</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:35 PM</td>
+        <td>
+          verifing the uploaded files is showing in Recent files
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:35 PM</td>
+        <td>
+          uploaded files are showing in the Recent files
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:52:35 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:39 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyFileInRecentUntilMoveTOArchieve.zip'>traces/VerifyFileInRecentUntilMoveTOArchieve.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="39"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</p>
+            <p class="text-sm">
+              <span>7:52:43 PM</span> / <span>00:00:00:956</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</h5>
+<span class='badge badge-success'>08.27.2024 7:52:43 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:52:44 PM</span>
+<span class='badge badge-default'>00:00:00:956</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=39</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:43 PM</td>
+        <td>
+          Parameter: sample.doc
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:43 PM</td>
+        <td>
+          verifing add pub with other than .sty file in sty template field
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:43 PM</td>
+        <td>
+          Other than .sty Extension is not accepted
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:52:43 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:44 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyStypeUploadRestriction.zip'>traces/VerifyStypeUploadRestriction.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="40"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</p>
+            <p class="text-sm">
+              <span>7:52:46 PM</span> / <span>00:00:01:008</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</h5>
+<span class='badge badge-success'>08.27.2024 7:52:46 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:52:47 PM</span>
+<span class='badge badge-default'>00:00:01:008</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=40</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:46 PM</td>
+        <td>
+          Parameter: guidelines.docx
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:46 PM</td>
+        <td>
+          verifing add pub with other than .sty file in sty template field
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:47 PM</td>
+        <td>
+          Other than .sty Extension is not accepted
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:52:47 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:47 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyStypeUploadRestriction.zip'>traces/VerifyStypeUploadRestriction.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="41"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</p>
+            <p class="text-sm">
+              <span>7:52:50 PM</span> / <span>00:00:00:947</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</h5>
+<span class='badge badge-success'>08.27.2024 7:52:50 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:52:51 PM</span>
+<span class='badge badge-default'>00:00:00:947</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=41</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:50 PM</td>
+        <td>
+          Parameter: Ai.jpg
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:50 PM</td>
+        <td>
+          verifing add pub with other than .sty file in sty template field
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:51 PM</td>
+        <td>
+          Other than .sty Extension is not accepted
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:52:51 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:51 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyStypeUploadRestriction.zip'>traces/VerifyStypeUploadRestriction.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="42"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2</p>
+            <p class="text-sm">
+              <span>7:52:54 PM</span> / <span>00:00:00:885</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2</h5>
+<span class='badge badge-success'>08.27.2024 7:52:54 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:52:55 PM</span>
+<span class='badge badge-default'>00:00:00:885</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=42</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:54 PM</td>
+        <td>
+          Parameter: Ai.jpg
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:54 PM</td>
+        <td>
+          Navigate to "Add publisher" page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:54 PM</td>
+        <td>
+          Navigate to the file upload section where drag and drop functionality is available.
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:54 PM</td>
+        <td>
+          Try uploading a file format other than "doc', 'docx', or 'pdf" in the guidelines document area.
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:54 PM</td>
+        <td>
+          Upload and verify that only "doc,docx,pdf" can upload in the gudieliness document
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:55 PM</td>
+        <td>
+          The guidelines document section should only accept 'doc', 'docx', or 'pdf' files .,Alert is displayed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:52:55 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:55 PM</td>
+        <td>
+          Trace saved: <a href='traces/verifyguidelinesuploadverification.zip'>traces/verifyguidelinesuploadverification.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="43"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2</p>
+            <p class="text-sm">
+              <span>7:52:58 PM</span> / <span>00:00:00:902</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2</h5>
+<span class='badge badge-success'>08.27.2024 7:52:58 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:52:59 PM</span>
+<span class='badge badge-default'>00:00:00:902</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=43</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:58 PM</td>
+        <td>
+          Parameter: image.jpeg
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:58 PM</td>
+        <td>
+          Navigate to "Add publisher" page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:58 PM</td>
+        <td>
+          Navigate to the file upload section where drag and drop functionality is available.
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:58 PM</td>
+        <td>
+          Try uploading a file format other than "doc', 'docx', or 'pdf" in the guidelines document area.
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:58 PM</td>
+        <td>
+          Upload and verify that only "doc,docx,pdf" can upload in the gudieliness document
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:59 PM</td>
+        <td>
+          The guidelines document section should only accept 'doc', 'docx', or 'pdf' files .,Alert is displayed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:52:59 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:52:59 PM</td>
+        <td>
+          Trace saved: <a href='traces/verifyguidelinesuploadverification.zip'>traces/verifyguidelinesuploadverification.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="44"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS-134 : Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document -version 1</p>
+            <p class="text-sm">
+              <span>7:53:02 PM</span> / <span>00:00:28:087</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS-134 : Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document -version 1</h5>
+<span class='badge badge-success'>08.27.2024 7:53:02 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:53:30 PM</span>
+<span class='badge badge-default'>00:00:28:087</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=44</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:53:02 PM</td>
+        <td>
+          Adding publisher with more no of doc
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:53:26 PM</td>
+        <td>
+          Adding publisher with more no of doc successfully
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:53:26 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:53:30 PM</td>
+        <td>
+          Trace saved: <a href='traces/verifyisdocumentUploadCanUploadMore.zip'>traces/verifyisdocumentUploadCanUploadMore.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="45"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS-135:Ensure STY files can be viewed and modified in publisher view</p>
+            <p class="text-sm">
+              <span>7:53:34 PM</span> / <span>00:00:19:973</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS-135:Ensure STY files can be viewed and modified in publisher view</h5>
+<span class='badge badge-success'>08.27.2024 7:53:34 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:53:54 PM</span>
+<span class='badge badge-default'>00:00:19:973</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=45</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:53:34 PM</td>
+        <td>
+          Add the publisher
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:53:34 PM</td>
+        <td>
+          Updating the  styfile
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:53:34 PM</td>
+        <td>
+          verifing sty file is updated
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:53:52 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:53:54 PM</td>
+        <td>
+          Trace saved: <a href='traces/verifyISStyDocIsUpdated.zip'>traces/verifyISStyDocIsUpdated.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="46"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">Ensure any STY file should be in latest is mandatory. (Need confirmation as it is a template)</p>
+            <p class="text-sm">
+              <span>7:54:01 PM</span> / <span>00:00:09:367</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Ensure any STY file should be in latest is mandatory. (Need confirmation as it is a template)</h5>
+<span class='badge badge-success'>08.27.2024 7:54:01 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:54:10 PM</span>
+<span class='badge badge-default'>00:00:09:367</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=46</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:01 PM</td>
+        <td>
+          Adding publisher without the .sty files
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:01 PM</td>
+        <td>
+          verifing styfile upload alert is showing
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:54:07 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:10 PM</td>
+        <td>
+          Trace saved: <a href='traces/IsStyMandatoryAlertIsShowing.zip'>traces/IsStyMandatoryAlertIsShowing.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="47"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS:138-Ensure Files can be moved back and forth from Latest to Archive. Also ensure while creating journal, current list must be fetched-version 2</p>
+            <p class="text-sm">
+              <span>7:54:13 PM</span> / <span>00:00:20:140</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS:138-Ensure Files can be moved back and forth from Latest to Archive. Also ensure while creating journal, current list must be fetched-version 2</h5>
+<span class='badge badge-success'>08.27.2024 7:54:13 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:54:33 PM</span>
+<span class='badge badge-default'>00:00:20:140</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=47</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:13 PM</td>
+        <td>
+          Parameter: Resume.pdf
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:13 PM</td>
+        <td>
+          Parameter: guidelines.docx
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:13 PM</td>
+        <td>
+          Parameter: sample.doc
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:13 PM</td>
+        <td>
+          Parameter: test2.docx
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:13 PM</td>
+        <td>
+          Adding Publisher with archived files
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:13 PM</td>
+        <td>
+          Verifing archived files are only showing in Edit Pub
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:29 PM</td>
+        <td>
+          Archived files showing correctly
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:54:29 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:33 PM</td>
+        <td>
+          Trace saved: <a href='traces/ISArchiveListIsShowingCorrectFiles.zip'>traces/ISArchiveListIsShowingCorrectFiles.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="48"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS-139:Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher - version 3</p>
+            <p class="text-sm">
+              <span>7:54:36 PM</span> / <span>00:01:00:812</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS-139:Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher - version 3</h5>
+<span class='badge badge-success'>08.27.2024 7:54:36 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:55:37 PM</span>
+<span class='badge badge-default'>00:01:00:812</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=48</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:36 PM</td>
+        <td>
+          Parameter: Resume.pdf
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:36 PM</td>
+        <td>
+          Parameter: guidelines.docx
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:36 PM</td>
+        <td>
+          Adding pub without the recent files
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:54:36 PM</td>
+        <td>
+          verifing recentfile erro message is displayed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:55:24 PM</td>
+        <td>
+          Showing recent files alert
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:55:24 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:55:37 PM</td>
+        <td>
+          Trace saved: <a href='traces/AddPubWithAtleastOneRecentFiles.zip'>traces/AddPubWithAtleastOneRecentFiles.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="49"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS-124 : Ensure SFTP related parameters are not mandatory for publisher - Version 3</p>
+            <p class="text-sm">
+              <span>7:55:41 PM</span> / <span>00:00:14:437</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS-124 : Ensure SFTP related parameters are not mandatory for publisher - Version 3</h5>
+<span class='badge badge-success'>08.27.2024 7:55:41 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:55:55 PM</span>
+<span class='badge badge-default'>00:00:14:437</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=49</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:55:41 PM</td>
+        <td>
+          Adding pub without the ftp related data
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:55:41 PM</td>
+        <td>
+          Verifing publisher is added
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:55:52 PM</td>
+        <td>
+          Publisher Added Successfully Without the FTP Details
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:55:52 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:55:55 PM</td>
+        <td>
+          Trace saved: <a href='traces/AddPubWithoutFTPDetails.zip'>traces/AddPubWithoutFTPDetails.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="50"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS:125-Ensure among 4 SFTP parameters, ensure user should either fill all 4 details or leave out all 4 details. Partially filling should not be allowed to create publisher</p>
+            <p class="text-sm">
+              <span>7:56:03 PM</span> / <span>00:00:14:786</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">JMS:125-Ensure among 4 SFTP parameters, ensure user should either fill all 4 details or leave out all 4 details. Partially filling should not be allowed to create publisher</h5>
+<span class='badge badge-success'>08.27.2024 7:56:03 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:56:17 PM</span>
+<span class='badge badge-default'>00:00:14:786</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=50</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div>    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='screenshots/AddPubWithPartiallData.png' src="screenshots/AddPubWithPartiallData.png">
+    
+    </div></div>
+<div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:03 PM</td>
+        <td>
+          Parameter: ftp name
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:03 PM</td>
+        <td>
+          Parameter: ftp username
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:03 PM</td>
+        <td>
+          Parameter: ftp password
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:03 PM</td>
+        <td>
+          Parameter: ./ftp/pdmr
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:14 PM</td>
+        <td>
+          Adding pub with ftp partially data
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:14 PM</td>
+        <td>
+          verifing publisher is not added 
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>7:56:14 PM</td>
+        <td>
+          Test Failed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>7:56:14 PM</td>
+        <td>
+          <textarea readonly class="code-block">java.lang.AssertionError: The following asserts failed:
+	Publisher added with partiall publisher expected [] but found [ab]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
+	at tests.AddPublisherTest.AddPubWithPartiallData(AddPublisherTest.java:604)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.testng.TestRunner.privateRun(TestRunner.java:829)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+	at org.testng.TestNG.runSuites(TestNG.java:1099)
+	at org.testng.TestNG.run(TestNG.java:1067)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</textarea>
+          
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:17 PM</td>
+        <td>
+          Trace saved: <a href='traces/AddPubWithPartiallData.zip'>traces/AddPubWithPartiallData.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="51"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS:128-After Copied, verify the TAT modification be possible- version 3</p>
+            <p class="text-sm">
+              <span>7:56:24 PM</span> / <span>00:00:14:681</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS:128-After Copied, verify the TAT modification be possible- version 3</h5>
+<span class='badge badge-success'>08.27.2024 7:56:24 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:56:38 PM</span>
+<span class='badge badge-default'>00:00:14:681</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=51</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          Click the copy TaT icon
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          Change the fasttrack-Latexnorml value
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          Change the fasttrack-preedit value
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          Change the fasttrack-IssueQc value
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          Add the Publisher
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          Navigate to Managemenu 
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          Navigate to Edit Publisher page
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          Verifing values are updated
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          All the values are updated
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:56:35 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:56:38 PM</td>
+        <td>
+          Trace saved: <a href='traces/EditCopyTatValue.zip'>traces/EditCopyTatValue.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="52"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS-126 : Editing on SFTP should be possible. - Version 3 </p>
+            <p class="text-sm">
+              <span>7:56:42 PM</span> / <span>00:00:23:230</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">JMS-126 : Editing on SFTP should be possible. - Version 3 </h5>
+<span class='badge badge-success'>08.27.2024 7:56:42 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:57:05 PM</span>
+<span class='badge badge-default'>00:00:23:230</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=52</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:57:00 PM</td>
+        <td>
+          PreCondition-Create a publisher with some SFTP parameters and verify from Edit publisher page
+
+
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:57:00 PM</td>
+        <td>
+          After preconditions is verified, Modify the SFTP parameters and update
+
+(Note: Provide a Valid SFTP parameters)
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:57:00 PM</td>
+        <td>
+          Check again from Edit-Pub Page, whether the updation is done correctly
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:57:00 PM</td>
+        <td>
+          Proceed with Add article via SFTP from this publisher and check the Auto-filled parameters are updated ones, Not older ones
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:57:00 PM</td>
+        <td>
+          Updated parameters has been fetched into Auto-fill
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:57:00 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:57:05 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyFtpUpdatedValue.zip'>traces/VerifyFtpUpdatedValue.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="53"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">JMS-661 : Modify the publisher details and verify - Version 1</p>
+            <p class="text-sm">
+              <span>7:57:08 PM</span> / <span>00:00:25:544</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">JMS-661 : Modify the publisher details and verify - Version 1</h5>
+<span class='badge badge-success'>08.27.2024 7:57:08 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:57:34 PM</span>
+<span class='badge badge-default'>00:00:25:544</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=53</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div>    <div class="row mb-3"><div class="col-md-3">
+<img data-featherlight='screenshots/VerifyUpdatedPub.png' src="screenshots/VerifyUpdatedPub.png">
+    
+    </div></div>
+<div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>7:57:28 PM</td>
+        <td>
+          Test Failed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>7:57:28 PM</td>
+        <td>
+          <textarea readonly class="code-block">java.lang.AssertionError: The following asserts failed:
+	general fresh ts val not updated expected [2] but found [1],
+	general fresh ts val not updated expected [2] but found [1]
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:46)
+	at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:30)
+	at tests.AddPublisherTest.VerifyUpdatedPub(AddPublisherTest.java:700)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.testng.TestRunner.privateRun(TestRunner.java:829)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+	at org.testng.TestNG.runSuites(TestNG.java:1099)
+	at org.testng.TestNG.run(TestNG.java:1067)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</textarea>
+          
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:57:34 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyUpdatedPub.zip'>traces/VerifyUpdatedPub.zip</a>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="54"
+          author="Sakthi"
+          tag="AddPublisher"
+          device="">
+          <div class="test-detail">
+            <p class="name"> JMS-120 : Edit any of the details of the publisher and verify the updation - Version 3</p>
+            <p class="text-sm">
+              <span>7:57:37 PM</span> / <span>00:00:28:475</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass"> JMS-120 : Edit any of the details of the publisher and verify the updation - Version 3</h5>
+<span class='badge badge-success'>08.27.2024 7:57:37 PM</span>
+<span class='badge badge-danger'>08.27.2024 7:58:06 PM</span>
+<span class='badge badge-default'>00:00:28:475</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=54</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">Sakthi</span>
+<span class="badge badge-pill badge-default">AddPublisher</span></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>7:58:03 PM</td>
+        <td>
+          Test Passed
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>7:58:06 PM</td>
+        <td>
+          Trace saved: <a href='traces/VerifyMailUpdate.zip'>traces/VerifyMailUpdate.zip</a>
         </td>
       </tr>
   </tbody>
@@ -462,10 +3265,10 @@
 </div>
 <div class="test-content-detail"><div class="detail-body"></div></div>
 </div></div>
-<div class="test-wrapper row view category-view attributes-view">
+<div class="test-wrapper row view exception-view attributes-view">
 <div class="test-list">
 <div class="test-list-tools">
-<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
 <ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">2</span></a></li></ul>
 </div>
 <div class="test-list-wrapper scrollable">
@@ -473,15 +3276,15 @@
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>3</span>
+<span class='badge log badge-danger'>2</span>
 </span>
-<p class="name">HomePageTests</p>
-<p class="duration text-sm">3 tests</p>
+<p class="name">java.lang.AssertionError</p>
+<p class="duration text-sm">2 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>HomePageTests</h4>
-<span status="pass" class='badge log pass-bg'>3 passed</span>
+<h4>java.lang.AssertionError</h4>
+<span status="fail" class='badge log badge-danger'>2 failed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -492,25 +3295,18 @@
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>19:11:59 PM</td>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>19:56:03 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='1'>verifyhometitle</a>
+<a href="#" class="linked" test-id='50' id='50'>JMS:125-Ensure among 4 SFTP parameters, ensure user should either fill all 4 details or leave out all 4 details. Partially filling should not be allowed to create publisher</a>
 </td>
 </tr>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>19:11:59 PM</td>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>19:57:08 PM</td>
 <td>
-<a href="#" class="linked" test-id='2' id='2'>verifyurl</a>
-</td>
-</tr>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>19:11:59 PM</td>
-<td>
-<a href="#" class="linked" test-id='3' id='3'>verifyIconIsDisplayed</a>
+<a href="#" class="linked" test-id='53' id='53'>JMS-661 : Modify the publisher details and verify - Version 1</a>
 </td>
 </tr>
 </tbody>
@@ -520,15 +3316,66 @@
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>1</span>
+<span class='badge log badge-danger'>1</span>
 </span>
-<p class="name">addarticle</p>
+<p class="name">com.microsoft.playwright.TimeoutError</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>addarticle</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
+<h4>com.microsoft.playwright.TimeoutError</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>19:51:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='37' id='37'>Need to ensure the inputs days in TAT in decimal should be allowed (0.8,0.9,1.2)</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div><div class="test-wrapper row view category-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>26</span>
+<span class='badge log badge-danger'>2</span>
+</span>
+<p class="name">AddPublisher</p>
+<p class="duration text-sm">28 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>AddPublisher</h4>
+<span status="pass" class='badge log pass-bg'>26 passed</span>
+<span status="fail" class='badge log badge-danger'>2 failed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -541,9 +3388,198 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>19:12:01 PM</td>
+<td>19:47:50 PM</td>
 <td>
-<a href="#" class="linked" test-id='4' id='4'>JMS-192 :Clicking on ‘X’ - doesn’t saves the content and returns to Add article page - version 2</a>
+<a href="#" class="linked" test-id='26' id='26'>Verifying Navigating to the Add Publisher Page successfully</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:47:54 PM</td>
+<td>
+<a href="#" class="linked" test-id='27' id='27'> JMS-118 : Add publisher with valid mandatory details - Version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:48:17 PM</td>
+<td>
+<a href="#" class="linked" test-id='28' id='28'>validate the AddPublisher Functionality by add all the TAT Data without copy</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:48:41 PM</td>
+<td>
+<a href="#" class="linked" test-id='29' id='29'>JMS-127:validate the all the FastTrack and General TAT values are equal which is imported from general - version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:48:51 PM</td>
+<td>
+<a href="#" class="linked" test-id='30' id='30'>MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:49:06 PM</td>
+<td>
+<a href="#" class="linked" test-id='31' id='31'>MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:49:20 PM</td>
+<td>
+<a href="#" class="linked" test-id='32' id='32'>MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:49:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='33' id='33'>JMS:222-validate image is added after created a Publisher-version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:49:53 PM</td>
+<td>
+<a href="#" class="linked" test-id='34' id='34'>verify the update functionality</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:50:21 PM</td>
+<td>
+<a href="#" class="linked" test-id='35' id='35'>JMS-122:Change the logo and verify the change in Pub. view version-2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:51:03 PM</td>
+<td>
+<a href="#" class="linked" test-id='36' id='36'>JMS-123:Verify the created publishers are available while creating the Journals - version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>19:51:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='37' id='37'>Need to ensure the inputs days in TAT in decimal should be allowed (0.8,0.9,1.2)</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:21 PM</td>
+<td>
+<a href="#" class="linked" test-id='38' id='38'>JMS-131:Files added now should be in Latest files, unless moved to archive - version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:43 PM</td>
+<td>
+<a href="#" class="linked" test-id='39' id='39'>JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:46 PM</td>
+<td>
+<a href="#" class="linked" test-id='40' id='40'>JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:50 PM</td>
+<td>
+<a href="#" class="linked" test-id='41' id='41'>JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:54 PM</td>
+<td>
+<a href="#" class="linked" test-id='42' id='42'>JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:58 PM</td>
+<td>
+<a href="#" class="linked" test-id='43' id='43'>JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:53:02 PM</td>
+<td>
+<a href="#" class="linked" test-id='44' id='44'>JMS-134 : Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document -version 1</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:53:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='45' id='45'>JMS-135:Ensure STY files can be viewed and modified in publisher view</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:54:01 PM</td>
+<td>
+<a href="#" class="linked" test-id='46' id='46'>Ensure any STY file should be in latest is mandatory. (Need confirmation as it is a template)</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:54:13 PM</td>
+<td>
+<a href="#" class="linked" test-id='47' id='47'>JMS:138-Ensure Files can be moved back and forth from Latest to Archive. Also ensure while creating journal, current list must be fetched-version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:54:36 PM</td>
+<td>
+<a href="#" class="linked" test-id='48' id='48'>JMS-139:Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher - version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:55:41 PM</td>
+<td>
+<a href="#" class="linked" test-id='49' id='49'>JMS-124 : Ensure SFTP related parameters are not mandatory for publisher - Version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>19:56:03 PM</td>
+<td>
+<a href="#" class="linked" test-id='50' id='50'>JMS:125-Ensure among 4 SFTP parameters, ensure user should either fill all 4 details or leave out all 4 details. Partially filling should not be allowed to create publisher</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:56:24 PM</td>
+<td>
+<a href="#" class="linked" test-id='51' id='51'>JMS:128-After Copied, verify the TAT modification be possible- version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:56:42 PM</td>
+<td>
+<a href="#" class="linked" test-id='52' id='52'>JMS-126 : Editing on SFTP should be possible. - Version 3 </a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:57:37 PM</td>
+<td>
+<a href="#" class="linked" test-id='54' id='54'> JMS-120 : Edit any of the details of the publisher and verify the updation - Version 3</a>
 </td>
 </tr>
 </tbody>
@@ -569,15 +3605,17 @@
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>4</span>
+<span class='badge log pass-bg'>26</span>
+<span class='badge log badge-danger'>2</span>
 </span>
 <p class="name">Sakthi</p>
-<p class="duration text-sm">4 tests</p>
+<p class="duration text-sm">28 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
 <h4>Sakthi</h4>
-<span status="pass" class='badge log pass-bg'>4 passed</span>
+<span status="pass" class='badge log pass-bg'>26 passed</span>
+<span status="fail" class='badge log badge-danger'>2 failed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -590,30 +3628,198 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>19:11:59 PM</td>
+<td>19:47:50 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='1'>verifyhometitle</a>
+<a href="#" class="linked" test-id='26' id='26'>Verifying Navigating to the Add Publisher Page successfully</a>
 </td>
 </tr>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>19:11:59 PM</td>
+<td>19:47:54 PM</td>
 <td>
-<a href="#" class="linked" test-id='2' id='2'>verifyurl</a>
+<a href="#" class="linked" test-id='27' id='27'> JMS-118 : Add publisher with valid mandatory details - Version 2</a>
 </td>
 </tr>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>19:11:59 PM</td>
+<td>19:48:17 PM</td>
 <td>
-<a href="#" class="linked" test-id='3' id='3'>verifyIconIsDisplayed</a>
+<a href="#" class="linked" test-id='28' id='28'>validate the AddPublisher Functionality by add all the TAT Data without copy</a>
 </td>
 </tr>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>19:12:01 PM</td>
+<td>19:48:41 PM</td>
 <td>
-<a href="#" class="linked" test-id='4' id='4'>JMS-192 :Clicking on ‘X’ - doesn’t saves the content and returns to Add article page - version 2</a>
+<a href="#" class="linked" test-id='29' id='29'>JMS-127:validate the all the FastTrack and General TAT values are equal which is imported from general - version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:48:51 PM</td>
+<td>
+<a href="#" class="linked" test-id='30' id='30'>MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:49:06 PM</td>
+<td>
+<a href="#" class="linked" test-id='31' id='31'>MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:49:20 PM</td>
+<td>
+<a href="#" class="linked" test-id='32' id='32'>MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:49:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='33' id='33'>JMS:222-validate image is added after created a Publisher-version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:49:53 PM</td>
+<td>
+<a href="#" class="linked" test-id='34' id='34'>verify the update functionality</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:50:21 PM</td>
+<td>
+<a href="#" class="linked" test-id='35' id='35'>JMS-122:Change the logo and verify the change in Pub. view version-2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:51:03 PM</td>
+<td>
+<a href="#" class="linked" test-id='36' id='36'>JMS-123:Verify the created publishers are available while creating the Journals - version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>19:51:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='37' id='37'>Need to ensure the inputs days in TAT in decimal should be allowed (0.8,0.9,1.2)</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:21 PM</td>
+<td>
+<a href="#" class="linked" test-id='38' id='38'>JMS-131:Files added now should be in Latest files, unless moved to archive - version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:43 PM</td>
+<td>
+<a href="#" class="linked" test-id='39' id='39'>JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:46 PM</td>
+<td>
+<a href="#" class="linked" test-id='40' id='40'>JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:50 PM</td>
+<td>
+<a href="#" class="linked" test-id='41' id='41'>JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:54 PM</td>
+<td>
+<a href="#" class="linked" test-id='42' id='42'>JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:52:58 PM</td>
+<td>
+<a href="#" class="linked" test-id='43' id='43'>JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:53:02 PM</td>
+<td>
+<a href="#" class="linked" test-id='44' id='44'>JMS-134 : Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document -version 1</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:53:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='45' id='45'>JMS-135:Ensure STY files can be viewed and modified in publisher view</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:54:01 PM</td>
+<td>
+<a href="#" class="linked" test-id='46' id='46'>Ensure any STY file should be in latest is mandatory. (Need confirmation as it is a template)</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:54:13 PM</td>
+<td>
+<a href="#" class="linked" test-id='47' id='47'>JMS:138-Ensure Files can be moved back and forth from Latest to Archive. Also ensure while creating journal, current list must be fetched-version 2</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:54:36 PM</td>
+<td>
+<a href="#" class="linked" test-id='48' id='48'>JMS-139:Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher - version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:55:41 PM</td>
+<td>
+<a href="#" class="linked" test-id='49' id='49'>JMS-124 : Ensure SFTP related parameters are not mandatory for publisher - Version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>19:56:03 PM</td>
+<td>
+<a href="#" class="linked" test-id='50' id='50'>JMS:125-Ensure among 4 SFTP parameters, ensure user should either fill all 4 details or leave out all 4 details. Partially filling should not be allowed to create publisher</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:56:24 PM</td>
+<td>
+<a href="#" class="linked" test-id='51' id='51'>JMS:128-After Copied, verify the TAT modification be possible- version 3</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:56:42 PM</td>
+<td>
+<a href="#" class="linked" test-id='52' id='52'>JMS-126 : Editing on SFTP should be possible. - Version 3 </a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>19:57:37 PM</td>
+<td>
+<a href="#" class="linked" test-id='54' id='54'> JMS-120 : Edit any of the details of the publisher and verify the updation - Version 3</a>
 </td>
 </tr>
 </tbody>
@@ -633,25 +3839,25 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Aug 26, 2024 07:11:47 PM</h3>
+<h3>Aug 27, 2024 07:47:43 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Aug 26, 2024 07:12:28 PM</h3>
+<h3>Aug 27, 2024 07:58:09 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>4</h3>
+<h3>26</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>0</h3>
+<h3>3</h3>
 </div></div>
 </div>
 </div>
@@ -667,12 +3873,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'>
-<b>4</b> tests passed
+<div><small data-tooltip='89%'>
+<b>26</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='0%'><b>0</b> tests failed,
+<small data-tooltip='10%'><b>3</b> tests failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -690,10 +3896,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='12%'><b>4</b> events passed</small></div>
+<div><small data-tooltip='9%'><b>26</b> events passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> events failed,
-<b data-tooltip='%'>27</b> others
+<small data-tooltip='2%'><b>6</b> events failed,
+<b data-tooltip='%'>249</b> others
 </small>
 </div>
 </div>
@@ -709,7 +3915,7 @@
 </div></div>
 <script>
 var timeline = {
-"verifyhometitle":0.196,"verifyurl":0.183,"verifyIconIsDisplayed":1.539,"JMS-192 :Clicking on ‘X’ - doesn’t saves the content and returns to Add article page - version 2":25.275
+"Verifying Navigating to the Add Publisher Page successfully":0.878," JMS-118 : Add publisher with valid mandatory details - Version 2":19.103,"validate the AddPublisher Functionality by add all the TAT Data without copy":18.541,"JMS-127:validate the all the FastTrack and General TAT values are equal which is imported from general - version 3":7.603,"MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2":11.97,"MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2":10.932,"MS-119 : Verify Neither by Acronym nor by Pub-name, Publisher can be duplicated - Version 2":11.452,"JMS:222-validate image is added after created a Publisher-version 2":15.382,"verify the update functionality":21.448,"JMS-122:Change the logo and verify the change in Pub. view version-2":35.802,"JMS-123:Verify the created publishers are available while creating the Journals - version 2":25.478,"Need to ensure the inputs days in TAT in decimal should be allowed (0.8,0.9,1.2)":43.775,"JMS-131:Files added now should be in Latest files, unless moved to archive - version 3":18.231,"JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2":0.956,"JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2":1.008,"JMS:132-Verify other than ‘.sty’ files can’t be uploaded in template -version2":0.947,"JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2":0.885,"JMS:133-Verify only ‘doc,docx,pdf’ can be uploaded in guidelines document, other formats must not be allowed-version 2":0.902,"JMS-134 : Ensure there is no limits for no. of files uploaded for both template and Gd.Lines document -version 1":28.087,"JMS-135:Ensure STY files can be viewed and modified in publisher view":19.973,"Ensure any STY file should be in latest is mandatory. (Need confirmation as it is a template)":9.367,"JMS:138-Ensure Files can be moved back and forth from Latest to Archive. Also ensure while creating journal, current list must be fetched-version 2":20.14,"JMS-139:Add and move all files to archive, Adding / Updating publisher must NOT be allowed. Atleast any one file should be available at point of time to Add/Edit publisher - version 3":60.812,"JMS-124 : Ensure SFTP related parameters are not mandatory for publisher - Version 3":14.437,"JMS:125-Ensure among 4 SFTP parameters, ensure user should either fill all 4 details or leave out all 4 details. Partially filling should not be allowed to create publisher":14.786,"JMS:128-After Copied, verify the TAT modification be possible- version 3":14.681,"JMS-126 : Editing on SFTP should be possible. - Version 3 ":23.23,"JMS-661 : Modify the publisher details and verify - Version 1":25.544," JMS-120 : Edit any of the details of the publisher and verify the updation - Version 3":28.475
 };
 </script>
 <div class="row">
@@ -721,11 +3927,11 @@ var timeline = {
 <tbody>
 <tr>
 <td>Sakthi</td>
-<td>4</td>
+<td>26</td>
+<td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0</td>
-<td>100%</td>
+<td>92.857%</td>
 </tr>
 </tbody>
 </table></div>
@@ -737,20 +3943,12 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>HomePageTests</td>
-<td>3</td>
+<td>AddPublisher</td>
+<td>26</td>
+<td>2</td>
 <td>0</td>
 <td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>addarticle</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
+<td>92.857%</td>
 </tr>
 </tbody>
 </table></div>
@@ -770,10 +3968,6 @@ var timeline = {
 <td>Tester</td>
 <td>Sakthi</td>
 </tr>
-<tr>
-<td>Tester</td>
-<td>Sakthi</td>
-</tr>
 </tbody>
 </table></div>
 </div>
@@ -783,8 +3977,8 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 4,
-failParent: 0,
+passParent: 26,
+failParent: 3,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
@@ -800,11 +3994,11 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 4,
-failEvents: 0,
+passEvents: 26,
+failEvents: 6,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 27
+infoEvents: 249
 };
 </script>        </div>
       </div>

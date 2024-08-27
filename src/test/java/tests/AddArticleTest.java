@@ -60,7 +60,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority = 2, description = "JMS:13-Ensure three options to add article - Form, Upload, SFTP all are available ")
+    @Test(priority = 2, description = "JMS:13-Ensure three options to add article - Form, Upload, SFTP all are available - version 1 ")
     public void ensureThreeOptIsVisible() throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -80,7 +80,7 @@ public class AddArticleTest extends BaseTest {
         return ExcelReader.ReadExcelData(".//src//test//resources//files//AddArticle.xlsx", 2);
     }
 
-    @Test(priority = 3, dataProvider = "duplicatedata",description = "JMS-15 : verify article duplication is prevented across PM and Login ")
+    @Test(priority = 3, dataProvider = "duplicatedata",description = "JMS-15 : verify article duplication is prevented across PM and Login -version 1")
     public void AddArticleDuplication(String journalacro, String articleid, String artname, String doinum, String workflow) {
         System.out.println(journalacro);
         System.out.println(articleid);
@@ -102,7 +102,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority = 4, dataProvider = "articleaddacess",description = "JMS-14 : Article can be added by both PM and LOGIN user. Other users should not be able to add article")
+    @Test(priority = 4, dataProvider = "articleaddacess",description = "JMS-14 : Article can be added by both PM and LOGIN user. Other users should not be able to add article-version 1")
     public void VerifyAddArticleAcess(String journalacro, String articleid, String artname, String doinum, String workflow, String username, String password, String jacrm, String pubname) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -182,7 +182,7 @@ public class AddArticleTest extends BaseTest {
         return ExcelReader.ReadExcelData(".//src//test//resources//files//AddArticle.xlsx", 7);
     }
 
-    @Test(priority = 7, dataProvider = "articletolatex", description = "JMS:40-Article with no images should not move to Graphics Department")
+    @Test(priority = 7, dataProvider = "articletolatex", description = "JMS:40-Article with no images should not move to Graphics Department-version 2")
     public void verifyarticlemovingToLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -193,7 +193,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority = 8, dataProvider = "articletographics", description = "JMS-41:Article with  images should  move to Graphics Department")
+    @Test(priority = 8, dataProvider = "articletographics", description = "JMS-41:Article with  images should  move to Graphics Department -version 3")
     public void verifyarticlemoveToGraphics(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -203,7 +203,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority = 9, dataProvider = "articletographicsandlatex", description = "JMS-42 : Article with Graphics - verify the initial flow")
+    @Test(priority = 9, dataProvider = "articletographicsandlatex", description = "JMS-42 : Article with Graphics - verify the initial flow-version 2")
     public void verifyarticlemoveToGraphicsAndLatex(String journalacro, String articleid, String artname, String doinum, String workflow, String uname, String upass, String displayfigcount, String Inlinefigcount, String luname, String lupass) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -258,7 +258,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority = 12, dataProvider = "addarticlewithoutfile", description = "JMS-114 : Other files like PDF or JPG can be added - no limitations in number of files ")
+    @Test(priority = 12, dataProvider = "addarticlewithoutfile", description = "JMS-114 : Other files like PDF or JPG can be added - no limitations in number of files-version 3 ")
     public void verifyMultipleAdditionalFileUpload(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
 //      List<Boolean>files= addarticlepage.addarticlewithMultipleAdditionalFile(journalacro,articleid,artname,doinum,workflow);
 //        System.out.println(files);
@@ -284,7 +284,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority = 13, dataProvider = "addarticlewithoutfile", description = "JMS-115 : All the files including ZIP, will have Download, Remove options")
+    @Test(priority = 13, dataProvider = "addarticlewithoutfile", description = "JMS-115 : All the files including ZIP, will have Download, Remove options-version 1 ")
     public void verifyDownloadandRemoveOption(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -391,7 +391,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority = 18,dataProvider = "notescont",description ="MS-189 : Change the higher level information like Journal title or Article title, verify the notes is reset" )
+    @Test(priority = 18,dataProvider = "notescont",description ="MS-189 : Change the higher level information like Journal title or Article title, verify the notes is reset-version 2" )
     public void VerifyContentOfNotesAfterChangeJournal(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour,String cont) throws InterruptedException
     {
         ExtentReportListener.getTest().assignCategory(cateogry);
@@ -405,11 +405,8 @@ public class AddArticleTest extends BaseTest {
 
 
 
-        List<String> Notes=addarticlepage.VerifyNotesContentAfterChangeJournal(journalacro, articleid, artname, doinum, workflow,pub,jour,cont);
-        SoftAssert softAssert=new SoftAssert();
-        softAssert.assertEquals(Notes.get(0),cont,"Notes are not  resetted");
-        softAssert.assertEquals(Notes,"","Notes are not  resetted");
-        softAssert.assertAll();
+        addarticlepage.VerifyNotesContentAfterChangeJournal(journalacro, articleid, artname, doinum, workflow,pub,jour,cont);
+
         ExtentReportListener.getTest().log(Status.INFO,"All view notes  information are  resetted sucessfully");
 
 
@@ -468,21 +465,20 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority =21,dataProvider = "addarticledata",description ="JMS-194 : Verify, on successful saving, Checkbox is selected in Article page" )
+    @Test(priority =21,dataProvider = "addarticledata",description ="JMS-194 : Verify, on successful saving, Checkbox is selected in Article page-version 3" )
     public void verifyCheckboxChecklistSelection(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
 
-        ExtentReportListener.getTest().log(Status.INFO,"Cick  on Add Article option");
-        ExtentReportListener.getTest().log(Status.INFO,"Ensure that Mandatory Text Fields Are Filled");
-        ExtentReportListener.getTest().log(Status.INFO,"click Check List Box");
-        ExtentReportListener.getTest().log(Status.INFO,"Click any figures And click submit button");
-        ExtentReportListener.getTest().log(Status.INFO,"verify that Check box is Selected");
+        ExtentReportListener.getTest().log(Status.INFO,"Provide mandatory details and proceed to Check lists section");
+        ExtentReportListener.getTest().log(Status.INFO,"Add some content and save (click Submit check-Lists) the Check list");
+        ExtentReportListener.getTest().log(Status.INFO,"verify the Check lists Checkbox");
+
 
         Boolean ischecked= addarticlepage.IsCheckboxIsChecked(journalacro, articleid, artname, doinum, workflow,pub,jour);
-           Assert.assertTrue(ischecked,"On open access is not checked");
-        ExtentReportListener.getTest().log(Status.INFO,"Add Article page checklist box selected Successfully");
+           Assert.assertTrue(ischecked,"checklist is selected");
+        ExtentReportListener.getTest().log(Status.INFO," checklist box selected Successfully");
 
     }
 
@@ -544,23 +540,21 @@ public class AddArticleTest extends BaseTest {
 
 
 
-    @Test(priority =26,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents " )
+    @Test(priority =26,dataProvider = "addarticledata",description ="JMS-202 : Verify the checklist is raised as Login query correctly - verify the contents -version 3" )
     public void verifyQueryIsAdded(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
 
-        ExtentReportListener.getTest().log(Status.INFO,"Cick  on Add Article option");
-        ExtentReportListener.getTest().log(Status.INFO,"Ensure that Mandatory Text Fields Are Filled");
-        ExtentReportListener.getTest().log(Status.INFO,"Click on Checklist raised Query");
+        ExtentReportListener.getTest().log(Status.INFO,"After the article is added, Check the Check-List is raised as Login-Query");
+        ExtentReportListener.getTest().log(Status.INFO,"Check the details like Art-ID, Jrnl-Name for that login query");
+        ExtentReportListener.getTest().log(Status.INFO,"Check the content (form preconditions) were correct and same");
 
-        ExtentReportListener.getTest().log(Status.INFO,"click on Add Article button ");
-        ExtentReportListener.getTest().log(Status.INFO,"verify the Raised Querry in Login correctly");
 
 
         Boolean isadded=addarticlepage.IsQueryShowing(journalacro, articleid, artname, doinum, workflow,pub,jour);
         Assert.assertTrue(isadded,"Query is showing");
-        ExtentReportListener.getTest().log(Status.INFO,"Query is in Login Successfully");
+        ExtentReportListener.getTest().log(Status.INFO,"Content is same and verified");
 
     }
 
@@ -713,7 +707,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority =30,dataProvider = "addarticledata",description ="JMS-35 : Verify leave days (sat,Sun) can’t be selected as StartDate" )
+    @Test(priority =30,dataProvider = "addarticledata",description ="JMS-35 : Verify leave days (sat,Sun) can’t be selected as StartDate-version 3" )
     public void VerifyStartDate(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
         ExtentReportListener.getTest().assignCategory(cateogry);
@@ -777,7 +771,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority =32,dataProvider = "addarticledata",description ="JMS-99 : Ensure we can’t save the mail without selecting ‘To’ addresses - check on both " )
+    @Test(priority =32,dataProvider = "addarticledata",description ="JMS-99 : Ensure we can’t save the mail without selecting ‘To’ addresses - check on both -version 2 " )
     public void VerifyToMailMandatoryy(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
 
@@ -789,13 +783,18 @@ public class AddArticleTest extends BaseTest {
         ExtentReportListener.getTest().log(Status.INFO,"Click Mail Preview Check Box");
         ExtentReportListener.getTest().log(Status.INFO,"click Acknowledements Mail Ensure that without Adding To Address and save mail");
         ExtentReportListener.getTest().log(Status.INFO,"Click Notification mail Ensure that Without Adding TO Address and Save Mail");
+        ExtentReportListener.getTest().log(Status.INFO,"Once the To address field is entered at the Acknowledgement and Notification, save button is enabled ");
 
 
         String cssvalue="cursor";
 
-        String savemailcursor=addarticlepage.ToMailMandatoryAlert(journalacro, articleid, artname, doinum, workflow,pub,jour,cssvalue);
-      Assert.assertEquals(savemailcursor,"not-allowed","Can able to click the savemail without selecting the to mail");
-        ExtentReportListener.getTest().log(Status.INFO,"Notification Mail Cant Able to Save the Mail Without TO Address");
+        List<String> savemailcursor=addarticlepage.ToMailMandatoryAlert(journalacro, articleid, artname, doinum, workflow,pub,jour,cssvalue);
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertEquals(savemailcursor.get(0),"not-allowed","Can able to click the savemail without selecting the to mail");
+        softAssert.assertNotEquals(savemailcursor.get(1),"not-allowed","Can able to click the savemail without selecting the to mail");
+        ExtentReportListener.getTest().log(Status.INFO,"Notification Mail and acknowledgement Cant Able to Save the Mail Without TO Address");
+        ExtentReportListener.getTest().log(Status.INFO,"Notification Mail and acknowledgement can Able to Save the Mail with TO Address");
+
 
     }
 
@@ -819,7 +818,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority =33,dataProvider = "addarticledata",description ="JMS-101 : Save any one mail, don’t save another - user can still navigate back to Article page" )
+    @Test(priority =33,dataProvider = "addarticledata",description ="JMS-101 : Save any one mail, don’t save another - user can still navigate back to Article page -version 2" )
     public void AddAcknowledgementMailandNavigateBack(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
 
@@ -856,7 +855,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority =35,dataProvider = "addarticledata",description =" JMS-102 : Save any one mail, don’t save another - mail checkbox still not selected" )
+    @Test(priority =35,dataProvider = "addarticledata",description =" JMS-102 : Save any one mail, don’t save another - mail checkbox still not selected - version 2" )
     public void SaveOneMailAndVerifyPreviewCheckbox(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
         ExtentReportListener.getTest().assignCategory(cateogry);
@@ -916,7 +915,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority =38,dataProvider = "addarticledata",description ="JMS-107 : Change the higher level information like Journal title or Article title" )
+    @Test(priority =38,dataProvider = "addarticledata",description ="JMS-107 : Change the higher level information like Journal title or Article title-version 2" )
     public void verifyMailAfterChangeHighLevel(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
         ExtentReportListener.getTest().assignCategory(cateogry);
@@ -939,7 +938,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority =39,dataProvider = "addarticledata",description ="JMS-109 : Verify Acknowledgement mail is triggered and mail received after article added(check To and Cc both)" )
+    @Test(priority =39,dataProvider = "addarticledata",description ="JMS-109 : Verify Acknowledgement mail is triggered and mail received after article added(check To and Cc both)-version 3" )
     public void VerifyAcknowledgementToast(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
 
@@ -978,7 +977,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority =41,dataProvider = "addarticledata",description ="JMS-111 : Clicking on ‘X’ - doesn’t saves the content and returns to Add article page" )
+    @Test(priority =41,dataProvider = "addarticledata",description ="JMS-111 : Clicking on ‘X’ - doesn’t saves the content and returns to Add article page-version 2" )
     public void MailCloseFunctionality(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
         ExtentReportListener.getTest().assignCategory(cateogry);
@@ -998,7 +997,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority =42,dataProvider = "addarticledata",description =" JMS-203 : Editing article - Major corrections like below should not be allowed ")
+    @Test(priority =42,dataProvider = "addarticledata",description =" JMS-203 : Editing article - Major corrections like below should not be allowed -version 2")
     public void VerifyHighLevelDataChangeUpdate(String journalacro, String articleid, String artname, String doinum, String workflow,String pub,String jour) throws InterruptedException
     {
 
@@ -1061,7 +1060,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority =44,dataProvider ="uniquearticleid",description = " JMS-84 : Verify article ID is unique for every article")
+    @Test(priority =44,dataProvider ="uniquearticleid",description = " JMS-84 : Verify article ID is unique for every article-version 2")
     public void addArticleUniqueID(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -1132,7 +1131,7 @@ public class AddArticleTest extends BaseTest {
 
 
 
-    @Test(priority =48,dataProvider ="mailcount",description = "JMS-88 : Verify ‘,’ comma - separates the author name")
+    @Test(priority =48,dataProvider ="mailcount",description = "JMS-88 : Verify ‘,’ comma - separates the author name-version 2")
     public void VerifyCommaValidationInAuthorName(String journalacro, String articleid, String artname, String doinum, String workflow,String authorname,String authormail) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -1172,7 +1171,7 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority =50,dataProvider ="mailformat",description = " JMS-90 : validation check in mail id ")
+    @Test(priority =50,dataProvider ="mailformat",description = " JMS-90 : validation check in mail id -version 2")
     public void VerifyMailFormat(String journalacro, String articleid, String artname, String doinum, String workflow,String authorname,String authormail) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -1233,7 +1232,7 @@ public class AddArticleTest extends BaseTest {
     }
 
 
-    @Test(priority =53,dataProvider ="duplicatedata",description = "JMS-92 : DOI number and ensure it is indicated accordingly and further article can be added  ")
+    @Test(priority =53,dataProvider ="duplicatedata",description = "JMS-92 : DOI number and ensure it is indicated accordingly and further article can be added -version 2")
     public void VerifyDoiAlert(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException
     {
         ExtentReportListener.getTest().assignCategory(cateogry);
@@ -1280,15 +1279,33 @@ public class AddArticleTest extends BaseTest {
 
     }
 
-    @Test(priority = 55,dataProvider = "addarticlewithoutfile",description = " JMS-196 : Toggle any checkboxes above for Tables,Figures - Version 1")
+    @Test(priority = 55,dataProvider = "addarticlewithoutfile",description = " JMS-196: Toggle any checkboxes above for Tables,Figures - Version 3")
     public void VerifyChecklistToogle(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
+        ExtentReportListener.getTest().log(Status.INFO,"Navigate to Check-Lists by providing neccesary infos");
+        ExtentReportListener.getTest().log(Status.INFO,"Check whether user can give user-defined content (Tables-No; Appendix-yes) from the following sequence \n" +
+                "\n" +
+                "Click on Tables and type - 'No'\n" +
+                "Click on Appendix and type - 'yes'");
+        ExtentReportListener.getTest().log(Status.INFO,"Select some checkbox and Delete all content by 'Ctrl+A --> Del' and verify all checkbox is deselected");
 
 
-        Boolean ischecked = addarticlepage.VerifyToogleChecklist(journalacro, articleid, artname, doinum, workflow);
+
+
+        List<Boolean> ischecked = addarticlepage.VerifyToogleChecklist(journalacro, articleid, artname, doinum, workflow);
         System.out.println("ischecked"+ischecked);
-        Assert.assertFalse(ischecked,"figure is still checked");
+        SoftAssert softAssert=new SoftAssert();
+        softAssert.assertFalse(ischecked.get(0),"After deleted ,Still get selecting");
+        softAssert.assertFalse(ischecked.get(1),"After deleted ,Still get selecting");
+        softAssert.assertTrue(ischecked.get(2),"After deleted ,Still get selecting");
+        softAssert.assertAll();
+        ExtentReportListener.getTest().log(Status.INFO,"User should see as exactly\n" +
+                "\n" +
+                "Tables - No\n" +
+                "Appendix - yes");
+        ExtentReportListener.getTest().log(Status.INFO,"Select some checkbox and Delete all content by 'Ctrl+A --> Del' and verify all checkbox is deselected");
+
 
 
 
@@ -1301,7 +1318,7 @@ public class AddArticleTest extends BaseTest {
         return ExcelReader.ReadExcelData(".//src//test//resources//files//AddArticle.xlsx", 19);
     }
 
-    @Test(priority = 56,dataProvider = "notes",description = " JMS-196 : Toggle any checkboxes above for Tables,Figures - Version 1")
+   /* @Test(priority = 56,dataProvider = "notes",description = " JMS-196 : Toggle any checkboxes above for Tables,Figures - Version 1")
     public void VerifyNotesAvailableAtLaterStage(String journalacro, String articleid, String artname, String doinum, String workflow,String pmuname,String pmupass,String luname,String lupass,String notes) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -1311,12 +1328,12 @@ public class AddArticleTest extends BaseTest {
         Assert.assertTrue(isnotesavailable,"Notes not available");
 
 
-    }
+    }*/
 
 
 
 
-    @Test(priority = 57,dataProvider = "notes",description = "JMS-185 : When any Additional files are removed, still Article addition can be possible")
+    @Test(priority = 57,dataProvider = "notes",description = "JMS-185 : When any Additional files are removed, still Article addition can be possible-version 3")
     public void VerifyFileRemovalAddArticle(String journalacro, String articleid, String artname, String doinum, String workflow,String pmuname,String pmupass,String luname,String lupass,String notes) throws InterruptedException {
         ExtentReportListener.getTest().assignCategory(cateogry);
         ExtentReportListener.getTest().assignAuthor(authorname);
@@ -1325,6 +1342,8 @@ public class AddArticleTest extends BaseTest {
         Assert.assertTrue(isadded,"Without the AdditionalFiles article not added");
 
     }
+
+
 
 
 

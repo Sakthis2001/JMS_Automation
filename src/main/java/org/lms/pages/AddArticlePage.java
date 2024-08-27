@@ -159,6 +159,7 @@ public class AddArticlePage {
     private String workflowselection = "//*[text()='Assign Workflow']";
     private String selectgeneralworkflow = "//*[@alt='General']";
     private String assignbutton = "//*[text()='Assign']";
+    private String checklistcheckbox="id=ensure";
 
 
     // private String selectworkflowopt="//*[@id='workFlow']//following::p[text()='Fresh']";
@@ -745,7 +746,7 @@ public class AddArticlePage {
         page.locator(Selectpubdropdown).click();
         page.locator("//p[normalize-space(text())='" + journalacro + "']").click();
         page.locator(articleidinput).fill(articleid);
-        page.locator(authormail).fill("sakthi@pdmrindia.com;sam@gmail.com;abc@gmail.com");
+        page.locator(authormail).fill("sakthi@pdmrindia;comsam@gmail;comabc@gmail.com");
         page.locator(authorname).fill(authname);
         page.locator(articlename).fill(artname);
         page.locator(selectpriority).click();
@@ -1212,7 +1213,7 @@ public class AddArticlePage {
     }
 
 
-    public Boolean VerifyToogleChecklist(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
+    public List<Boolean> VerifyToogleChecklist(String journalacro, String articleid, String artname, String doinum, String workflow) throws InterruptedException {
 
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
@@ -1231,8 +1232,25 @@ public class AddArticlePage {
         page.locator(Tables).click();
         Thread.sleep(3000);
         page.locator(figurechecklist).click();
+        page.locator(Plzwwritehere).click();
+        page.keyboard().press("Control+A");
+        page.keyboard().press("Delete");
+        page.reload();
+        page.locator(Tables).click();
+        page.locator(Plzwwritehere).fill("Yes");
+
+
         page.locator(figurechecklist).click();
-        return page.locator(figurechecklist).isChecked();
+       Boolean concordinatetextvisible= page.locator("//li[text()='Figures-Yes']").isVisible();
+
+        List<Boolean> ischecked=new ArrayList<>();
+       ischecked.add( page.locator(figurechecklist).isChecked());
+       ischecked.add( page.locator(Tables).isChecked());
+       ischecked.add(concordinatetextvisible);
+        return ischecked;
+
+
+
 
     }
 
@@ -1533,6 +1551,7 @@ public class AddArticlePage {
         page.locator(form).click();
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
         checklist();
+        uploadfiles();
         AddNotes();
         page.locator(ChecklistSelectionShow).click();
         page.locator(displayfigures).click();
@@ -1541,7 +1560,9 @@ public class AddArticlePage {
         page.locator(InlineFigures).click();
         page.locator(Inlinefig_count).fill(inlinefigcount);
 
-        uploadfiles();
+
+
+
 
         page.locator(addarticlebutton).click();
         page.locator(logout).click();
@@ -1870,7 +1891,7 @@ public class AddArticlePage {
 
     }
 
-    public List<String> VerifyNotesContentAfterChangeJournal(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour, String cont) throws InterruptedException {
+    public void VerifyNotesContentAfterChangeJournal(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour, String cont) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
         System.out.println(articlename);
         System.out.println(arttimeid);
@@ -1880,6 +1901,7 @@ public class AddArticlePage {
         String doivalue = String.valueOf(doival);
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
         checklist();
+        uploadfiles();
 
         page.locator(addnotes).click();
 
@@ -1892,12 +1914,16 @@ public class AddArticlePage {
         page.locator(Selectpubdropdown).click();
         page.locator("//p[normalize-space(text())='MT(M)']").click();
 
+
+
         page.locator(addnotes).click();
-        String After = page.locator(Plzwwritehere).textContent();
-        List<String> Notecontent = new ArrayList<>();
-        Notecontent.add(before);
-        Notecontent.add(After);
-        return Notecontent;
+       page.locator(Plzwwritehere).fill("newly added");
+       page.locator(AddNoteutton).click();
+       page.locator(addnotetoastclose).click();
+       page.locator(addarticlebutton).click();
+       page.locator(addarticlealert).click();
+       assertThat(page.locator(Addarticletab)).isVisible();
+
 
 
     }
@@ -1973,8 +1999,7 @@ public class AddArticlePage {
         DoAddArticle(journalacro, arttimeid, artname, doinum, workflow);
         checklist();
         AddNotes();
-        page.locator(checklist).click();
-        return page.locator(figurechecklist).isChecked();
+        return page.locator(checklistcheckbox).isVisible();
 
     }
 
@@ -2255,7 +2280,7 @@ public class AddArticlePage {
 
     }
 
-    public String ToMailMandatoryAlert(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour,String cssProperty)
+    public List<String> ToMailMandatoryAlert(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour,String cssProperty)
     {
         String arttimeid = String.valueOf(System.currentTimeMillis());
 
@@ -2290,7 +2315,17 @@ public class AddArticlePage {
         String savemailcursor = page.locator(savemail).evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", cssProperty).toString();
         System.out.println(savemailcursor);
 
-        return savemailcursor;
+        page.locator(tomail).click();
+        page.locator(checkall).click();
+
+        String savemailcursorafterselectTo = page.locator(savemail).evaluate("(element, property) => window.getComputedStyle(element).getPropertyValue(property)", cssProperty).toString();
+        System.out.println(savemailcursor);
+
+        List<String> cursoredit=new ArrayList<>();
+        cursoredit.add(savemailcursor);
+        cursoredit.add(savemailcursorafterselectTo);
+
+        return cursoredit;
 
 
     }
@@ -2327,8 +2362,7 @@ public class AddArticlePage {
         return true;
     }
 
-    public Boolean SaveAcknoMailAndNavigateBack(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour)
-    {
+    public Boolean SaveAcknoMailAndNavigateBack(String journalacro, String articleid, String artname, String doinum, String workflow, String pub, String jour) throws InterruptedException {
         String arttimeid = String.valueOf(System.currentTimeMillis());
 
         System.out.println(arttimeid);
@@ -2345,15 +2379,18 @@ public class AddArticlePage {
         page.locator(tomail).click();
         page.locator(checkall).click();
         page.locator(Acknowlegeemtnsavemailbutton).click();
-        assertThat(page.locator(Acknowledgementyesalert)).isVisible();
         page.locator(Acknowledgementyesalert).click();
         page.locator(Acknowlegementtoastclose).click();
         page.locator(mailclosebar).click();
         page.locator(notificationmailalert).click();
 
-       // assertThat(page.locator(Addarticletab)).isVisible();
-        return page.locator(Addarticletab).isVisible();
-       // return page.locator(Mailpreviewtab).isVisible();
+        assertThat(page.locator(Addarticletab)).isVisible();
+        page.locator(mailpreview).click();
+        return true;
+
+
+
+        // return page.locator(Mailpreviewtab).isVisible();
 
 
 
@@ -2826,6 +2863,8 @@ public class AddArticlePage {
         assertThat(page.locator("//*[text()='JMS - Add Article']//following::div[text()='ArticleAutomationTest("+arttimeid+") added  successfully']")).isAttached();
         Boolean val= page.locator("//*[text()='JMS - Add Article']//following::div[text()='ArticleAutomationTest("+arttimeid+") added  successfully']").isVisible();
         page.locator(addarticlealert).click();
+        page.reload();
+
 
         return val;
     }
