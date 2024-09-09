@@ -4,10 +4,7 @@ import base.BaseTest;
 import com.aventstack.extentreports.Status;
 import org.lms.listeners.ExtentReportListener;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import utils.ExcelReader;
 
@@ -23,6 +20,21 @@ public class QuickLinksTest extends BaseTest {
         ExtentReportListener.getTest().assignCategory(cateogry);
     }
 
+    @BeforeMethod
+    public void BeforeAllTest()
+    {
+        quickLinksPage= homepage.navigatetoquickPage();
+
+    }
+
+    @AfterMethod
+    public void AfterAllTest()
+    {
+        quickLinksPage.reload();
+
+    }
+
+
 
 
     @Test(priority = 0, description = "JMS-65 :Verify the quicklinks displays all three icons (Add Publisher, Journal, Article) and user can navigate to respective pages correctly - verify this on PM login-version 3")
@@ -32,18 +44,18 @@ public class QuickLinksTest extends BaseTest {
         ExtentReportListener.getTest().log(Status.INFO,"click quick link option");
 
 
-        quickLinksPage= homepage.navigatetoquickPage();
         Boolean Isvisible=quickLinksPage.ensureThreeIcon();
         System.out.println(Isvisible);
         Assert.assertTrue(Isvisible,"Icon not displayed");
         ExtentReportListener.getTest().log(Status.INFO,"add publisher,add journal,add article displayed sucessfully");
     }
 
+
     @Test(priority = 1, description = "JMS-66:Verify the quicklinks displays only Add article for Login user, Add Pub,Journal is not available for login user- version 3")
     public void EnsureLoginUserHasOnlyAddArticleIcon()
     {
-
-         cateogry();
+       // quickLinksPage= homepage.navigatetoquickPage();
+        cateogry();
         ExtentReportListener.getTest().log(Status.INFO,"login with valid credential for login\n" +
                 "\n");
         ExtentReportListener.getTest().log(Status.INFO,"Check Quicklinks option not showing 'Add Publisher', 'Add Journal' option");
@@ -52,10 +64,9 @@ public class QuickLinksTest extends BaseTest {
         ExtentReportListener.getTest().log(Status.INFO,"from Manage->journals, check on 'Three dots' menu option on each publisher");
         ExtentReportListener.getTest().log(Status.INFO,"from Manage->Article, check on Edit option");
 
-        quickLinksPage= homepage.navigatetoquickPage();
         String uname=prop.getProperty("loginusername");
         String upass=prop.getProperty("loginpassword");
-       List<Boolean>visiblity=quickLinksPage.EnsureLoginUserHasArticleIcon(uname,upass);
+        List<Boolean>visiblity=quickLinksPage.EnsureLoginUserHasArticleIcon(uname,upass);
         System.out.println(visiblity);
         Boolean addarticleiconvisiblity=visiblity.get(2);
         SoftAssert softAssert=new SoftAssert();
@@ -89,7 +100,7 @@ public class QuickLinksTest extends BaseTest {
         ExtentReportListener.getTest().log(Status.INFO,"Repeat steps 1,2 from AM/TL login");
         ExtentReportListener.getTest().log(Status.INFO,"Repeat steps 1,2 from User login");
 
-        quickLinksPage= homepage.navigatetoquickPage();
+        //quickLinksPage= homepage.navigatetoquickPage();
 
         Boolean quicklinksvisible=quickLinksPage.EnsureQuickLinksnotAvailableForManagerLogin(uname,upass);
         System.out.println(quicklinksvisible);
@@ -108,7 +119,7 @@ public class QuickLinksTest extends BaseTest {
         ExtentReportListener.getTest().log(Status.INFO,"Login as LOGIN user");
         ExtentReportListener.getTest().log(Status.INFO,"Repeat step 2");
 
-        quickLinksPage= homepage.navigatetoquickPage();
+       // quickLinksPage= homepage.navigatetoquickPage();
         String pmuname=prop.getProperty("Projectmanageruname");
         String pmupass=prop.getProperty("Projectmanagerupass");
         String loginuname=prop.getProperty("loginusername");
@@ -121,7 +132,6 @@ public class QuickLinksTest extends BaseTest {
 
 
     }
-
 
 
 

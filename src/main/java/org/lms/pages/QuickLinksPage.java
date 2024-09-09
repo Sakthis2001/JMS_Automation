@@ -30,7 +30,10 @@ public class QuickLinksPage {
         this.page = page;
     }
 
-
+    public void reload()
+    {
+        page.reload();
+    }
 
     public Boolean ensureThreeIcon() throws InterruptedException {
 
@@ -50,11 +53,9 @@ public class QuickLinksPage {
         page.locator(articleview).click();
         Boolean artedit=page.waitForSelector("//*[@data-icon='pencil'][1]").isVisible();
 
-
-
-
         return uploadvisible && formvisible && clientftpvisible&&pubdit&&jourdit&&artedit;
     }
+
 
 
     public List<Boolean> EnsureLoginUserHasArticleIcon(String uname,String upass)
